@@ -41,3 +41,28 @@
 .warning:hover {
   background-color: var(--secondary-color-3);
 }
+
+.text {
+  background-color: transparent;
+  color: var(--primary-color-blue);
+  box-shadow: none;
+  padding: 0;
+}
+
+.text:hover {
+  color: var(--secondary-color-5);
+  box-shadow: none;
+}
+
+.text:hover .svgIcon {
+  stroke: var(--secondary-color-5);
+  fill: var(--secondary-color-5);
+}
+
+.svgIcon {
+  fill: currentColor;
+  stroke: currentColor;
+  display: inline-block;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+  margin-right: 10px;
+}
