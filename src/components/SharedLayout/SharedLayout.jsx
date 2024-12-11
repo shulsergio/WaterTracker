@@ -1,8 +1,14 @@
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 
-
-export default function Layout() {
+const SharedLayout = () => {
   return (
     <>
+      {/* <Header /> */}
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>
   );
-}
+};
+export default SharedLayout;
