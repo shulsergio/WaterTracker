@@ -1,0 +1,10 @@
+/*перевірка*/
+h1 {
+  max-width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid var(--primary-color-blue);
+  color: var(--secondary-color-3);
+}

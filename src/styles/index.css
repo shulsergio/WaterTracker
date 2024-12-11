@@ -1,0 +1,7 @@
+@import url(./reset.css);
+@import url(./variables.css);
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
