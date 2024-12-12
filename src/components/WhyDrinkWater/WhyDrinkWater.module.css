@@ -1,6 +1,6 @@
 .container {
   border-radius: 10px;
-  margin: 40px 20px;
+  /* margin: 40px 20px; */
   padding: 24px 16px;
   width: 280px;
   height: 416px;
@@ -48,15 +48,17 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    margin-top: 60px;
+    
     padding: 32px 24px;
     width: 494px;
     height: 326px;
+    margin-left: -198px;
   }
 }
 
 @media screen and (min-width: 1158px) {
   .container {
     height: 332px;
+    margin-left: 0;
   }
 }
