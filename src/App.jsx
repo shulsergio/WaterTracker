@@ -20,8 +20,12 @@ function App() {
         <button onClick={onOpenModal} type="button">
           UserLogoModal
         </button>
-        {isModalOpen && <Modal onCloseModal={onCloseModal} />}
       </div>
+      {isModalOpen && (
+        <Modal onCloseModal={onCloseModal}>
+          <p>Компонент, що буде відображатися в модалці</p>
+        </Modal>
+      )}
     </>
   );
 }

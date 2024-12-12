@@ -1,10 +1,28 @@
-import React from "react";
+import { useEffect } from "react";
 import css from "./Modal.module.css";
-import { useState } from "react";
 
-const Modal = ({ onCloseModal }) => {
+const Modal = ({ onCloseModal, children }) => {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === "Escape") {
+        onCloseModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCloseModal]);
+
+  const handleBackDropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onCloseModal();
+    }
+  };
   return (
-    <div className={css.backdrop}>
+    <div onClick={handleBackDropClick} className={css.backdrop}>
       <div className={css.modal}>
         <button
           type="button"
@@ -14,9 +32,7 @@ const Modal = ({ onCloseModal }) => {
         >
           &times;
         </button>
-
-        <h3 className={css.title}>Modal</h3>
-        <p className={css.text}>Тут будуть компоненти різних модалок</p>
+        {children}
       </div>
     </div>
   );
