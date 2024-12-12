@@ -14,8 +14,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-height: 400px;
-  background-color: white;
+  background-color: var(--primary-color-white);
+  max-width: calc(100% - 40px);
 }
 
 .modalHeder {
@@ -38,11 +38,25 @@
   line-height: 1;
   cursor: pointer;
 }
+
 .title {
   color: var(--primery-color-black);
   font-size: 26px;
   font-weight: 500;
 }
+
 .text {
-  color: #000;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.actionBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media screen and (min-width: 450px) {
+    flex-direction: row;
+  }
 }

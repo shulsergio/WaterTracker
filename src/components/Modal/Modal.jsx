@@ -3,7 +3,14 @@ import Icon from '../Icon/Icon';
 import css from './Modal.module.css';
 import { useEffect } from 'react';
 
-const Modal = ({ children, title, onClose, classNameModal }) => {
+const Modal = ({
+  children,
+  title,
+  text,
+  onClose,
+  classNameModal,
+  actionBtns,
+}) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === 'Escape') {
@@ -38,7 +45,11 @@ const Modal = ({ children, title, onClose, classNameModal }) => {
           </button>
         </div>
 
+        {text && <p className={css.text}>{text}</p>}
+
         {children}
+
+        {actionBtns && <div className={css.actionBtns}>{actionBtns}</div>}
       </div>
     </div>
   );
