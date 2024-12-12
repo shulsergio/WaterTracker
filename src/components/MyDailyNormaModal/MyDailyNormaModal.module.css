@@ -1,0 +1,92 @@
+.modal {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    max-width: 592px;
+    width: 100%;
+  }
+}
+
+.btnSave {
+  margin-left: auto;
+  display: block;
+  margin-top: 24px;
+}
+
+.formuls {
+  display: flex;
+  margin-bottom: 12px;
+  gap: 24px;
+}
+
+.formul {
+  color: var(--primary-color-blue);
+  font-size: 18px;
+}
+
+.desc {
+  border: 1px solid var(--secondary-color---5);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 24px;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8f8f8f;
+}
+
+.desc span {
+  color: var(--primary-color-blue);
+}
+
+.subtitle {
+  font-weight: 500;
+  color: var(--primery-color-black);
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.radioGroup {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.inputWithLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.inputLabel {
+  color: var(--primary-color-black);
+  margin-bottom: 8px;
+}
+
+.inputField {
+  padding: 12px 10px;
+  border: 1px solid var(--secondary-color---5);
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--primary-color-blue);
+}
+
+.textAmount {
+  margin-bottom: 24px;
+  color: var(--primary-color-black);
+}
+
+.textAmount span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--primary-color-blue);
+}
+
+.labelAmount {
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: var(--primery-color-black);
+}
