@@ -1,6 +1,7 @@
 // import { useSelector } from 'react-redux';
 import css from './Header.module.css';
-import UserAuth from '../UserAuth/UserAuth';
+// import UserAuth from '../UserAuth/UserAuth';
+// import UserLogo from '../UserLogo/UserLogo';
 import Logo from '../Logo/Logo';
 
 
@@ -11,7 +12,7 @@ const Header = () => {
         <div className={css.headerContainer}>
             <header className={css.header}>
                 <Logo />
-                 <UserAuth/>
+                {/* {isLoggedIn ? <UserLogo /> : <UserAuth />} */}
             </header>
         </div>
     )
