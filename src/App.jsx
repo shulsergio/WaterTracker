@@ -1,7 +1,8 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout';
 import { RestrictedRoute } from './components/RestrictedRoute/RestrictedRoute';
+import Loader from './components/Loader/Loader';
 import './App.css';
 
 function App() {
@@ -13,19 +14,27 @@ function App() {
 
   return (
     <Layout>
-      <Routes>
-        <Route path='/welcome' element={<WelcomePage />} />
-        <Route path='/signin' element={<SigninPage />} />
-        <Route path='/signup' element={<SignupPage />} />
-        <Route
-          path='/home'
-          element={
-            <RestrictedRoute component={<HomePage />} redirectTo='/welcome' />
-          }
-        />
-        <Route path='/' element={<Navigate to='/welcome' replace />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <div>
+            <Loader />
+          </div>
+        }
+      >
+        <Routes>
+          <Route path='/welcome' element={<WelcomePage />} />
+          <Route path='/signin' element={<SigninPage />} />
+          <Route path='/signup' element={<SignupPage />} />
+          <Route
+            path='/home'
+            element={
+              <RestrictedRoute component={<HomePage />} redirectTo='/welcome' />
+            }
+          />
+          <Route path='/' element={<Navigate to='/welcome' replace />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 }
