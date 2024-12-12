@@ -8,37 +8,39 @@
 }
 
 .modal {
-  position: absolute;
   border-radius: 10px;
-  padding: 20px;
-  top: 40%;
+  padding: 32px 24px;
+  position: absolute;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 400px;
-  width: 100%;
   min-height: 400px;
   background-color: white;
 }
 
+.modalHeder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
 .closeModalBtn {
-  position: absolute;
-  right: 15px;
-  top: 15px;
   font-size: 20px;
   border: none;
   color: #fff;
-  padding: 10px;
+  padding: 0px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
+  background: none;
   align-items: center;
   line-height: 1;
-  width: 40px;
-  height: 40px;
   cursor: pointer;
 }
 .title {
-  color: #000;
+  color: var(--primery-color-black);
+  font-size: 26px;
 }
 .text {
   color: #000;
