@@ -17,7 +17,7 @@ const UserAuth = () => {
           onClick={handleSignInClick}
           className={css.authBtn}
           type="button"
-          aria-label="open-modal"
+          aria-label="Open-Modal"
         >
           Sign In
           <Icon
