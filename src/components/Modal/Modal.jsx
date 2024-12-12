@@ -1,11 +1,15 @@
-import { useEffect } from "react";
 import css from "./Modal.module.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../redux/modalSlice.js";
 
-const Modal = ({ onCloseModal, children }) => {
+const Modal = ({ children }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Escape") {
-        onCloseModal();
+        dispatch(closeModal());
       }
     };
 
@@ -14,11 +18,11 @@ const Modal = ({ onCloseModal, children }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onCloseModal]);
+  }, [dispatch]);
 
   const handleBackDropClick = (event) => {
     if (event.target === event.currentTarget) {
-      onCloseModal();
+      dispatch(closeModal());
     }
   };
   return (
@@ -28,7 +32,7 @@ const Modal = ({ onCloseModal, children }) => {
           type="button"
           aria-label="Close modal button"
           className={css.closeModalBtn}
-          onClick={onCloseModal}
+          onClick={() => dispatch(closeModal())}
         >
           &times;
         </button>

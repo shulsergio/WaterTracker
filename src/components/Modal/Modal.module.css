@@ -1,5 +1,5 @@
 .backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;
@@ -26,7 +26,6 @@
   top: 15px;
   font-size: 20px;
   border: none;
-  /* background-color: black; */
   color: #fff;
   padding: 10px;
   border-radius: 5px;
