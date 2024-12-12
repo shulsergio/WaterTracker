@@ -1,5 +1,6 @@
 import css from './MainPage.module.css' 
 import WhyDrinkWater from '../../components/WhyDrinkWater/WhyDrinkWater'
+import WaterСonsumptionTracker from '../../components/WaterСonsumptionTracker/WaterСonsumptionTracker'
 
 export default function Main () { 
     return (
@@ -7,7 +8,7 @@ export default function Main () {
     <ul className={css.list}> 
     <div className={css.wrapper}> 
         <div className={css.container}>
-            <li>Water consumption tracker</li> 
+            <li><WaterСonsumptionTracker/></li> 
         </div>
         <div >
         <li><WhyDrinkWater/></li> 

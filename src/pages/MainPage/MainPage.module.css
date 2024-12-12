@@ -17,7 +17,9 @@
     flex-wrap: nowrap;
     gap: 40px;
     align-items: center;
-    
+    background-repeat: no-repeat;
+    background-position: bottom;
+    min-height: 800px;
   }
 
   @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
@@ -48,12 +50,17 @@
     .wrapper {
         background-image: url('../../images/background/desktop/Background-desktop-1x.webp');
       gap: 81px;
+      flex-direction: row;
+      
+      margin-top: 140px;
+      
+    
     }
 
     .container {
         width: 436px;
     height: 336px;
-        margin-left: 198px;
+        margin-top: 0;
     }
 
     @media screen and (min-resolution: 192dpi) and (min-width: 1440px) {

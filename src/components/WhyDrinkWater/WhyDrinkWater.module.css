@@ -52,11 +52,13 @@
     padding: 32px 24px;
     width: 494px;
     height: 326px;
+    margin-left: -198px;
   }
 }
 
 @media screen and (min-width: 1158px) {
   .container {
     height: 332px;
+    margin-left: 0;
   }
 }
