@@ -6,6 +6,7 @@ const Button = ({
   children,
   onClick,
   className,
+  icon,
   ...props
 }) => {
   return (
@@ -16,12 +17,14 @@ const Button = ({
           [styles.primary]: type === 'primary',
           [styles.secondary]: type === 'secondary',
           [styles.warning]: type === 'warning',
+          [styles.text]: type === 'text',
         },
         className
       )}
       onClick={onClick}
       {...props}
     >
+      {icon && <span className={styles.svgIcon}>{icon}</span>}
       {children}
     </button>
   );
