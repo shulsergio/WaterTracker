@@ -1,0 +1,43 @@
+.button {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, color 0.3s ease;
+  min-width: 160px;
+  line-height: 24px;
+  font-weight: 500;
+  box-shadow: var(--button-shadow);
+}
+
+.button:hover {
+  box-shadow: var(--button-shadow-hover);
+}
+
+.primary {
+  background-color: var(--primary-color-blue);
+  color: var(--primary-color-white);
+}
+
+.primary:hover {
+  background-color: var(--primary-color-blue);
+}
+
+.secondary {
+  background-color: var(--secondary-color---5);
+  color: var(--primary-color-blue);
+}
+
+.secondary:hover {
+  background-color: var(--secondary-color---5);
+}
+
+.warning {
+  background-color: var(--secondary-color-3);
+  color: var(--primary-color-white);
+}
+
+.warning:hover {
+  background-color: var(--secondary-color-3);
+}
