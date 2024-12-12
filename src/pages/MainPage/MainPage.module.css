@@ -1,0 +1,64 @@
+.container {
+    border-radius: 10px;
+    /* margin: 40px 20px; */
+    /* padding: 24px 16px; */
+    margin-top: 20px;
+    width: 280px;
+    height: 384px;
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+    background: #ecf2ff;
+    /* margin-left: 198px; */
+  }
+
+  .wrapper {
+    background-image: url('../../images/background/mobile/Background-mobile-1x.webp');
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 40px;
+    align-items: center;
+    
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+    .wrapper {
+        background-image: url('../../images/background/mobile/Background-mobile-2x.webp');
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper {
+        background-image: url('../../images/background/tablet/Background-tab-1x.webp');
+        flex-direction: column;
+        gap: 60px;
+      }
+    .container{
+        /* margin-left: 32px; */
+        width: 704px;
+    height: 254px;
+    }
+    @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+        .wrapper {
+            background-image: url('../../images/background/tablet/Background-tab-2x.webp');
+          }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .wrapper {
+        background-image: url('../../images/background/desktop/Background-desktop-1x.webp');
+      gap: 81px;
+    }
+
+    .container {
+        width: 436px;
+    height: 336px;
+        margin-left: 198px;
+    }
+
+    @media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
+        .wrapper {
+            background-image: url('../../images/background/desktop/Background-desktop-2x.webp');
+          }
+    }
+}
