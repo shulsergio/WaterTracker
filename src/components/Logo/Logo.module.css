@@ -1,0 +1,10 @@
+.logo{
+    cursor: pointer;
+    width: 102px;
+    height: 48px;
+    padding: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../../images/logo/Logo.svg);
+}

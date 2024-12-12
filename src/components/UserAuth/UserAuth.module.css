@@ -2,19 +2,20 @@
 .authBtn{
 border: none;
 box-shadow: none;
+color:  var(--primary-color-blue);
 }
 
 .authBtn:hover{
     box-shadow: none;
-    color:#ff9d43;
-
- .icon{
-    color: #ff9d43;
+    color:var(--secondary-color-5);
+  .icon{
+    stroke: var(--secondary-color-5);
 }
 }
 
 .icon{
 background: transparent;
 fill: none;
-stroke: #407bff;
+stroke: var( --primary-color-black);
 }
+
