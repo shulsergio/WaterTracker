@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { openModal } from "../../redux/modalSlice.js";
-import Modal from "../../components/Modal/Modal.jsx";
+import Modal from '../../components/Modal/Modal.jsx';
+import useModal from '../../hooks/useModal.js';
 
 /**
  *
@@ -9,21 +8,20 @@ import Modal from "../../components/Modal/Modal.jsx";
  * @return {*}
  */
 export default function HomePage() {
-  const dispatch = useDispatch();
-  const isModalOpen = useSelector((state) => state.modal.isOpen);
+  const { openModal, isOpen, closeModal } = useModal();
 
-  console.log("Rendered HomePage");
+  console.log('Rendered HomePage');
 
   return (
     <>
-      <div title="Modal">
+      <div title='Modal'>
         <div>
-          <button onClick={() => dispatch(openModal())} type="button">
+          <button onClick={openModal} type='button'>
             Modal
           </button>
         </div>
-        {isModalOpen && (
-          <Modal>
+        {isOpen && (
+          <Modal title='Delete entry' onClose={closeModal}>
             <p>Компонент, що буде відображатися в модалці</p>
           </Modal>
         )}
