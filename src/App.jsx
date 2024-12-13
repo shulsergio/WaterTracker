@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './components/layout';
+import  SharedLayout  from "./components/SharedLayout/SharedLayout";
 import { RestrictedRoute } from './components/RestrictedRoute/RestrictedRoute';
 import Loader from './components/Loader/Loader';
 import './App.css';
@@ -14,30 +14,30 @@ function App() {
   const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
   return (
-    <Layout>
+    <SharedLayout>
       <Suspense
         fallback={
           <div>
             <Loader />
           </div>
         }
-        >
-        <MainPage/>
+      >
+        <MainPage />
         <Routes>
-          <Route path='/welcome' element={<WelcomePage />} />
-          <Route path='/signin' element={<SigninPage />} />
-          <Route path='/signup' element={<SignupPage />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route
-            path='/home'
+            path="/home"
             element={
-              <RestrictedRoute component={<HomePage />} redirectTo='/welcome' />
+              <RestrictedRoute component={<HomePage />} redirectTo="/welcome" />
             }
           />
-          <Route path='/' element={<Navigate to='/welcome' replace />} />
-          <Route path='*' element={<NotFoundPage />} />
+          <Route path="/" element={<Navigate to="/welcome" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </Layout>
+    </SharedLayout>
   );
 }
 
