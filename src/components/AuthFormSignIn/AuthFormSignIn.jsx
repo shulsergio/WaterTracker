@@ -61,7 +61,7 @@ export default function AuthFormSignIn() {
       <nav className={css.nav}>
         <NavLink to="/signup">Sign Up</NavLink>
         </nav>
-    </div>
+      </div>
 );
 }
 
