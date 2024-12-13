@@ -1,0 +1,41 @@
+.blockInfo {
+  /* width: 534px; */
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.blockInfoAmount {
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--primary-color-blue);
+  margin-left: 12px;
+}
+
+.blockInfoTime {
+  font-size: 12px;
+  line-height: 200%;
+  color: var(--primary-color-black);
+  margin-left: 16px;
+}
+
+.editIcon {
+  fill: none;
+  stroke: var(--secondary-color-4);
+  background: none;
+  padding: 0;
+}
+
+.deleteIcon {
+  fill: none;
+  stroke: var(--secondary-color-3);
+  background: none;
+  padding: 0;
+}
+
+.buttons {
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+  gap: 18px;
+}
