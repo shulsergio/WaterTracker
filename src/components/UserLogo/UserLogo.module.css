@@ -1,0 +1,26 @@
+.userLogoContainer{
+  position: relative
+}
+
+.userLogoBtn{
+ width: auto;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  gap: 8px;
+  outline: none;
+}
+
+.userName{
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary-color-black);
+  width: 68px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+}

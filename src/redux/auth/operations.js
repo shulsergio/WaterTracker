@@ -19,3 +19,18 @@ export const signUp = createAsyncThunk(
     }
   }
 );
+
+
+//POST  user/login
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkApi) => {
+    try {
+      const {data} = await axios.post('/user/login', credentials);
+      setAuthHeader(data.token);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
