@@ -21,11 +21,20 @@ function App() {
             <Loader />
           </div>
         }
+      >
+        <MainPage />
         <Routes>
+          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route
+            path="/home"
             element={
+              <RestrictedRoute component={<HomePage />} redirectTo="/welcome" />
             }
           />
+          <Route path="/" element={<Navigate to="/welcome" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </SharedLayout>
