@@ -6,6 +6,7 @@ import Loader from './components/Loader/Loader';
 import './App.css';
 
 function App() {
+  const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
   const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
   const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
   const SigninPage = lazy(() => import('./pages/SigninPage/SigninPage'));
@@ -20,7 +21,8 @@ function App() {
             <Loader />
           </div>
         }
-      >
+        >
+        <MainPage/>
         <Routes>
           <Route path='/welcome' element={<WelcomePage />} />
           <Route path='/signin' element={<SigninPage />} />
