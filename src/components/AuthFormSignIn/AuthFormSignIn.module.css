@@ -52,6 +52,11 @@
   align-items: center;
   justify-content: center;
 }
+.css.messageError{
+font-size: 14px;
+line-height: 1.28571;
+color: #ef5050;
+}
 
 @media screen and (min-width: 320px) {
   .container {
@@ -72,9 +77,3 @@
 }
 
 
-
-.error {
-font-size: 14px;
-line-height: 1.28571;
-color: #ef5050;
-}

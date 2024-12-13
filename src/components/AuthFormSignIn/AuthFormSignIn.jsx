@@ -1,21 +1,29 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./AuthFormSignIn.module.css";
 import Button from "../button/Button";
-import { NavLink } from "react-router-dom";
-// import * as Yup from "yup";
-// import { useId } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+// import { signIn } from "../../redux/auth/operations";
+import { logIn  } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
 
 
-export default function AuthFormSignIn () {
+const validationSchema = Yup.object({
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+});
 
-//     const validationSchema = Yup.object().shape({
-//     email: Yup.string().email("Some error message").required("Email is required"),
-//     password: Yup.string().min(6, "Password must be at least 6 characters long").required("Password is required"),
-//   });
+export default function AuthFormSignIn() {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (values, actions) => {
+    dispatch(logIn (values));
+    navigate("/home");
+
     actions.resetForm();
   };
-    
     
     return (
       <div className={css.container}>
@@ -24,8 +32,8 @@ export default function AuthFormSignIn () {
         email: "",
         password: "",
       }}
-    //   validationSchema={validationSchema}        
-      onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
             >
             <Form className={css.form}>
             <p className={css.text}>Sign In</p>
@@ -33,10 +41,20 @@ export default function AuthFormSignIn () {
             Enter your email
             <Field type="email" name="email" className={css.input} placeholder="E-mail" />
             </label>
+            <ErrorMessage
+          name="email"
+          component="div"
+          className={css.messageError}
+        />
          <label className={css.label}>
         Enter your password
         <Field type="password" name="password" className={css.input} placeholder="Password" />
-        </label>
+            </label>
+            <ErrorMessage
+          name="password"
+          component="div"
+          className={css.messageError}
+        />
         <Button className={css.button}>Sign In</Button>
         </Form>
       </Formik>
@@ -44,6 +62,7 @@ export default function AuthFormSignIn () {
         <NavLink to="/signup">Sign Up</NavLink>
         </nav>
     </div>
-  );
+);
 }
+
 
