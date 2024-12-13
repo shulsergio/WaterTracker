@@ -1,30 +1,15 @@
-:root {
-    --background-light: #fff;
-    --background-dark: #1c1d26;
-    --text-color-light: #2f2f2f;
-    --text-color-dark: #d5dff5;
-    --border-color-light: #ecf2ff;
-    --border-color-dark: #1f2438;
-    --shadow-light: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
-    --shadow-dark: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
-    --hover-color-light: #ff9d43;
-    --hover-color-dark: #ffa756;
-    --color-primary-light: #407bff;
-    --color-primary-dark: #5082f2;
-}
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 12px;
-    border: 1px solid var(--border-color-light); 
+    border: 1px solid var(--secondary-color-2); 
     border-radius: 10px;
     padding: 8px 20px;;
     width: max-content;
     height: 76px;
-    background-color: var(--background-light);
+    background-color: var(--primary-color-white);
     box-shadow: var(--shadow-light);
     font-family: "Roboto", sans-serif;
 }
@@ -33,7 +18,7 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 1.33333;
-    color: var(--text-color-light);
+    color: var(--primary-color-black);
 }
 
 .value {
@@ -48,22 +33,13 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 1;
-    color: var(--color-primary-light);
+    color: var(--primary-color-blue);
 }
 
 .editButton {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.25;
-    color: #8baeff;
-    cursor: pointer;
-    text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    transition: color 0.5s ease;
-}
-
-.editButton:hover {
-    color: var(--hover-color-light);
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    color: var(--secondary-color-6);
+    min-width: auto !important;
 }
