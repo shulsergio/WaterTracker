@@ -15,9 +15,9 @@ export default function HomePage() {
 
   return (
     <>
-      <p>пример</p>
       <DailyNorma />
 
+      <p>пример модалки</p>
       <div title="Modal">
         <div>
           <button onClick={openModal} type="button">

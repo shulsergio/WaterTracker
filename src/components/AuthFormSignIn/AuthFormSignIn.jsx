@@ -2,11 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./AuthFormSignIn.module.css";
 import Button from "../button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { signIn } from "../../redux/auth/operations";
 import { logIn } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
 
@@ -24,22 +22,12 @@ export default function AuthFormSignIn() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     setIsLoading(true);
-    console.log("LoginForm values: ", values);
-    console.log(
-      "Current Authorization Header ONE:",
-      axios.defaults.headers.common.Authorization
-    );
-
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
         toast.success("OK! You are logged");
-        console.log(
-          "Current Authorization Header FINISH:",
-          axios.defaults.headers.common.Authorization
-        );
         navigate("/home");
       })
       .catch(() => {

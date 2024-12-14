@@ -1,7 +1,7 @@
-import clsx from 'clsx';
-import Icon from '../Icon/Icon';
-import css from './Modal.module.css';
-import { useEffect } from 'react';
+import clsx from "clsx";
+import Icon from "../Icon/Icon";
+import css from "./Modal.module.css";
+import { useEffect } from "react";
 
 const Modal = ({
   children,
@@ -13,15 +13,15 @@ const Modal = ({
 }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.code === 'Escape') {
+      if (event.code === "Escape") {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
 
@@ -36,12 +36,11 @@ const Modal = ({
         <div className={css.modalHeder}>
           <h3 className={css.title}>{title}</h3>
           <button
-            type='button'
-            aria-label='Close modal button'
+            aria-label="Close modal button"
             className={css.closeModalBtn}
             onClick={onClose}
           >
-            <Icon id='icon-close' width={14} height={14} />
+            <Icon id="icon-close" width={14} height={14} />
           </button>
         </div>
 
