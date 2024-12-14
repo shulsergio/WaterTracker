@@ -16,19 +16,6 @@
   --button-shadow-hover: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
 
   --font-roboto: "Roboto", sans-serif;
-  --global-padding: 8px 20px;
-}
-
-@media (min-width: 768px) {
-  :root {
-    --global-padding: 16px 32px;
-  }
-}
-
-@media (min-width: 1440px) {
-  :root {
-    --global-padding: 12px 112px;
-  }
 }
 
 [data-theme="dark"] {
