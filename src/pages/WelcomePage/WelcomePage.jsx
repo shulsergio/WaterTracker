@@ -5,14 +5,20 @@ export default function WelcomePage() {
   console.log("Rendered WelcomePage");
   return (
     <section className={css.section}>
+    
       <div className={css.wrapper}>
         <div className={css.containerWater}>
-          <WaterСonsumptionTracker />
+          
+            <WaterСonsumptionTracker />
+          
         </div>
         <div className={css.containerWhy}>
-          <WhyDrinkWater />
+          
+            <WhyDrinkWater />
+          
         </div>
       </div>
+    
     </section>
   );
 }

@@ -1,16 +1,25 @@
-.headerContainer{
+/* .headerContainer{
 height: 48px;
-margin-bottom: 24px;
-margin-top: 8px;
-margin-left: 20px;
-margin-right: 20px;
+/* margin-bottom: 24px; */
+/* padding: 16px 32px; */
+
+/* margin-left: 20px;
+margin-right: 20px; */
+/* } */
+
+.headerContainer {
+  height: 48px;
+  width: 280px;
+  padding: 8px 20px;
 }
 
-.header{
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
+.header {
+  width: 100%;
+  height: 48px;
+  /* width: 280px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header button {
@@ -47,28 +56,31 @@ header button:hover {
   height: 24px;
 }
 
-@media screen and(min-width: 1440px) {
-    .headerContainer{
-        width: 1216px;
-        margin-bottom: 49px;
+@media screen and (min-width: 768px) {
+  .headerContainer {
+    width: 704px;
+    /* margin-bottom: 40px; */
+    /* margin-top: 16px;
+        margin-left: 32px;
+        margin-right: 32px; */
+    padding: 16px 32px;
+  }
+
+  .header {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .headerContainer {
+    width: 100%;
+    /* margin-bottom: 49px;
         margin-top: 12px;
         margin-left: 84px;
-        margin-right: 84px;
-    }
-}
-
-@media screen and(min-width: 768px) {
-    .headerContainer{
-        width: 704px;
-        margin-bottom: 40px;
-        margin-top: 16px;
-        margin-left: 32px;
-        margin-right: 32px;
-    }
-}
-
-@media screen and(min-width: 320px){
-    .headerContainer{
-        width: 280px;
-    }
+        margin-right: 84px; */
+    /* padding: 12px 112px; */
+  }
+  .header {
+    width: 100%;
+  }
 }

@@ -1,10 +1,20 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./AuthFormSignup.module.css";
 import { useDispatch } from "react-redux";
 import Button from "../button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signUp } from "../../redux/auth/operations";
-import toast from "react-hot-toast";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must be at maximum 6 characters")
+    .required("Password is required"),
+});
 
 export default function AuthFormSignup() {
   const dispatch = useDispatch();
@@ -12,14 +22,15 @@ export default function AuthFormSignup() {
 
   const handleSubmit = (values, actions) => {
     if (values.password !== values.repeatPassword) {
-      toast.error("Passwords don`t match");
+      alert("Passwords don't match");
+
       return;
     }
     try {
       dispatch(signUp(values));
       navigate("/signin");
     } catch (error) {
-      toast.error(`Registration failed: ${error}`);
+      alert(`Registration failed: ${error.message}`);
     }
 
     actions.resetForm();
@@ -29,6 +40,7 @@ export default function AuthFormSignup() {
     <div className={css.container}>
       <Formik
         initialValues={{ email: "", password: "", repeatPassword: "" }}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>
@@ -42,6 +54,11 @@ export default function AuthFormSignup() {
               placeholder="E-mail"
             />
           </label>
+          <ErrorMessage
+            name="email"
+            component="div"
+            className={css.errorMessage}
+          />
           <label className={css.label}>
             Enter your password
             <Field
@@ -51,6 +68,11 @@ export default function AuthFormSignup() {
               placeholder="Password"
             />
           </label>
+          <ErrorMessage
+            name="password"
+            component="div"
+            className={css.errorMessage}
+          />
           <label className={css.label}>
             Repeat password
             <Field
@@ -60,7 +82,12 @@ export default function AuthFormSignup() {
               placeholder="Repeat password"
             />
           </label>
-          <Button type="submit" className={css.button}>
+          <ErrorMessage
+            name="repeatPassword"
+            component="div"
+            className={css.errorMessage}
+          />
+          <Button type="submit" className={css.signupButton}>
             Sign Up
           </Button>
         </Form>
