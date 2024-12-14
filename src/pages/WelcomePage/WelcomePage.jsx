@@ -4,19 +4,21 @@ import css from "./WelcomePage.module.css";
 export default function WelcomePage() {
   console.log("Rendered WelcomePage");
   return (
-    <ul className={css.list}>
+    <section className={css.section}>
+    
       <div className={css.wrapper}>
-        <div className={css.container}>
-          <li>
+        <div className={css.containerWater}>
+          
             <WaterСonsumptionTracker />
-          </li>
+          
         </div>
-        <div>
-          <li>
+        <div className={css.containerWhy}>
+          
             <WhyDrinkWater />
-          </li>
+          
         </div>
       </div>
-    </ul>
+    
+    </section>
   );
 }

@@ -10,7 +10,7 @@ const WaterСonsumptionTracker = () => {
         <h2 className={css.sub__title}>Record daily water intake and track</h2>
       </div>
       <div className={css.benefits}>
-        <h3 className={css.benefits__title}>Tracker Benefits:</h3>
+        <h3 className={css.benefits__title}>Tracker Benefits</h3>
         <ul className={css.list}>
           <li className={css.item}>
             <Icon id="icon-calendar" className={css.icon} />
