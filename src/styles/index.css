@@ -4,4 +4,5 @@
 html {
   font-size: 100%;
   scroll-behavior: smooth;
+  padding: var(--global-padding);
 }
