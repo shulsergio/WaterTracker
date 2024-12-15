@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn } from "../auth/operations";
+import { fetchUser } from "./operations.js";
+// import { logIn } from "../auth/operations";
+// import axios from "axios";
 
 const initialState = {
   data: null,
@@ -17,13 +19,17 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.data = action.payload.user;
-        state.isLoading = false;
+      .addCase(fetchUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
       })
-      .addCase(logIn.rejected, (state, action) => {
-        state.error = action.payload;
+      .addCase(fetchUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
