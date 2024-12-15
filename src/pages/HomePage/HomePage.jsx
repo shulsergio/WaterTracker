@@ -1,7 +1,7 @@
 import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
 import useModal from "../../hooks/useModal.js";
-
+// import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
  *
  *
@@ -30,6 +30,7 @@ export default function HomePage() {
           </Modal>
         )}
       </div>
+      {/* <UserLogoutModal /> */}
     </>
   );
 }
