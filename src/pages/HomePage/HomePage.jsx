@@ -1,5 +1,6 @@
 import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
+import SettingModal from "../../components/SettingModal/SettingModal.jsx";
 import useModal from "../../hooks/useModal.js";
 // import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
@@ -27,6 +28,7 @@ export default function HomePage() {
         {isOpen && (
           <Modal title="Delete entry" onClose={closeModal}>
             <p>Компонент, що буде відображатися в модалці</p>
+            <SettingModal />
           </Modal>
         )}
       </div>
