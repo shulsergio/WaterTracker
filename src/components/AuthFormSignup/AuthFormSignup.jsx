@@ -121,9 +121,9 @@ export default function AuthFormSignup() {
                   aria-label="Toggle repeat password visibility"
                 >
                   {showRepeatPassword ? (
-                    <BiHide className={css.eye} />
-                  ) : (
                     <BiShow className={css.eye} />
+                  ) : (
+                    <BiHide className={css.eye} />
                   )}
                 </button>
               </div>
