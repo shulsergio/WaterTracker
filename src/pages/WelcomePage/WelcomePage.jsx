@@ -1,7 +1,6 @@
 import WhyDrinkWater from "../../components/WhyDrinkWater/WhyDrinkWater";
 import WaterСonsumptionTracker from "../../components/WaterСonsumptionTracker/WaterСonsumptionTracker";
 import css from "./WelcomePage.module.css";
-import TodayWaterGlassList from "../../components/TodayWaterGlassList/TodayWaterGlassList";
 export default function WelcomePage() {
   console.log("Rendered WelcomePage");
   return (
@@ -13,9 +12,6 @@ export default function WelcomePage() {
           </div>
           <div className={css.containerWhy}>
             <WhyDrinkWater />
-          </div>
-          <div>
-            <TodayWaterGlassList />
           </div>
         </div>
       </section>
