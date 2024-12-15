@@ -9,26 +9,42 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 133%;
-  color: var(--primery-color-black);
+  color: #2f2f2f;
   margin-top: 16px;
 }
 
 .form {
+  margin-top: 24px;
 }
 
 .input {
-  border: 1px solid var(--secondary-color---5);
+  border: 1px solid #d7e3ff;
   border-radius: 6px;
   padding: 12px 10px;
   width: 280px;
   height: 44px;
   margin-top: 8px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 125%;
+  color: #407bff;
+}
+.input:active {
+  border: 1px solid #d7e3ff;
+}
+.input:focus {
+  border: 1px solid #d7e3ff;
+}
+
+.inputError {
+  border-color: #ef5050;
+  color: #ef5050;
 }
 
 ::placeholder {
   font-family: var(--font-family);
   font-size: 16px;
-  color: var(--secondary-color-4);
+ color: #9ebbff;
 }
 
 .text {
@@ -38,42 +54,100 @@
   margin: 0;
 }
 
-.nav {
+.navWrap {
   margin-top: 16px;
 }
+.nav:hover {
+  color: #ff9d43;
+}
 
-.button {
+.signinButton {
+  border-radius: 10px;
   margin-top: 16px;
   padding: 8px 30px;
   width: 280px;
   height: 36px;
+  font-weight: 500;
   font-size: 16px;
+  line-height: 125%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background-color: #407bff;
+  font-family: var(--font-family);
+  color: white;
 }
-.css.messageError{
-font-size: 14px;
-line-height: 1.28571;
-color: #ef5050;
+.signinButton:hover {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.signinButton:active {
+  box-shadow: none;
+}
+
+.errorMessage {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+   color: #ef5050;
+}
+.passwordWrapper {
+  position: relative;
+}
+.eyeButton {
+  position: absolute;
+  right: 10px;
+  top: 60%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eye {
+  width: 16px;
+  height: 16px;
 }
 
 @media screen and (min-width: 320px) {
   .container {
     width: 280px;
   }
+    
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+ .form {
+    width: 336px;
+    margin-top: 40px;
+  }
+  .signinButton {
+    padding: 10px 30px;
+    width: 336px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .input {
     width: 336px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .container {
+  .form {
+    width: 384px;
+    margin-top: 162px;
+  }
+
+  .signinButton {
+    padding: 10px 30px;
+    width: 384px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .input {
     width: 384px;
   }
 }
-
-
