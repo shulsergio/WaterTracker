@@ -1,0 +1,83 @@
+.container {
+  border-radius: 10px;
+  padding: 24px 8px;
+  width: 280px;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+  background: var(--secondary-color-2);
+  margin-bottom: 40px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--primary-color-black);
+  margin-bottom: 16px;
+}
+
+.waterList {
+  height: 188px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.waterList::-webkit-scrollbar {
+  width: 4px;
+  height: 100px;
+}
+
+.waterList::-webkit-scrollbar-track {
+  background: var(--secondary-color-4);
+}
+
+.waterList::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.iconPlus {
+  fill: none;
+  stroke-width: 1px;
+  stroke: var(--primary-color-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 32px 24px;
+    width: 704px;
+    margin-bottom: 44px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 1.23077;
+  }
+
+  .waterList {
+    height: 212px;
+  }
+
+  .button {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 592px;
+    margin-bottom: 40px;
+  }
+}

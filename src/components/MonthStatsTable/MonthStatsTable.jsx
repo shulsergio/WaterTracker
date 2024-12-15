@@ -64,8 +64,14 @@ const MonthStatsTable = () => {
           <button
             type="button"
             className={s.calendarButton}
-            onClick={handleDecrement}>
-            <Icon id="icon-left-arrow" className={s.icon} />
+            onClick={handleDecrement}
+          >
+            <Icon
+              id="icon-left-arrow"
+              className={s.icon}
+              width="14"
+              height="14"
+            />
           </button>
           <p className={s.calendarDate}>{`${userMonth.toLocaleString("en-US", {
             month: "long",
@@ -76,8 +82,14 @@ const MonthStatsTable = () => {
             type="button"
             className={s.calendarButton}
             onClick={handleIncrement}
-            disabled={isDisabled}>
-            <Icon id="icon-right-arrow" className={s.icon} />
+            disabled={isDisabled}
+          >
+            <Icon
+              id="icon-right-arrow"
+              className={s.icon}
+              width="14"
+              height="14"
+            />
           </button>
         </div>
       </div>
@@ -87,7 +99,8 @@ const MonthStatsTable = () => {
             <button
               type="button"
               className={s.day}
-              disabled={date >= presentDay}>
+              disabled={date >= presentDay}
+            >
               {date.getDate()}
             </button>
             <p className={s.percentage}>{consumedPercentage}</p>
