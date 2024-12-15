@@ -69,15 +69,11 @@
 }
 
 .dayItem {
-  /* position: relative;
-  overflow: hidden; */
 }
 
 .day {
   position: relative;
 
-  /* font-family: var(--font-roboto); */
-  /* font-weight: 400; */
   font-size: 14px;
   line-height: 1.29;
 
