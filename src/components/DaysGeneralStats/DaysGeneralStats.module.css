@@ -1,0 +1,35 @@
+.container {
+  padding: 24px 13px;
+  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  background: var(--primary-color-white);
+  border-radius: 10px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary-color-blue);
+
+  margin-bottom: 16px;
+}
+
+.itemsList {
+  line-height: 1.25;
+  color: var(--primary-color-black);
+}
+
+.item {
+  margin-bottom: 16px;
+}
+
+.item:last-child {
+  margin-bottom: 0px;
+}
+
+.data {
+  font-size: 18px;
+  line-height: 1.33;
+  color: var(--primary-color-blue);
+  margin-left: 2px;
+}
