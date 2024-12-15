@@ -10,12 +10,16 @@
   font-size: 18px;
   line-height: 133%;
   color: #2f2f2f; /* всі кольори тут і далі задані напряму без використання var */
+  padding-top: 16px;
+}
 
+/* .label:not(:first-child) {
   margin-top: 16px;
-}
+} */
 
-.form {
-}
+/* .form {
+  margin-top: 16px;
+} */
 
 .input {
   border: 1px solid #d7e3ff;
