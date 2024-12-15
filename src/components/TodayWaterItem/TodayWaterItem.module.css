@@ -1,22 +1,27 @@
 .blockInfo {
-  /* width: 534px; */
-  margin-bottom: 24px;
+  padding-bottom: 12px;
+  display: flex;
+  margin-right: 4px;
+  align-items: center;
+  border-bottom: 1px solid #d7e3ff;
+}
+
+.iconContainer {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .blockInfoAmount {
   font-size: 18px;
   line-height: 133%;
   color: var(--primary-color-blue);
-  margin-left: 12px;
 }
 
 .blockInfoTime {
   font-size: 12px;
   line-height: 200%;
   color: var(--primary-color-black);
-  margin-left: 16px;
 }
 
 .editIcon {
