@@ -5,6 +5,9 @@ axios.defaults.baseURL = "https://bo-o-woa.onrender.com/";
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+export const clearAuthHeader = () => {
+  delete axios.defaults.headers.common.Authorization;
+};
 
 export const signUp = createAsyncThunk(
   "auth/signup",
@@ -26,10 +29,25 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await axios.post("auth/signin", credentials);
-      setAuthHeader(data.token);
-      return data;
+      setAuthHeader(data.accessToken);
+      console.log("data in Operation- ", data.data);
+      console.log("data.accessToken in Operation- ", data.data.accessToken);
+      console.log("data.user in Operation- ", data.user);
+      return {
+        token: data.accessToken,
+        user: data.user,
+      };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
+
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/auth/logout");
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
