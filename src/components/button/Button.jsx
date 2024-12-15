@@ -1,8 +1,8 @@
-import clsx from 'clsx';
-import styles from './Button.module.css';
+import clsx from "clsx";
+import styles from "./Button.module.css";
 
 const Button = ({
-  type = 'primary',
+  types = "primary",
   children,
   onClick,
   className,
@@ -14,10 +14,10 @@ const Button = ({
       className={clsx(
         styles.button,
         {
-          [styles.primary]: type === 'primary',
-          [styles.secondary]: type === 'secondary',
-          [styles.warning]: type === 'warning',
-          [styles.text]: type === 'text',
+          [styles.primary]: types === "primary",
+          [styles.secondary]: types === "secondary",
+          [styles.warning]: types === "warning",
+          [styles.text]: types === "text",
         },
         className
       )}

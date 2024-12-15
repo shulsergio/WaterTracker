@@ -2,24 +2,28 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./AuthFormSignIn.module.css";
 import Button from "../button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { signIn } from "../../redux/auth/operations";
-import { logIn  } from "../../redux/auth/operations";
+import { logIn } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
 
+
 const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Email is required"),
-  password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 });
 
 export default function AuthFormSignIn() {
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,6 +45,7 @@ export default function AuthFormSignIn() {
         actions.resetForm();
       });
   };
+
   
     return (
       <div className={css.container}>
@@ -103,10 +108,10 @@ export default function AuthFormSignIn() {
         <NavLink className={css.nav} to="/signup">
           Sign Up
         </NavLink>
+
+ 
       </nav>
     </div>
   );
 }
-
-
 

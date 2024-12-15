@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
+import { RestrictedRoute } from "./components/Routs/RestrictedRoute";
 // import Loader from './components/Loader/Loader';
 import "./App.css";
 

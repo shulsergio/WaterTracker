@@ -1,5 +1,6 @@
-import Modal from '../../components/Modal/Modal.jsx';
-import useModal from '../../hooks/useModal.js';
+import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
+import Modal from "../../components/Modal/Modal.jsx";
+import useModal from "../../hooks/useModal.js";
 
 /**
  *
@@ -10,18 +11,21 @@ import useModal from '../../hooks/useModal.js';
 export default function HomePage() {
   const { openModal, isOpen, closeModal } = useModal();
 
-  console.log('Rendered HomePage');
+  console.log("Rendered HomePage");
 
   return (
     <>
-      <div title='Modal'>
+      <DailyNorma />
+
+      <p>пример модалки</p>
+      <div title="Modal">
         <div>
-          <button onClick={openModal} type='button'>
+          <button onClick={openModal} type="button">
             Modal
           </button>
         </div>
         {isOpen && (
-          <Modal title='Delete entry' onClose={closeModal}>
+          <Modal title="Delete entry" onClose={closeModal}>
             <p>Компонент, що буде відображатися в модалці</p>
           </Modal>
         )}

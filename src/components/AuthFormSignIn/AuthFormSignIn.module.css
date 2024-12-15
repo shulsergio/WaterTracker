@@ -13,8 +13,8 @@
   margin-top: 16px;
 }
 
-.form {
-}
+/* .form {
+} */
 
 .input {
   border: 1px solid #d7e3ff;
@@ -94,6 +94,7 @@
 .passwordWrapper {
   position: relative;
 }
+
 .eyeButton {
   position: absolute;
   right: 10px;
@@ -138,6 +139,7 @@
     width: 384px;
   }
 
+
   .signinButton {
     padding: 10px 30px;
     width: 384px;
@@ -147,4 +149,5 @@
   .input {
     width: 384px;
   }
+
 }

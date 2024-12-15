@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../button/Button.jsx";
 import Icon from "../Icon/Icon.jsx";
 import css from "./WaterСonsumptionTracker.module.css";
 
 const WaterСonsumptionTracker = () => {
+  const navigate = useNavigate();
+
+  const handleSignInClick = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className={css.container}>
       <div className={css.headers}>
@@ -26,7 +33,9 @@ const WaterСonsumptionTracker = () => {
           </li>
         </ul>
       </div>
-      <Button className={css.button}>Try tracker</Button>
+      <Button onClick={handleSignInClick} className={css.button}>
+        Try tracker
+      </Button>
     </div>
   );
 };
