@@ -17,6 +17,158 @@
 
 .calendarPagination {
   display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calendarButton {
+  background: none;
+  padding: 0;
+  color: var(--primary-color-blue);
+}
+
+.calendarButton:disabled {
+  color: var(--secondary-color-2);
+}
+
+.icon {
+  background: transparent;
+  fill: none;
+  stroke: currentColor;
+}
+
+.calendarDate {
+  line-height: 1.25;
+  text-align: center;
+  color: var(--primary-color-blue);
+  margin: 0px;
+}
+
+.dayList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px 26px;
+  max-width: 264px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(10, 1fr);
+    max-width: 656px;
+    gap: 20px 34px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 544px;
+    gap: 20px 22px;
+  }
+}
+
+.dayItem:last-child {
+  margin-left: 0;
+}
+
+.dayItem {
+}
+
+.day {
+  position: relative;
+
+  font-size: 14px;
+  line-height: 1.29;
+
+  color: var(--primary-color-black);
+  background-color: var(--primary-color-white);
+  border-radius: 20px;
+  text-align: center;
+
+  padding: 7px;
+  width: 32px;
+  margin-bottom: 4px;
+
+  @media screen and (min-width: 768px) {
+    width: 34px;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.3);
+  }
+
+  &:disabled {
+    color: rgb(195, 194, 194);
+    box-shadow: none;
+    cursor: auto;
+  }
+
+  &:hover .dayAction {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:disabled .dayAction {
+    display: none;
+  }
+}
+
+.dayAction {
+  position: absolute;
+  display: none;
+  text-align: left;
+  bottom: 25px;
+  right: 50%;
+  width: 280px;
+
+  opacity: 0;
+  margin: 0;
+  color: var(--white-color);
+  padding: 12px 0px;
+  transform: translateY(100%);
+
+  @media screen and (min-width: 768px) {
+    width: 292px;
+  }
+}
+
+.percentage {
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--secondary-color-4);
+  margin: 0;
+
+  @media screen and (min-width: 768px) {
+    font-size: 13px;
+    line-height: 1.54;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+/* .calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendarTitle {
+  font-weight: 500;
+  line-height: 1.25;
+
+  @media screen and (min-width: 768px) {
+    font-size: 26px;
+    line-height: 1.23;
+  }
+}
+
+.calendarPagination {
+  display: flex;
 }
 
 .calendarButton {
@@ -168,4 +320,4 @@
 .dayAction:focus {
   opacity: 1;
   transform: translateY(0);
-}
+} */

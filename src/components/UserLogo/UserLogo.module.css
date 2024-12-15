@@ -1,9 +1,9 @@
-.userLogoContainer{
-  position: relative
+.userLogoContainer {
+  position: relative;
 }
 
-.userLogoBtn{
- width: auto;
+.userLogoBtn {
+  width: auto;
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -14,7 +14,7 @@
   outline: none;
 }
 
-.userName{
+.userName {
   font-size: 16px;
   line-height: 1.25;
   color: var(--primary-color-black);
@@ -23,4 +23,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: right;
+}
+.avatar {
+  width: 28px;
+  height: 28px;
 }
