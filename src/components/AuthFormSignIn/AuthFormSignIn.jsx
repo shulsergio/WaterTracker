@@ -6,10 +6,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logIn  } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import toast from "react-hot-toast";
 import { useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
-
-
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Email is required"),
@@ -20,19 +19,27 @@ export default function AuthFormSignIn() {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
   
-  const handleSubmit = (values, actions) => {
-    try {
-      dispatch(logIn(values));
-      navigate("/home");
-    } catch (error) {
-      alert (`Sign In failed:${ErrorMessage}` )
-    }
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    setIsLoading(true);
+    dispatch(logIn(values))
+      .unwrap()
+      .then(() => {
+        toast.success("OK! You are logged");
+        navigate("/home");
+      })
+      .catch(() => {
+        toast.error("Error, mistake!");
+      })
+      .finally(() => {
+        setIsLoading(false);
+        actions.resetForm();
+      });
   };
   
     return (
@@ -76,7 +83,7 @@ export default function AuthFormSignIn() {
                     aria-label="Toggle password visibility"
                   >
                     {showPassword ? (
-                      <BiShow className={css.eye} />
+                      < BiShow className={css.eye} />
                     ) : (
                       <BiHide className={css.eye} />
                     )}
