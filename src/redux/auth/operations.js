@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { fetchUser } from "../user/operations.js";
+import { getDayWaterList } from "../dayWaterList/operations.js";
+import { setIsLoading } from "./authSlice.js";
 axios.defaults.baseURL = "https://bo-o-woa.onrender.com/";
 
 const setAuthHeader = (token) => {
@@ -28,6 +30,7 @@ export const logIn = createAsyncThunk(
   "auth/signin",
   async (credentials, thunkAPI) => {
     try {
+      thunkAPI.dispatch(setIsLoading(true));
       const { data } = await axios.post("auth/signin", credentials);
       console.log(
         "data.data.accessToken in auth!!!!Slice",
@@ -36,11 +39,13 @@ export const logIn = createAsyncThunk(
 
       setAuthHeader(data.data.accessToken);
       await thunkAPI.dispatch(fetchUser());
-
+      await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
+      thunkAPI.dispatch(setIsLoading(false));
       return {
         token: data.data.accessToken,
       };
     } catch (error) {
+      thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.message);
     }
   }

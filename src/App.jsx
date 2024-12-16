@@ -14,22 +14,24 @@ function App() {
   const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route path="main" element={<MainPage />} />
-        <Route path="welcome" element={<WelcomePage />} />
-        <Route path="signin" element={<SigninPage />} />
-        <Route path="signup" element={<SignupPage />} />
-        <Route
-          path="home"
-          element={
-            <RestrictedRoute component={<HomePage />} redirectTo="/welcome" />
-          }
-        />
-        <Route index element={<Navigate to="/welcome" replace />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route path="main" element={<MainPage />} />
+          <Route path="welcome" element={<WelcomePage />} />
+          <Route path="signin" element={<SigninPage />} />
+          <Route path="signup" element={<SignupPage />} />
+          <Route
+            path="home"
+            element={
+              <RestrictedRoute component={<HomePage />} redirectTo="/welcome" />
+            }
+          />
+          <Route index element={<Navigate to="/welcome" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

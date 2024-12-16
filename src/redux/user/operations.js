@@ -14,3 +14,16 @@ export const fetchUser = createAsyncThunk(
     }
   }
 );
+
+export const updateDailyNorm = createAsyncThunk(
+  "user/updateDailyNorm",
+  async ({ dailyNorm }, thunkAPI) => {
+    try {
+      console.log("updateDailyNorm dailyNorm-", dailyNorm);
+      const response = await axios.patch("/user/daily", { dailyNorm });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
