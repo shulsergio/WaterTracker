@@ -12,15 +12,33 @@ export const clearAuthHeader = () => {
   delete axios.defaults.headers.common.Authorization;
 };
 
+//POST  user/signUp
 export const signUp = createAsyncThunk(
   "auth/signup",
   async (credentials, thunkAPI) => {
+    thunkAPI.dispatch(setIsLoading(true));
+    console.log("Return in signUP credentials-", credentials);
     try {
-      const { data } = await axios.post("/user/signup", credentials);
-      setAuthHeader(data.token);
+      const { email, password } = credentials;
+
+      const { data } = await axios.post(
+        "auth/signup",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Return in signUP data-", data);
+      console.log("Return in signUP data-", data.data.token);
+      console.log("signUp: Successfully registered user", data);
+      thunkAPI.dispatch(setIsLoading(false));
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("signUp: Registration failed", error.response?.data);
+      thunkAPI.dispatch(setIsLoading(false));
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
