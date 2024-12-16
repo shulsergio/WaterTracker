@@ -72,8 +72,6 @@
 }
 
 .day {
-  position: relative;
-
   font-size: 14px;
   line-height: 1.29;
 
@@ -87,6 +85,7 @@
   margin-bottom: 4px;
 
   @media screen and (min-width: 768px) {
+    position: relative;
     width: 34px;
     font-size: 16px;
     line-height: 1.25;
@@ -117,18 +116,22 @@
   position: absolute;
   display: none;
   text-align: left;
-  bottom: 25px;
-  right: 50%;
+  left: 20px;
+  margin-top: -221px;
+
   width: 280px;
 
   opacity: 0;
-  margin: 0;
+
   color: var(--white-color);
-  padding: 12px 0px;
   transform: translateY(100%);
 
   @media screen and (min-width: 768px) {
     width: 292px;
+    bottom: 25px;
+    padding: 12px 0px;
+    right: 50%;
+    margin: 0;
   }
 }
 
