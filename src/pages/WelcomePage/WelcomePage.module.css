@@ -11,12 +11,9 @@
   margin: -8px -20px -8px -20px;
   align-items: center;
   background-repeat: no-repeat;
-
   background-size: cover;
   height: 100%;
 }
-
-
 
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .section {
@@ -48,7 +45,6 @@
     gap: 81px;
     padding-left: 216px;
     margin: -12px 0 0 -112px;
-    background-position: bottom;
     background-size: auto;
     width: 1440px;
     height: 740px;
@@ -57,25 +53,23 @@
 
   .layer {
     background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
-
     flex-wrap: nowrap;
     background-repeat: no-repeat;
     background-size: auto;
     width: 1216px;
-
   }
 
   .wrapper {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     width: 1014px;
     flex-direction: row;
     gap: 81px;
   }
 
   @media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
-    /* .section {
+    .section {
       background-image: url("../../images/background/desktop/Background-desktop-2x.webp");
-    } */
+    }
   }
 }

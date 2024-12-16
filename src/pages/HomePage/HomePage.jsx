@@ -1,9 +1,7 @@
 import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
-import TodayWaterGlassList from "../../components/TodayWaterGlassList/TodayWaterGlassList.jsx";
-import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel.jsx";
 import useModal from "../../hooks/useModal.js";
-import css from "./HomePage.module.css"
+import css from "./HomePage.module.css";
 // import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
  *
@@ -20,12 +18,14 @@ export default function HomePage() {
     <section className={css.section}>
       <DailyNorma />
 
+      {/* Блок с бутылкой и WaterRatioPanel */}
       <div className={css.bottleWrap}>
         <div className={css.bottle}></div>
-      <WaterRatioPanel />
+        <WaterRatioPanel />
       </div>
 
-      <p>пример модалки</p>
+      {/* Пример модального окна */}
+      <p>Пример модалки</p>
       <div title="Modal">
         <div>
           <button onClick={openModal} type="button">
@@ -34,13 +34,16 @@ export default function HomePage() {
         </div>
         {isOpen && (
           <Modal title="Delete entry" onClose={closeModal}>
-            <p>Компонент, що буде відображатися в модалці</p>
+            <p>Компонент, что будет отображаться в модалке</p>
           </Modal>
         )}
       </div>
+
+      {/* Здесь может быть UserLogoutModal */}
       {/* <UserLogoutModal /> */}
+
+      {/* Список стаканов воды за сегодня */}
       <TodayWaterGlassList />
-      
     </section>
   );
 }

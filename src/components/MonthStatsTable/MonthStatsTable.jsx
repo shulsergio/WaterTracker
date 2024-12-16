@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Icon from "../Icon/Icon.jsx";
 import s from "./MonthStatsTable.module.css";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats.jsx";
+import clsx from "clsx";
 
 const arrayOfDays = (dayOfMonth, year, month) => {
   const days = [];
@@ -9,11 +10,16 @@ const arrayOfDays = (dayOfMonth, year, month) => {
     days.push({
       id: i,
       date: new Date(year, month, i),
-      consumedPercentage: "0%",
+      consumedPercentage: 10,
       numberGlasses: 0,
     });
   }
   return days;
+};
+
+const buildLinkClass = (consumedPercentage) => {
+  console.log("consumedPercentage", consumedPercentage);
+  return clsx(s.day, consumedPercentage < 100 && s.active);
 };
 
 const MonthStatsTable = () => {
@@ -97,7 +103,7 @@ const MonthStatsTable = () => {
           <li key={id} className={s.dayItem}>
             <button
               type="button"
-              className={s.day}
+              className={buildLinkClass(consumedPercentage)}
               disabled={date >= presentDay}>
               {date.getDate()}
               <div className={s.dayAction}>
@@ -112,7 +118,7 @@ const MonthStatsTable = () => {
                 />
               </div>
             </button>
-            <p className={s.percentage}>{consumedPercentage}</p>
+            <p className={s.percentage}>{consumedPercentage}%</p>
           </li>
         ))}
       </ul>
