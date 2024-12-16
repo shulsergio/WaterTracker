@@ -23,8 +23,8 @@ const AuthSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
+        // state.token = action.payload.token;
+        state.isLoggedIn = false;
       })
       .addCase(signUp.pending, (state) => {
         state.isRefreshing = true;

@@ -6,14 +6,14 @@ import Icon from "../Icon/Icon";
 import { selectUser } from "../../redux/user/selectors.js";
 
 const UserLogo = () => {
-  const proverkaUser = useSelector(selectUser);
+  // const proverkaUser = useSelector(selectUser);
   const user = useSelector(selectUser) || {}; // *********** ПРОВЕРКАААА ***********
-  console.log("--- proverkaUser from UserLogo", proverkaUser);
-  console.log("--- USER from UserLogo", user);
-  console.log("--- user.avatarUrl from UserLogo", user.avatarUrl);
-  console.log("--- user.name from UserLogo", user.name);
-  console.log("--- user.name[0] from UserLogo", user.name[0]);
-  console.log("--- user.email[0] from UserLogo", user.email[0]);
+  // console.log("--- proverkaUser from UserLogo", proverkaUser);
+  // console.log("--- USER from UserLogo", user);
+  // console.log("--- user.avatarUrl from UserLogo", user.avatarUrl);
+  // console.log("--- user.name from UserLogo", user.name);
+  // console.log("--- user.name[0] from UserLogo", user.name[0]);
+  // console.log("--- user.email[0] from UserLogo", user.email[0]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);

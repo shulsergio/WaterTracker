@@ -32,3 +32,8 @@ button {
 body {
   margin: 0;
 }
+input:focus,
+input:focus-visible,
+input:active {
+  outline: none;
+}
