@@ -36,7 +36,7 @@
 ::placeholder {
   font-family: var(--font-family);
   font-size: 16px;
-  color: #9ebbff;
+  /* color: #9ebbff; */
 }
 
 .text {
@@ -44,6 +44,23 @@
   font-size: 26px;
   line-height: 123%;
   margin: 0;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.eyeButton {
+  position: absolute;
+  transform: translateY(110%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eye {
+  width: 16px;
+  height: 16px;
 }
 
 @media screen and (min-width: 1440px) {

@@ -50,5 +50,32 @@ const userSlice = createSlice({
   },
 });
 
+// const initialState = {
+//   photoUrl: null, // URL завантаженого фото
+//   status: "idle", // idle | loading | succeeded | failed
+//   error: null,
+// };
+
+// const userSlice = createSlice({
+//   name: "user",
+//   initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(uploadPhoto.pending, (state) => {
+//         state.status = "loading";
+//         state.error = null;
+//       })
+//       .addCase(uploadPhoto.fulfilled, (state, action) => {
+//         state.status = "succeeded";
+//         state.photoUrl = action.payload.avatarUrl; // Оновлюємо URL завантаженого фото
+//       })
+//       .addCase(uploadPhoto.rejected, (state, action) => {
+//         state.status = "failed";
+//         state.error = action.payload;
+//       });
+//   },
+// });
+
 export const { setIsLoading, setUserData, clearUserData } = userSlice.actions;
 export default userSlice.reducer;

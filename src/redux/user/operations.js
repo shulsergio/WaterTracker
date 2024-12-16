@@ -27,3 +27,24 @@ export const updateDailyNorm = createAsyncThunk(
     }
   }
 );
+
+export const uploadPhoto = createAsyncThunk(
+  "user/uploadPhoto",
+  async (file, thunkAPI) => {
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      const response = await axios.patch("/user/avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Failed to upload photo"
+      );
+    }
+  }
+);

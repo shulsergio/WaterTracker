@@ -4,6 +4,15 @@ import * as Yup from "yup";
 import axios from "axios";
 import Button from "../button/Button.jsx";
 import RadioButton from "../radio-button/RadioButton.jsx";
+import { BiHide, BiShow } from "react-icons/bi";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectError,
+  selectPhotoUrl,
+  selectStatus,
+} from "../../redux/user/selectors.js";
+import { uploadPhoto } from "../../redux/user/operations.js";
 
 const validationSchema = Yup.object({
   password: Yup.string()
@@ -12,6 +21,12 @@ const validationSchema = Yup.object({
 });
 
 const SettingModal = ({ userData, onCloseModal }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [file, setFile] = useState(null);
+  const dispatch = useDispatch();
+
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+
   const initialValues = {
     name: userData?.name || "",
     email: userData?.email || "",
@@ -22,26 +37,17 @@ const SettingModal = ({ userData, onCloseModal }) => {
     photo: userData?.photo || "https://via.placeholder.com/150", // Default placeholder
   };
 
-  const handlePhotoUpload = async (e, setFieldValue, setErrors) => {
-    const file = e.target.files[0];
+  const photoUrl = useSelector(selectPhotoUrl);
+  const status = useSelector(selectStatus);
+  const error = useSelector(selectError);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]); // Зберігаємо вибраний файл
+  };
+
+  const handleUpload = () => {
     if (file) {
-      const formData = new FormData();
-      formData.append("avatar", file);
-
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/user/avatar",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-        setFieldValue("photo", response.data.avatarUrl);
-      } catch (error) {
-        console.log(error);
-
-        setErrors({ general: "Failed to upload photo. Please try again." });
-      }
+      dispatch(uploadPhoto(file)); // Відправляємо файл на сервер
     }
   };
 
@@ -68,19 +74,28 @@ const SettingModal = ({ userData, onCloseModal }) => {
 
   return (
     <div className="modal">
+      <div className="modal">
+        <h1>Upload Photo</h1>
+        <div>
+          {photoUrl ? (
+            <img src={photoUrl} alt="User Avatar" width="150" />
+          ) : (
+            <p>No photo uploaded</p>
+          )}
+        </div>
+        <input type="file" onChange={handleFileChange} accept="image/*" />
+        <button onClick={handleUpload} disabled={status === "loading"}>
+          {status === "loading" ? "Uploading..." : "Upload Photo"}
+        </button>
+        {status === "failed" && <p style={{ color: "red" }}>{error}</p>}
+        <button onClick={onCloseModal}>Close</button>
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({
-          isSubmitting,
-          setFieldValue,
-          setErrors,
-          values,
-          errors,
-          touched,
-        }) => (
+        {({ isSubmitting, setFieldValue, values, errors, touched }) => (
           <Form className={css.form}>
             {/* Photo Section */}
             <div className="photo-section">
@@ -98,28 +113,33 @@ const SettingModal = ({ userData, onCloseModal }) => {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(e) => handlePhotoUpload(e, setFieldValue, setErrors)}
+                onChange={() => handleFileChange()}
               />
             </div>
             {/* Gender Section */}
 
             <RadioButton
               value="Women"
-              selectedValue="Women"
-              onChange=""
+              selectedValue={values.gender}
+              onChange={(value) => setFieldValue("gender", value)}
               label="Women"
             />
             <RadioButton
-              value="Man"
-              selectedValue="Women"
-              onChange=""
-              label="Man"
+              value="Men"
+              selectedValue={values.gender}
+              onChange={(value) => setFieldValue("gender", value)}
+              label="Men"
             />
             {/* Name Section */}
             <div>
               <label className={css.label}>
                 Your Name
-                <Field type="text" name="name" placeholder="Enter your name" />
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  className={css.input}
+                />
               </label>
               <ErrorMessage
                 name="name"
@@ -150,7 +170,29 @@ const SettingModal = ({ userData, onCloseModal }) => {
             <div>
               <label className={css.label}>
                 Current Password
-                <Field type="password" name="currentPassword" />
+                <div>
+                  <Field
+                    type="password"
+                    name="currentPassword"
+                    className={
+                      touched.password && errors.password
+                        ? `${css.input} ${css.inputError}`
+                        : css.input
+                    }
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className={css.eyeButton}
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? (
+                      <BiShow className={css.eye} />
+                    ) : (
+                      <BiHide className={css.eye} />
+                    )}
+                  </button>
+                </div>
               </label>
               <ErrorMessage
                 name="currentPassword"
@@ -160,7 +202,29 @@ const SettingModal = ({ userData, onCloseModal }) => {
 
               <label className={css.label}>
                 New Password
-                <Field type="password" name="newPassword" />
+                <div className={css.passwordWrapper}>
+                  <Field
+                    type="password"
+                    name="newPassword"
+                    className={
+                      touched.password && errors.password
+                        ? `${css.input} ${css.inputError}`
+                        : css.input
+                    }
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className={css.eyeButton}
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? (
+                      <BiShow className={css.eye} />
+                    ) : (
+                      <BiHide className={css.eye} />
+                    )}
+                  </button>
+                </div>
               </label>
               <ErrorMessage
                 name="newPassword"
@@ -170,7 +234,29 @@ const SettingModal = ({ userData, onCloseModal }) => {
 
               <label className={css.label}>
                 Confirm New Password
-                <Field type="password" name="confirmPassword" />
+                <div className={css.passwordWrapper}>
+                  <Field
+                    type="password"
+                    name="confirmPassword"
+                    className={
+                      touched.password && errors.password
+                        ? `${css.input} ${css.inputError}`
+                        : css.input
+                    }
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className={css.eyeButton}
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? (
+                      <BiShow className={css.eye} />
+                    ) : (
+                      <BiHide className={css.eye} />
+                    )}
+                  </button>
+                </div>
               </label>
               <ErrorMessage
                 name="confirmPassword"
