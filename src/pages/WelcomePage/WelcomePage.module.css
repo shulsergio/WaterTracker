@@ -44,10 +44,10 @@
 @media screen and (min-width: 1440px) {
   .section {
     background-image: url("../../images/background/desktop/Background-desktop-1x.webp");
-
+    background-position: bottom;
     gap: 81px;
     padding-left: 216px;
-    margin: -12px -112px;
+    margin: -12px 0 0 -112px;
     background-position: bottom;
     background-size: auto;
     width: 1440px;
@@ -57,9 +57,15 @@
 
   .layer {
     background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
+<<<<<<< Updated upstream
     flex-wrap: nowrap;
     background-repeat: no-repeat;
     width: 1320px;
+=======
+    background-size: auto;
+    width: 1216px;
+    background-repeat: no-repeat;
+>>>>>>> Stashed changes
   }
 
   .wrapper {
