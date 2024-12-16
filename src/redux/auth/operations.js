@@ -3,6 +3,7 @@ import axios from "axios";
 import { fetchUser } from "../user/operations.js";
 import { getDayWaterList } from "../dayWaterList/operations.js";
 import { setIsLoading } from "./authSlice.js";
+import { getMonthWaterList } from "../monthWaterList/operations.js";
 axios.defaults.baseURL = "https://bo-o-woa.onrender.com/";
 
 const setAuthHeader = (token) => {
@@ -58,7 +59,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(data.data.accessToken);
       await thunkAPI.dispatch(fetchUser());
       await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
-      // await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
+      await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
       thunkAPI.dispatch(setIsLoading(false));
       return {
         token: data.data.accessToken,
