@@ -69,6 +69,30 @@
 }
 
 .dayItem {
+  &:nth-child(n + 5):nth-child(-n + 10) .day,
+  &:nth-child(n + 15):nth-child(-n + 20) .day,
+  &:nth-child(n + 25):nth-child(-n + 30) .day {
+    @media screen and (min-width: 768px) {
+      position: relative;
+    }
+    @media screen and (min-width: 1440px) {
+      left: auto;
+    }
+  }
+
+  &:nth-child(n + 1):nth-child(-n + 4) .dayAction,
+  &:nth-child(n + 11):nth-child(-n + 14) .dayAction,
+  &:nth-child(n + 21):nth-child(-n + 24) .dayAction,
+  &:nth-child(n + 31) .dayAction {
+    @media screen and (min-width: 768px) {
+      left: 57px;
+      margin-top: -230px;
+      bottom: auto;
+    }
+    @media screen and (min-width: 1440px) {
+      left: auto;
+    }
+  }
 }
 
 .day {
@@ -85,6 +109,11 @@
   margin-bottom: 4px;
 
   @media screen and (min-width: 768px) {
+    width: 34px;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  @media screen and (min-width: 1440px) {
     position: relative;
     width: 34px;
     font-size: 16px;
@@ -131,7 +160,11 @@
     bottom: 25px;
     padding: 12px 0px;
     right: 50%;
+    left: auto;
     margin: 0;
+  }
+  @media screen and (min-width: 1440px) {
+    left: auto;
   }
 }
 
