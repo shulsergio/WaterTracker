@@ -10,9 +10,11 @@ const TodayWaterItem = () => {
 
   return (
     <div className={css.blockInfo}>
-      <Icon id="glass-water" width={36} height={36} />
-      <span className={css.blockInfoAmount}>250 ml</span>
-      <span className={css.blockInfoTime}>7:00 AM</span>
+      <div className={css.iconContainer}>
+        <Icon id="glass-water" width={36} height={36} />
+        <span className={css.blockInfoAmount}>250 ml</span>
+        <span className={css.blockInfoTime}>7:00 AM</span>
+      </div>
       <div className={css.buttons}>
         <button
           onClick={openAmountWater.openModal}

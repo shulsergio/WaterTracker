@@ -32,15 +32,16 @@ export default function AuthFormSignup() {
   const toggleRepeatPasswordVisibility = () =>
     setShowRepeatPassword((prev) => !prev);
 
-  const handleSubmit = (values, actions) => {
-    try {
-      dispatch(signUp(values));
-      navigate("/signin");
-    } catch (error) {
-      alert(`Registration failed: ${error.message}`);
-    }
+  const handleSubmit = async (credentials, actions) => {
+    const result = await dispatch(signUp(credentials));
 
-    actions.resetForm();
+    if (signUp.fulfilled.match(result)) {
+      console.log("SignUpPage: Successfully registered user");
+      actions.resetForm();
+      navigate("/signin");
+    } else {
+      console.error("SignUpPage: Registration failed", result.payload);
+    }
   };
 
   return (

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn } from "../auth/operations";
+import { fetchUser, updateDailyNorm } from "./operations.js";
+// import { logIn } from "../auth/operations";
+// import axios from "axios";
 
 const initialState = {
   data: null,
@@ -11,22 +13,42 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+
     clearUserData(state) {
       state.data = null;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.data = action.payload.user;
-        state.isLoading = false;
+      .addCase(fetchUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
       })
-      .addCase(logIn.rejected, (state, action) => {
-        state.error = action.payload;
+      .addCase(fetchUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateDailyNorm.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateDailyNorm.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data.dailyNorm = action.payload.dailyNorm;
+      })
+      .addCase(updateDailyNorm.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { setUserData, clearUserData } = userSlice.actions;
+export const { setIsLoading, setUserData, clearUserData } = userSlice.actions;
 export default userSlice.reducer;

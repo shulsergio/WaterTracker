@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Icon from "../Icon/Icon.jsx";
 import s from "./MonthStatsTable.module.css";
+import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats.jsx";
 
 const arrayOfDays = (dayOfMonth, year, month) => {
   const days = [];
@@ -65,7 +66,12 @@ const MonthStatsTable = () => {
             type="button"
             className={s.calendarButton}
             onClick={handleDecrement}>
-            <Icon id="icon-left-arrow" className={s.icon} />
+            <Icon
+              id="icon-left-arrow"
+              className={s.icon}
+              width="14"
+              height="14"
+            />
           </button>
           <p className={s.calendarDate}>{`${userMonth.toLocaleString("en-US", {
             month: "long",
@@ -77,21 +83,36 @@ const MonthStatsTable = () => {
             className={s.calendarButton}
             onClick={handleIncrement}
             disabled={isDisabled}>
-            <Icon id="icon-right-arrow" className={s.icon} />
+            <Icon
+              id="icon-right-arrow"
+              className={s.icon}
+              width="14"
+              height="14"
+            />
           </button>
         </div>
       </div>
       <ul className={s.dayList}>
-        {days.map(({ id, date, consumedPercentage }) => (
+        {days.map(({ id, date, consumedPercentage, numberGlasses }) => (
           <li key={id} className={s.dayItem}>
             <button
               type="button"
               className={s.day}
               disabled={date >= presentDay}>
               {date.getDate()}
+              <div className={s.dayAction}>
+                <DaysGeneralStats
+                  day={date.getDate()}
+                  month={date.toLocaleString("en-US", {
+                    month: "long",
+                  })}
+                  dailyNorma={1.5}
+                  consumerPercentage={consumedPercentage}
+                  numberGlasses={numberGlasses}
+                />
+              </div>
             </button>
             <p className={s.percentage}>{consumedPercentage}</p>
-            <div className={s.dayAction}>DaysGeneralStats</div>
           </li>
         ))}
       </ul>

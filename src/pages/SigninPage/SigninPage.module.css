@@ -1,0 +1,45 @@
+.container{ 
+}
+.background {
+  width: 320px;
+  height: 844px;
+  padding-top: 52px;
+  background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
+  background-size: cover;
+  margin-left: -20px;
+}
+.backgroundImage{
+    padding-top: 66px;
+    height: 210px;
+    background-image: url("../../images/bottle/mobile/Bottle-mobile1x.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 280px 210px;
+    background-color: transparent;
+}
+
+@media screen and (min-width: 768px) {
+ 
+ .container {
+
+}
+.background {
+ 
+}
+.backgroundImage{
+
+}
+}
+@media screen and (min-width: 1440px) {
+ 
+ .container {
+
+}
+.background {
+ 
+}
+.backgroundImage{
+
+ }
+}

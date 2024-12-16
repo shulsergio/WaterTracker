@@ -1,21 +1,40 @@
-import Modal from '../Modal/Modal';
-import Button from '../button/Button';
-import styles from './MyDailyNormaModal.module.css';
-import RadioButton from '../radio-button/RadioButton';
-import { useState } from 'react';
+import Modal from "../Modal/Modal";
+import Button from "../button/Button";
+import styles from "./MyDailyNormaModal.module.css";
+import RadioButton from "../radio-button/RadioButton";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateDailyNorm } from "../../redux/user/operations";
+// import toast from "react-hot-toast";
 
-const MyDailyNormaModal = ({ onClose }) => {
-  const [gender, setGender] = useState('woman');
+const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
+  const dispatch = useDispatch();
+  const [gender, setGender] = useState("woman");
 
   const [m, setM] = useState(0);
   const [t, setT] = useState(0);
 
   const amountWaterPerDay =
-    gender === 'woman' ? m * 0.03 + t * 0.4 : m * 0.04 + t * 0.6;
+    gender === "woman" ? m * 0.03 + t * 0.4 : m * 0.04 + t * 0.6;
+  const [customNorm, setCustomNorm] = useState("");
+  const handleSave = () => {
+    const normToSave = customNorm
+      ? Number(customNorm) / 1000
+      : amountWaterPerDay;
+    console.log("MyDailyNormaModal - normToSave- ", normToSave);
+    if (normToSave > 4999) {
+      console.log("a lot of water");
+      return;
+    } else {
+      dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
+      setDailyNorm(normToSave);
+      onClose();
+    }
+  };
 
   return (
     <Modal
-      title='My daily norma'
+      title="My daily norma"
       classNameModal={styles.modal}
       onClose={onClose}
     >
@@ -39,14 +58,14 @@ const MyDailyNormaModal = ({ onClose }) => {
         <h3 className={styles.subtitle}>Calculate your rate:</h3>
         <div className={styles.radioGroup}>
           <RadioButton
-            label='For woman'
-            value='woman'
+            label="For woman"
+            value="woman"
             onChange={(e) => setGender(e.target.value)}
             selectedValue={gender}
           />
           <RadioButton
-            label='For man'
-            value='man'
+            label="For man"
+            value="man"
             onChange={(e) => setGender(e.target.value)}
             selectedValue={gender}
           />
@@ -54,47 +73,50 @@ const MyDailyNormaModal = ({ onClose }) => {
       </div>
       <div>
         <div className={styles.inputWithLabel}>
-          <label htmlFor={'weight'} className={styles.inputLabel}>
+          <label htmlFor={"weight"} className={styles.inputLabel}>
             Your weight in kilograms:
           </label>
           <input
-            id='weight'
-            type='text'
-            placeholder='Enter weight'
+            id="weight"
+            type="text"
+            placeholder="Enter weight"
             className={styles.inputField}
             onChange={(e) => setM(Number(e.target.value))}
           />
         </div>
         <div className={styles.inputWithLabel}>
-          <label htmlFor={'hours'} className={styles.inputLabel}>
+          <label htmlFor={"hours"} className={styles.inputLabel}>
             The time of active participation in sports or other activities with
             a high physical. load in hours:
           </label>
           <input
-            id='hours'
-            type='text'
-            placeholder='Enter hours'
+            id="hours"
+            type="text"
+            placeholder="Enter hours"
             className={styles.inputField}
             onChange={(e) => setT(Number(e.target.value))}
           />
         </div>
         <p className={styles.textAmount}>
-          The required amount of water in liters per day:{' '}
+          The required amount of water in liters per day:{" "}
           <span>{m ? amountWaterPerDay.toFixed(1) : 0} L</span>
         </p>
       </div>
       <div className={styles.inputWithLabel}>
-        <label htmlFor={'waterAmount'} className={styles.labelAmount}>
+        <label htmlFor={"waterAmount"} className={styles.labelAmount}>
           Write down how much water you will drink:
         </label>
         <input
-          id='waterAmount'
-          type='text'
-          placeholder='Enter amount'
+          id="waterAmount"
+          type="text"
+          placeholder="Enter amount (ml)"
           className={styles.inputField}
+          onChange={(e) => setCustomNorm(e.target.value)}
         />
       </div>
-      <Button className={styles.btnSave}>Save</Button>
+      <Button className={styles.btnSave} onClick={handleSave}>
+        Save
+      </Button>
     </Modal>
   );
 };
