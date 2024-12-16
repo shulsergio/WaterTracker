@@ -24,7 +24,7 @@ const AuthSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = false;
+        state.isLoggedIn = true;
       })
       .addCase(signUp.pending, (state) => {
         state.isRefreshing = true;
