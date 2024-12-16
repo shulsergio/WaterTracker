@@ -1,5 +1,6 @@
 import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
+import TodayWaterGlassList from "../../components/TodayWaterGlassList/TodayWaterGlassList.jsx";
 import useModal from "../../hooks/useModal.js";
 // import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
@@ -31,6 +32,7 @@ export default function HomePage() {
         )}
       </div>
       {/* <UserLogoutModal /> */}
+      <TodayWaterGlassList />
     </>
   );
 }

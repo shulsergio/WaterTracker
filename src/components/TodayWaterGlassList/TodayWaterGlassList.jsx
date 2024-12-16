@@ -14,6 +14,11 @@ const TodayWaterGlassList = () => {
         <TodayWaterItem />
         <TodayWaterItem />
         <TodayWaterItem />
+        <TodayWaterItem />
+        <TodayWaterItem />
+        <TodayWaterItem />
+        <TodayWaterItem />
+        <TodayWaterItem />
       </div>
       <Button types="text" className={css.button}>
         <Icon id="icon-plus" width="16" height="16" className={css.iconPlus} />

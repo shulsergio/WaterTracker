@@ -58,6 +58,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(data.data.accessToken);
       await thunkAPI.dispatch(fetchUser());
       await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
+      // await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
       thunkAPI.dispatch(setIsLoading(false));
       return {
         token: data.data.accessToken,
