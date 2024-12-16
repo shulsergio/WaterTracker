@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./DailyNorma.module.css";
 import MyDailyNormaModal from "../MyDailyNormaModal/MyDailyNormaModal.jsx";
 import Button from "../button/Button.jsx";
+import { selectUser } from "../../redux/user/selectors.js";
+import { useSelector } from "react-redux";
 
 const DailyNorma = () => {
-  const [dailyNorm, setDailyNorm] = useState(1.5);
+  const user = useSelector(selectUser);
+  const [dailyNorm, setDailyNorm] = useState(user?.dailyNorm / 1000 || 0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (user?.dailyNorm) {
+      setDailyNorm(user.dailyNorm / 1000);
+    }
+  }, [user?.dailyNorm]);
 
   const handleEditClick = () => {
     setIsModalOpen(true);
@@ -30,7 +39,10 @@ const DailyNorma = () => {
         </Button>
       </div>
       {isModalOpen && (
-        <MyDailyNormaModal initialNorm={dailyNorm} onClose={handleModalClose} />
+        <MyDailyNormaModal
+          setDailyNorm={setDailyNorm}
+          onClose={handleModalClose}
+        />
       )}
     </div>
   );
