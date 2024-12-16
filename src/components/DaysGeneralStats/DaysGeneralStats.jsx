@@ -18,7 +18,7 @@ const DaysGeneralStats = ({
         </li>
         <li className={s.item}>
           Fulfillment of the daily norm:
-          <span className={s.data}>{consumerPercentage}</span>
+          <span className={s.data}>{consumerPercentage} %</span>
         </li>
         <li className={s.item}>
           How many servings of water:
