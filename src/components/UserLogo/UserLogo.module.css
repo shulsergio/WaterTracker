@@ -3,9 +3,10 @@
 }
 
 .userLogoBtn {
-  width: auto;
+ width: auto;
   display: flex;
   align-items: center;
+  justify-content: space-between; 
   background-color: transparent;
   border: none;
   padding: 0;
@@ -15,16 +16,47 @@
 }
 
 .userName {
-  font-size: 16px;
+ font-size: 16px;
   line-height: 1.25;
   color: var(--primary-color-black);
-  width: 68px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: right;
+  text-align: left; 
 }
 .avatar {
   width: 28px;
   height: 28px;
+  border-radius: 50%; 
+  object-fit: cover; 
 }
+
+.emptyAvatar{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color-4);
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--primary-color-white);
+}
+
+.iconRotate {
+  transform: rotate(180deg);
+}
+
+/* @media only screen and (min-width: 768px) {
+  .userName {
+    line-height: 1.333;
+    width: 128px;
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .userName {
+    width: 168px;
+  }
+} */
