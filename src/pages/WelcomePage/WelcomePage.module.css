@@ -16,6 +16,8 @@
   height: 100%;
 }
 
+
+
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .section {
     background-image: url("../../images/background/mobile/Background-mobile-2x.webp");
@@ -55,6 +57,9 @@
 
   .layer {
     background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
+    flex-wrap: nowrap;
+    background-repeat: no-repeat;
+    width: 1320px;
   }
 
   .wrapper {
