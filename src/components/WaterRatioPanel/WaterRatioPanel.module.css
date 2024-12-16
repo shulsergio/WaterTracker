@@ -1,0 +1,185 @@
+.progressContainer {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  height: 90px;
+  gap: 23px;
+  @media screen and (min-width: 320px) {
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.containerProgress {
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    width: 356px;
+  }
+  
+  @media screen and (min-width: 1440px) {
+    width: 391px;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33333;
+  color: var(--primary-color-blue);
+  text-align: center;
+  align-self: start;
+  font-family: var(--font-roboto);
+  padding-bottom: 16px;
+}
+
+.progressTrack {
+  align-self: start;
+  display: flex;
+  width: 100%;
+  padding-bottom: 4px;
+}
+
+.progressBar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: var(--secondary-color---5);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.progressFilled {
+  height: 100%;
+  background: var(--secondary-color-4);
+  border-radius: 10px 0 0 10px;
+  transition: width 0.3s ease-in-out;
+}
+
+.progressSlider {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background-color: var(--primary-color-white);
+  border: 1px solid var(--primary-color-blue);
+  border-radius: 100%;
+  transition: left 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.markersContainer {
+  display: flex;
+  width: 100%;
+  align-items: start;
+  color: var(--primary-color-blue);
+  white-space: nowrap;
+  text-align: center;
+  justify-content: space-between;
+  font: 400 12px/1 Roboto, sans-serif;
+  
+}
+
+.markerStart {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.markerCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.markerEnd {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.markerLine {
+  background-color: var(--secondary-color---5);
+  min-height: 8px;
+  width: 0;
+  border: 1px solid rgba(215, 227, 255, 1);
+}
+
+.markerText {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33333;
+  text-align: center;
+  color: var(--primary-color-blue);
+}
+
+.markerTextActive {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--primary-color-blue);
+}
+
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  /* width: 178px; */
+  /* height: 44px; */
+  margin-top: 20px;
+  background-color: var(--primary-color-blue);
+  box-shadow: var(--button-shadow);
+  color: var(--primary-color-white);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: center;
+  @media screen and (min-width: 320px) {
+    width: 280px;
+    height: 36px;
+  }; 
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 44px;
+  };
+  @media screen and (min-width: 1440px) {
+    width: 178px;
+  };
+}
+
+.addButton:hover {
+  box-shadow: var(--button-shadow-hover);
+  color: var(--secondary-color-5);
+}
+
+
+@media screen and (min-width: 320px) {
+
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (min-width: 1440px) {
+
+}
