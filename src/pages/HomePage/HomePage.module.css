@@ -1,0 +1,150 @@
+.section {
+<<<<<<< Updated upstream
+  background-image: url("../../images/homePage/Background-Home-screen-1x-mob.webp");
+  flex-wrap: nowrap;
+  background-repeat: no-repeat;
+  background-size: auto;
+  width: 280px;
+  height: 100%;
+}
+
+.bottle {
+  background-image: url("../../images/homePage/Bottle-home-1x-mob.webp");  
+  background-repeat: no-repeat;
+  width: 280px;
+  height: 208px;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .section {
+    background-image: url("../../images/homePage/Background-Home-screen-2x-mob.webp");
+  }
+  .bottle {
+      background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");  
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp");
+    flex-direction: column;
+    height: 746px;
+    margin: -16px -32px;
+  }
+
+  .bottle {
+      background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");  
+      width: 528px;
+      height: 386px;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-2x-tab.webp");
+    }
+
+    .bottle {
+      background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");  
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
+    width: 1440px;
+    height: 800px;
+    margin: -12px -112px;      
+  }
+  
+  .bottle {
+      background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");  
+      width: 738%;
+      height: 548px;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-2x-desktop.webp");
+    }
+
+    .bottle {
+      background-image: url("../../images/homePage/Bottle-home-2x-desktop.webp");  
+    }
+  }
+}
+=======
+    background-image: url("../../images/homePage/Background-Home-screen-1x-mob.webp");
+    flex-wrap: nowrap;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 280px;
+    height: 100%;
+}
+
+.bottle {
+    background-image: url("../../images/homePage/Bottle-home-1x-mob.webp");  
+    background-repeat: no-repeat;
+    width: 280px;
+    height: 208px;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-2x-mob.webp");
+    }
+    .bottle {
+        background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");  
+    }
+  }
+
+@media screen and (min-width: 768px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp");
+      flex-direction: column;
+      height: 746px;
+      margin: -16px -32px;
+    }
+
+    .bottle {
+        background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");  
+        width: 528px;
+        height: 386px;
+    }
+  
+    @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+      .section {
+        background-image: url("../../images/homePage/Background-Home-screen-2x-tab.webp");
+      }
+
+      .bottle {
+        background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");  
+      }
+    }
+  }
+
+@media screen and (min-width: 1440px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
+      width: 1440px;
+      height: 800px;
+      margin: -12px -112px;      
+    }
+    
+    .bottle {
+        background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");  
+        width: 738%;
+        height: 548px;
+    }
+
+    @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+      .section {
+        background-image: url("../../images/homePage/Background-Home-screen-2x-desktop.webp");
+      }
+
+      .bottle {
+        background-image: url("../../images/homePage/Bottle-home-2x-desktop.webp");  
+      }
+    }
+  }
+>>>>>>> Stashed changes

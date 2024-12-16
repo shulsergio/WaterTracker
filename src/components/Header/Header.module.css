@@ -9,14 +9,14 @@ margin-right: 20px; */
 
 .headerContainer {
   height: 48px;
-  width: 280px;
+  
   padding: 8px 20px;
 }
 
 .header {
-  width: 100%;
+  /* width: 100%; */
   height: 48px;
-  /* width: 280px; */
+  width: 280px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +67,7 @@ header button:hover {
   }
 
   .header {
-    width: 100%;
+    width: 704px;
   }
 }
 
@@ -81,6 +81,6 @@ header button:hover {
     /* padding: 12px 112px; */
   }
   .header {
-    width: 100%;
+    width: 1216px;
   }
 }

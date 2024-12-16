@@ -3,6 +3,7 @@ import Modal from "../../components/Modal/Modal.jsx";
 import TodayWaterGlassList from "../../components/TodayWaterGlassList/TodayWaterGlassList.jsx";
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel.jsx";
 import useModal from "../../hooks/useModal.js";
+import css from "./HomePage.module.css"
 // import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
  *
@@ -16,9 +17,10 @@ export default function HomePage() {
   console.log("Rendered HomePage");
 
   return (
-    <>
+    <section className={css.section}>
       <DailyNorma />
-
+      <div className={css.bottle}>
+        </div>
       <p>пример модалки</p>
       <div title="Modal">
         <div>
@@ -28,7 +30,7 @@ export default function HomePage() {
         </div>
         {isOpen && (
           <Modal title="Delete entry" onClose={closeModal}>
-            <p>Компонент, що буде відображатися в модалці</p>
+           <p>Компонент, що буде відображатися в модалці</p>
           </Modal>
         )}
       </div>
