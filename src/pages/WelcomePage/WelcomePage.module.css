@@ -57,16 +57,10 @@
 
   .layer {
     background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
-<<<<<<< Updated upstream
-    flex-wrap: nowrap;
-    background-repeat: no-repeat;
-    width: 1320px;
-=======
-    background-size: auto;
+
+     background-size: auto;
     width: 1216px;
-    background-repeat: no-repeat;
->>>>>>> Stashed changes
-  }
+    background-repeat: no-repeat; }
 
   .wrapper {
     display: flex;
