@@ -19,8 +19,12 @@ export default function HomePage() {
   return (
     <section className={css.section}>
       <DailyNorma />
-      <div className={css.bottle}>
-        </div>
+
+      <div className={css.bottleWrap}>
+        <div className={css.bottle}></div>
+      <WaterRatioPanel />
+      </div>
+
       <p>пример модалки</p>
       <div title="Modal">
         <div>
@@ -30,13 +34,13 @@ export default function HomePage() {
         </div>
         {isOpen && (
           <Modal title="Delete entry" onClose={closeModal}>
-           <p>Компонент, що буде відображатися в модалці</p>
+            <p>Компонент, що буде відображатися в модалці</p>
           </Modal>
         )}
       </div>
       {/* <UserLogoutModal /> */}
       <TodayWaterGlassList />
-      <WaterRatioPanel />
-    </>
+      
+    </section>
   );
 }
