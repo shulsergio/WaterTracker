@@ -13,11 +13,19 @@ export default function HomePage() {
   const { openModal, isOpen, closeModal } = useModal();
 
   console.log("Rendered HomePage");
+
   return (
     <section className={css.section}>
       <DailyNorma />
-      <div className={css.bottle}></div>
-      <p>пример модалки</p>
+
+      {/* Блок с бутылкой и WaterRatioPanel */}
+      <div className={css.bottleWrap}>
+        <div className={css.bottle}></div>
+        <WaterRatioPanel />
+      </div>
+
+      {/* Пример модального окна */}
+      <p>Пример модалки</p>
       <div title="Modal">
         <div>
           <button onClick={openModal} type="button">
@@ -26,11 +34,16 @@ export default function HomePage() {
         </div>
         {isOpen && (
           <Modal title="Delete entry" onClose={closeModal}>
-            <p>Компонент, що буде відображатися в модалці</p>
+            <p>Компонент, что будет отображаться в модалке</p>
           </Modal>
         )}
       </div>
+
+      {/* Здесь может быть UserLogoutModal */}
       {/* <UserLogoutModal /> */}
+
+      {/* Список стаканов воды за сегодня */}
+      <TodayWaterGlassList />
     </section>
   );
 }
