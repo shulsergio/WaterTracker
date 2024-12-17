@@ -21,9 +21,7 @@ const arrayOfDays = (dayOfMonth, year, month, monthWater, dailyNorma) => {
     daysArray.push({
       id: i,
       date: new Date(year, month, i),
-      dailyNorma: find
-        ? Math.floor(find.dailyNorma / 100) / 10
-        : Math.floor(dailyNorma / 100) / 10,
+      dailyNorma: Math.floor(dailyNorma / 100) / 10,
       consumedPercentage: find ? Math.floor(find.consumedPercentage * 100) : 0,
       numberGlasses: find ? find.numberGlasses : 0,
     });
