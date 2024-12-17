@@ -10,9 +10,10 @@ const SharedLayout = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <div className={styles.background}>
-        <div className={styles.container}>
-          <Header />
+      <div className={styles.container}>
+        <Header />
+
+        <div className={styles.background}>
           <Suspense fallback={null}>
             <Outlet />
           </Suspense>

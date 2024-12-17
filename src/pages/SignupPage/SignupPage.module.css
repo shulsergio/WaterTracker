@@ -1,19 +1,9 @@
-.background {
-  width: 320px;
-  height: 572px;
-  padding: 0;
-  background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
-  background-size: cover;
-  margin-left: -20px;
-}
-
 .text {
+  margin: 0;
   font-weight: 500;
   font-size: 26px;
   line-height: 123%;
-
-  margin: 0;
-  margin-top: 16px;
+  padding-top: 24px;
 }
 
 @media screen and (min-width: 768px) {
@@ -21,12 +11,7 @@
     background-image: url("../../images/background/tablet/Background-tab-signup.webp");
     background-repeat: no-repeat;
   }
-}
-.container {
-  padding-left: 0;
-}
-.background {
-  background-image: none;
-
-  margin-left: 0;
+  .text {
+    padding-top: 40px;
+  }
 }
