@@ -1,0 +1,61 @@
+.container{
+ position: absolute;
+  right: -10px;
+  z-index: 1000;
+}
+
+.modal{
+ background: var(--primary-color-white);
+  border-radius: 12px;
+  width: 118px;
+  height: 88px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 1010;
+  gap: 10px;
+}
+
+.button{
+ color: var(--primary-color-blue);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  display: flex;
+  justify-content: center;
+  line-height: normal;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.icon{
+  background: transparent;
+  fill: none;
+  stroke: var(--primary-color-blue);
+}
+.button:hover {
+  box-shadow: none;
+}
+
+.button:hover .btnName {
+  color: var(--secondary-color-5);
+}
+
+.button:hover .icon {
+  stroke: var(--secondary-color-5);
+}
+
+.btnName {
+  margin-left: 8px;
+}
+.block {
+  display: flex;
+  margin-top: 15px;
+  gap: 20px;
+}
