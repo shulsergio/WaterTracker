@@ -53,7 +53,7 @@ export default function AuthFormSignup() {
       >
         {({ errors, touched }) => (
           <Form className={css.form}>
-            {/* <p className={css.text}>Sign Up</p> */}
+            <p className={css.text}>Sign Up</p>
             <label className={css.label}>
               Enter your email
               <Field
