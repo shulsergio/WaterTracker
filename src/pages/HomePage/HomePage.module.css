@@ -57,6 +57,16 @@
     width: 100%;
     height: 100%;
   }
+
+  .image {
+    background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    /* background-position: left 75px; */
+    width: 518px;
+    height: 386px;
+  }
   /* 
   .bottle {
     background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");
@@ -78,6 +88,35 @@
 @media screen and (min-width: 1440px) {
   .section {
     background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
+    display: flex;
+    flex-direction: row;
+    /* gap: 32px; */
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .norma {
+    width: 164px;
+    height: 76px;
+    padding: 0;
+  }
+
+  .image {
+    background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    /* background-position: left 75px; */
+    width: 738px;
+    height: 548px;
+  }
+
+  .WaterRatioPanel {
+    width: 592px;
+    height: 90px;
   }
 
   /* .bottle {
