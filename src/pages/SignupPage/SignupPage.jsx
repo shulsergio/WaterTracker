@@ -5,11 +5,11 @@ export default function SignupPage() {
   console.log("Rendered SignupPage");
   return (
     <>
-      <div className={css.background}>
+      <div className={css.container}>
         <div className={css.wrapper}>
-          <p className={css.text}>Sign Up</p>
-
-          <AuthFormSignup />
+          <div className={css.box}>
+            <AuthFormSignup />
+          </div>
         </div>
       </div>
     </>

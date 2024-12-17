@@ -1,9 +1,12 @@
-.background {
+/* .background {
   min-height: 100vh;
-  width: 100%;
+  width: 320px;
   background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
+  background-position: center 52px;
   background-size: cover;
-}
+  background-repeat: no-repeat;
+  margin-left: -20px;
+} */
 .container {
   max-width: 320px;
   padding: 8px 20px;
@@ -11,6 +14,7 @@
   margin: 0 auto;
   align-items: center;
 }
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;

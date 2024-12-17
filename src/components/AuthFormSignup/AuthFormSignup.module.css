@@ -17,6 +17,14 @@
   margin-top: 16px;
 } */
 
+.text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 123%;
+  padding-top: 24px;
+}
+
 .input {
   border: 1px solid #d7e3ff;
   border-radius: 6px;
