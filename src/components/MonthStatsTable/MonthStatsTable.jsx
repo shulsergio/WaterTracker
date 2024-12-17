@@ -3,26 +3,32 @@ import Icon from "../Icon/Icon.jsx";
 import s from "./MonthStatsTable.module.css";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats.jsx";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
+import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
 
-const arrayOfDays = (dayOfMonth, year, month) => {
+const arrayOfDays = (dayOfMonth, year, month, monthWater) => {
   const days = [];
   for (let i = 1; i <= dayOfMonth; i++) {
+    const newDate = new Date(year, month, i + 1).toISOString().split("T")[0];
+    const find = monthWater.find(({ date }) => date.includes(newDate));
+
     days.push({
       id: i,
       date: new Date(year, month, i),
-      consumedPercentage: 10,
-      numberGlasses: 0,
+      consumedPercentage: find ? Math.floor(find.consumedPercentage * 100) : 0,
+      numberGlasses: find ? find.numberGlasses : 0,
     });
   }
   return days;
 };
 
 const buildLinkClass = (consumedPercentage) => {
-  console.log("consumedPercentage", consumedPercentage);
   return clsx(s.day, consumedPercentage < 100 && s.active);
 };
 
 const MonthStatsTable = () => {
+  const monthWater = useSelector(selectMonthWater);
+
   const [isDisabled, setIsDisabled] = useState(true);
 
   const presentDay = new Date();
@@ -51,7 +57,7 @@ const MonthStatsTable = () => {
     setUserMonth(new Date(year, numberMonth));
   }, [year, numberMonth]);
 
-  days = arrayOfDays(dayOfMonth, year, numberMonth);
+  days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater);
 
   const handleDecrement = () => {
     setNumberMonth(numberMonth - 1);
