@@ -6,7 +6,7 @@ export const getDayWaterList = createAsyncThunk(
   async (date = "2024-12-16T23:10", thunkAPI) => {
     try {
       console.log("-------- getDayWaterList -----");
-      const response = await axios.get(`/water/daily`, {
+      const response = await axios.get("/water/daily", {
         params: { date: date },
         headers: {
           "Content-Type": "application/json",

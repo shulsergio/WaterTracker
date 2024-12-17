@@ -24,6 +24,7 @@ const dayWaterSlice = createSlice({
       .addCase(getDayWaterList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
+        state.error = null;
       })
       .addCase(getDayWaterList.rejected, (state, action) => {
         state.isLoading = false;
