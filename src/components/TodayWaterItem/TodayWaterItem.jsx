@@ -1,12 +1,25 @@
 import AmountWaterModal from "../AmountWaterModal/AmountWaterModal";
 import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
-import useModal from "../../hooks/useModal.js";
 import Icon from "../Icon/Icon";
 import css from "./TodayWaterItem.module.css";
+import { useState } from "react";
 
 const TodayWaterItem = () => {
-  const openAmountWater = useModal();
-  const openDeleteEntry = useModal();
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteOpen, setisDeleteOpen] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditOpen(true);
+  };
+
+  const handleDeleteClick = () => {
+    setisDeleteOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsEditOpen(false);
+    setisDeleteOpen(false);
+  };
 
   return (
     <div className={css.blockInfo}>
@@ -17,26 +30,24 @@ const TodayWaterItem = () => {
       </div>
       <div className={css.buttons}>
         <button
-          onClick={openAmountWater.openModal}
+          onClick={handleEditClick}
           className={css.editIcon}
           aria-label="Edit water norma"
         >
           <Icon id="icon-edit" width={16} height={16} />
         </button>
         <button
-          onClick={openDeleteEntry.openModal}
+          onClick={handleDeleteClick}
           className={css.deleteIcon}
           aria-label="Delete water norma"
         >
           <Icon id="icon-delete" width={16} height={16} />
         </button>
       </div>
-      {openAmountWater.isOpen && (
-        <AmountWaterModal onClose={openAmountWater.closeModal} isEdit={true} />
+      {isEditOpen && (
+        <AmountWaterModal onClose={handleModalClose} isEdit={true} />
       )}
-      {openDeleteEntry.isOpen && (
-        <DeleteEntryModal onClose={openDeleteEntry.closeModal} />
-      )}
+      {isDeleteOpen && <DeleteEntryModal onClose={handleModalClose} />}
     </div>
   );
 };
