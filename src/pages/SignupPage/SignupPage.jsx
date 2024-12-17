@@ -7,7 +7,9 @@ export default function SignupPage() {
     <>
       <div className={css.container}>
         <div className={css.wrapper}>
-          <AuthFormSignup />
+          <div className={css.box}>
+            <AuthFormSignup />
+          </div>
         </div>
       </div>
     </>
