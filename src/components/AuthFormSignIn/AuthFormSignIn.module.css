@@ -13,9 +13,6 @@
   margin-top: 16px;
 }
 
-/* .form {
-} */
-
 .input {
   border: 1px solid #d7e3ff;
   border-radius: 6px;
@@ -43,7 +40,7 @@
 ::placeholder {
   font-family: var(--font-family);
   font-size: 16px;
- color: #9ebbff;
+  color: #9ebbff;
 }
 
 .text {
@@ -89,7 +86,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 129%;
-   color: #ef5050;
+  color: #ef5050;
 }
 .passwordWrapper {
   position: relative;
@@ -114,11 +111,10 @@
   .container {
     width: 280px;
   }
-    
 }
 
 @media screen and (min-width: 768px) {
- .form {
+  .form {
     width: 336px;
   }
   .signinButton {
@@ -139,7 +135,6 @@
     width: 384px;
   }
 
-
   .signinButton {
     padding: 10px 30px;
     width: 384px;
@@ -149,5 +144,4 @@
   .input {
     width: 384px;
   }
-
 }

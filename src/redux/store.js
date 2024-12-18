@@ -2,6 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from "./modalSlice.js";
 import AuthReducer from "./auth/authSlice.js";
 import userReducer from "./user/userSlice.js";
+import monthReducer from "./monthWaterList/monthWaterSlice";
+import dayReducer from "./dayWaterList/dayWaterSlice.js";
 import {
   // persistStore,
   // persistReducer,
@@ -15,6 +17,8 @@ import {
 
 const store = configureStore({
   reducer: {
+    monthWater: monthReducer,
+    dayWater: dayReducer,
     user: userReducer,
     modal: modalReducer,
     auth: AuthReducer,

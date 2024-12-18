@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDayWaterList } from "./operations";
+import { getDayWaterList } from "./operations.js";
 
 const initialState = {
   data: null,
@@ -11,7 +11,7 @@ const dayWaterSlice = createSlice({
   name: "dayWater",
   initialState,
   reducers: {
-    clearUserData(state) {
+    cleardayWaterData(state) {
       state.data = null;
     },
   },
@@ -24,6 +24,7 @@ const dayWaterSlice = createSlice({
       .addCase(getDayWaterList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
+        state.error = null;
       })
       .addCase(getDayWaterList.rejected, (state, action) => {
         state.isLoading = false;

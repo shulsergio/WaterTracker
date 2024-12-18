@@ -2,21 +2,43 @@ import { useEffect, useMemo, useState } from "react";
 import Icon from "../Icon/Icon.jsx";
 import s from "./MonthStatsTable.module.css";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats.jsx";
+import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
+import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
+import { selectUser } from "../../redux/user/selectors.js";
 
-const arrayOfDays = (dayOfMonth, year, month) => {
-  const days = [];
+const newDayString = (year, month, day) => {
+  return new Date(year, month, day + 1).toISOString().split("T")[0];
+};
+
+const arrayOfDays = (dayOfMonth, year, month, monthWater, dailyNorma) => {
+  const daysArray = [];
   for (let i = 1; i <= dayOfMonth; i++) {
-    days.push({
+    const newDate = newDayString(year, month, i);
+    const find = monthWater.find(({ date }) => date.includes(newDate));
+
+    daysArray.push({
       id: i,
       date: new Date(year, month, i),
-      consumedPercentage: "0%",
-      numberGlasses: 0,
+      dailyNorma: Math.floor(dailyNorma / 100) / 10,
+      consumedPercentage: find ? Math.floor(find.consumedPercentage * 100) : 0,
+      numberGlasses: find ? find.numberGlasses : 0,
     });
   }
-  return days;
+
+  return daysArray;
+};
+
+const buildLinkClass = (consumedPercentage) => {
+  return clsx(s.day, consumedPercentage < 100 && s.active);
 };
 
 const MonthStatsTable = () => {
+  const dispatch = useDispatch();
+  const monthWater = useSelector(selectMonthWater);
+  const user = useSelector(selectUser);
+
   const [isDisabled, setIsDisabled] = useState(true);
 
   const presentDay = new Date();
@@ -45,16 +67,20 @@ const MonthStatsTable = () => {
     setUserMonth(new Date(year, numberMonth));
   }, [year, numberMonth]);
 
-  days = arrayOfDays(dayOfMonth, year, numberMonth);
+  days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater, user.dailyNorm);
 
   const handleDecrement = () => {
-    setNumberMonth(numberMonth - 1);
+    const newNumberMonth = numberMonth - 1;
+    setNumberMonth(newNumberMonth);
     days = [];
+    dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   const handleIncrement = () => {
-    setNumberMonth(numberMonth + 1);
+    const newNumberMonth = numberMonth + 1;
+    setNumberMonth(newNumberMonth);
     days = [];
+    dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   return (
@@ -93,28 +119,30 @@ const MonthStatsTable = () => {
         </div>
       </div>
       <ul className={s.dayList}>
-        {days.map(({ id, date, consumedPercentage, numberGlasses }) => (
-          <li key={id} className={s.dayItem}>
-            <button
-              type="button"
-              className={s.day}
-              disabled={date >= presentDay}>
-              {date.getDate()}
-              <div className={s.dayAction}>
-                <DaysGeneralStats
-                  day={date.getDate()}
-                  month={date.toLocaleString("en-US", {
-                    month: "long",
-                  })}
-                  dailyNorma={1.5}
-                  consumerPercentage={consumedPercentage}
-                  numberGlasses={numberGlasses}
-                />
-              </div>
-            </button>
-            <p className={s.percentage}>{consumedPercentage}</p>
-          </li>
-        ))}
+        {days.map(
+          ({ id, date, consumedPercentage, numberGlasses, dailyNorma }) => (
+            <li key={id} className={s.dayItem}>
+              <button
+                type="button"
+                className={buildLinkClass(consumedPercentage)}
+                disabled={date >= presentDay}>
+                {date.getDate()}
+                <div className={s.dayAction}>
+                  <DaysGeneralStats
+                    day={date.getDate()}
+                    month={date.toLocaleString("en-US", {
+                      month: "long",
+                    })}
+                    dailyNorma={dailyNorma}
+                    consumerPercentage={consumedPercentage}
+                    numberGlasses={numberGlasses}
+                  />
+                </div>
+              </button>
+              <p className={s.percentage}>{consumedPercentage}%</p>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );

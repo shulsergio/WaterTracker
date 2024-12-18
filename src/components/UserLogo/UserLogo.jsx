@@ -1,23 +1,26 @@
 import { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import css from "./UserLogo.module.css";
-// import UserLogoModal from '../UserLogoModal/UserLogoModal';
+import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import Icon from "../Icon/Icon";
 import { selectUser } from "../../redux/user/selectors.js";
 
 const UserLogo = () => {
-  const proverkaUser = useSelector(selectUser);
+  // const proverkaUser = useSelector(selectUser);
   const user = useSelector(selectUser) || {}; // *********** ПРОВЕРКАААА ***********
-  console.log("--- proverkaUser from UserLogo", proverkaUser);
-  console.log("--- USER from UserLogo", user);
-  console.log("--- user.avatarUrl from UserLogo", user.avatarUrl);
-  console.log("--- user.name from UserLogo", user.name);
-  console.log("--- user.name[0] from UserLogo", user.name[0]);
-  console.log("--- user.email[0] from UserLogo", user.email[0]);
+  // console.log("--- proverkaUser from UserLogo", proverkaUser);
+  // console.log("--- USER from UserLogo", user);
+  // console.log("--- user.avatarUrl from UserLogo", user.avatarUrl);
+  // console.log("--- user.name from UserLogo", user.name);
+  // console.log("--- user.name[0] from UserLogo", user.name[0]);
+  // console.log("--- user.email[0] from UserLogo", user.email[0]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
 
+   const toggleModal = () => {
+     setIsModalOpen((prev) => !prev);
+   }; 
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setIsModalOpen(false);
@@ -33,28 +36,33 @@ const UserLogo = () => {
   }, [setIsModalOpen]);
 
   const getAvatar = () => {
-    if (user.avatarUrl) {
+    if (user.avatarUrl && user.avatarUrl !== "null") {
       return (
-        <img src={user.avatarUrl} alt={user.name} className={css.avatar} />
+        <img
+          src={user.avatarUrl}
+          alt={user.name || "User"}
+          className={css.avatar}
+        />
       );
     }
-    if (user.name) {
+
+    if (user.name && user.name.length > 0) {
       return (
         <span className={css.emptyAvatar}>{user.name[0].toUpperCase()}</span>
       );
     }
-    if (user.email) {
+
+    if (user.email && user.email.length > 0) {
       return (
         <span className={css.emptyAvatar}>{user.email[0].toUpperCase()}</span>
       );
     }
+    return <span className={css.emptyAvatar}>?</span>;
   };
+  
   return (
     <div ref={modalRef} className={css.userLogoContainer}>
-      <button
-        // onClick={toggleModal}
-        className={css.userLogoBtn}
-      >
+      <button onClick={toggleModal} className={css.userLogoBtn}>
         <span className={css.userName}>{user.name || user.email}</span>
         {getAvatar()}
         <Icon
@@ -64,7 +72,7 @@ const UserLogo = () => {
           className={`${isModalOpen ? css.iconRotate : ""} icon-blue`}
         />
       </button>
-      {/* {isModalOpen && <UserLogoModal toggleModal={toggleModal} />} */}
+      {isModalOpen && <UserLogoModal toggleModal={toggleModal} />}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import RadioButton from "../radio-button/RadioButton";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateDailyNorm } from "../../redux/user/operations";
+// import toast from "react-hot-toast";
 
 const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
   const dispatch = useDispatch();
@@ -21,9 +22,14 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
       ? Number(customNorm) / 1000
       : amountWaterPerDay;
     console.log("MyDailyNormaModal - normToSave- ", normToSave);
-    dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
-    setDailyNorm(normToSave);
-    onClose();
+    if (normToSave > 4999) {
+      console.log("a lot of water");
+      return;
+    } else {
+      dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
+      setDailyNorm(normToSave);
+      onClose();
+    }
   };
 
   return (

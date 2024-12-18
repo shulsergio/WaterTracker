@@ -44,6 +44,7 @@ const SettingModal = ({ userData, onCloseModal }) => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]); // Зберігаємо вибраний файл
   };
+  console.log(file);
 
   const handleUpload = () => {
     if (file) {
@@ -98,7 +99,7 @@ const SettingModal = ({ userData, onCloseModal }) => {
         {({ isSubmitting, setFieldValue, values, errors, touched }) => (
           <Form className={css.form}>
             {/* Photo Section */}
-            <div className="photo-section">
+            {/* <div className="photo-section">
               <div className="photo-circle">
                 {values.photo ? (
                   <img
@@ -107,7 +108,7 @@ const SettingModal = ({ userData, onCloseModal }) => {
                     className="user-photo"
                   />
                 ) : (
-                  <div className="photo-placeholder">No Photo</div>
+                  <div className="photo-placeholder">No Photo</div> // вставити першу букву як в юзерменю
                 )}
               </div>
               <input
@@ -115,7 +116,7 @@ const SettingModal = ({ userData, onCloseModal }) => {
                 accept="image/*"
                 onChange={() => handleFileChange()}
               />
-            </div>
+            </div> */}
             {/* Gender Section */}
 
             <RadioButton

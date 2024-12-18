@@ -1,0 +1,137 @@
+.section {
+  background-image: url("../../images/homePage/Background-Home-screen-1x-mob.webp");
+  /* display: flex;
+  flex-direction: column; */
+  /* background-repeat: no-repeat; */
+  background-size: auto;
+  /* margin: -8px -20px -8px -20px; */
+  /* width: 320px; */
+  height: 100%;
+}
+
+.norma {
+  padding-top: 24px;
+  padding-bottom: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  background-image: url("../../images/homePage/Bottle-home-1x-mob.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 280px;
+  height: 208px;
+}
+
+.WaterRatioPanel {
+  padding-top: 16px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 80px;
+}
+
+.todayWaterGlassList {
+  padding-bottom: 48px;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .section {
+    background-image: url("../../images/homePage/Background-Home-screen-2x-mob.webp");
+  }
+  /* .bottle {
+    background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");
+  } */
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp");
+    flex-direction: column;
+  }
+
+  .norma {
+    padding-top: 24px;
+    padding-bottom: 8px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image {
+    background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    /* background-position: left 75px; */
+    width: 518px;
+    height: 386px;
+  }
+  /* 
+  .bottle {
+    background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");
+    width: 528px;
+    height: 386px;
+  } */
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-2x-tab.webp");
+    }
+
+    /* .bottle {
+      background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");
+    } */
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
+    display: flex;
+    flex-direction: row;
+    /* gap: 32px; */
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .norma {
+    width: 164px;
+    height: 76px;
+    padding: 0;
+  }
+
+  .image {
+    background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    /* background-position: left 75px; */
+    width: 738px;
+    height: 548px;
+  }
+
+  .WaterRatioPanel {
+    width: 592px;
+    height: 90px;
+  }
+
+  /* .bottle {
+    background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
+    width: 738%;
+    height: 548px;
+  } */
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .section {
+      background-image: url("../../images/homePage/Background-Home-screen-2x-desktop.webp");
+    }
+
+    .bottle {
+      background-image: url("../../images/homePage/Bottle-home-2x-desktop.webp");
+    }
+  }
+}

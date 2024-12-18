@@ -1,7 +1,9 @@
 import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
-import Modal from "../../components/Modal/Modal.jsx";
 import SettingModal from "../../components/SettingModal/SettingModal.jsx";
-import useModal from "../../hooks/useModal.js";
+import TodayWaterGlassList from "../../components/TodayWaterGlassList/TodayWaterGlassList.jsx";
+import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel.jsx";
+// import useModal from "../../hooks/useModal.js";
+import css from "./HomePage.module.css";
 // import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
  *
@@ -10,29 +12,27 @@ import useModal from "../../hooks/useModal.js";
  * @return {*}
  */
 export default function HomePage() {
-  const { openModal, isOpen, closeModal } = useModal();
+  // const { openModal, isOpen, closeModal } = useModal();
 
   console.log("Rendered HomePage");
 
   return (
-    <>
-      <DailyNorma />
-
-      <p>пример модалки</p>
-      <div title="Modal">
-        <div>
-          <button onClick={openModal} type="button">
-            Modal
-          </button>
+    <section className={css.section}>
+      {/* <div className={css.bottleWrap}> */}
+      {/* <div className={css.bottle}> */}
+      <div className={css.wrap}>
+        <div className={css.norma}>
+          <DailyNorma />
         </div>
-        {isOpen && (
-          <Modal title="Delete entry" onClose={closeModal}>
-            <p>Компонент, що буде відображатися в модалці</p>
-            <SettingModal />
-          </Modal>
-        )}
+        <div className={css.image} />
+        <div className={css.WaterRatioPanel}>
+          <WaterRatioPanel />
+        </div>
       </div>
-      {/* <UserLogoutModal /> */}
-    </>
+      <div className={css.todayWaterGlassList}>
+        <TodayWaterGlassList />
+      </div>
+      <SettingModal />
+    </section>
   );
 }

@@ -33,6 +33,7 @@ export const uploadPhoto = createAsyncThunk(
   async (file, thunkAPI) => {
     const formData = new FormData();
     formData.append("avatar", file);
+    console.log("uploadPhoto", file);
 
     try {
       const response = await axios.patch("/user/avatar", formData, {
@@ -40,11 +41,11 @@ export const uploadPhoto = createAsyncThunk(
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log("Response from server:", response.data);
+
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to upload photo"
-      );
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
