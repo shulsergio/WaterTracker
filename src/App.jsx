@@ -4,6 +4,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 import { RestrictedRoute } from "./components/Routs/RestrictedRoute";
 // import Loader from './components/Loader/Loader';
 import "./App.css";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
@@ -15,6 +16,16 @@ function App() {
 
   return (
     <>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 5000,
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="main" element={<MainPage />} />
