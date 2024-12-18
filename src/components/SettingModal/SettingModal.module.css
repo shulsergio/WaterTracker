@@ -1,3 +1,16 @@
+.modal {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    max-width: 592px;
+    width: 100%;
+  }
+}
+
+.dataWrapper {
+  display: flex;
+  flex-direction: row;
+}
 .label {
   display: flex;
   flex-direction: column;
@@ -61,6 +74,57 @@
 .eye {
   width: 16px;
   height: 16px;
+}
+
+/* .avatarContainer {
+  text-align: center;
+} */
+
+.avatarLabel {
+  cursor: pointer;
+}
+
+.avatarAndTextWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.avatarWrapper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9ebbff; /* Колір фону, якщо немає аватара */
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emptyAvatar {
+  font-size: 64px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.uploadText {
+  color: #007bff;
+}
+
+.fileInput {
+  display: none;
+}
+
+.icon {
+  background: transparent;
+  fill: none;
+  stroke: var(--primary-color-blue);
 }
 
 @media screen and (min-width: 1440px) {
