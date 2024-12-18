@@ -30,25 +30,13 @@
 }
 
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
-  /* .section {
-    background-image: url("../../images/homePage/Background-Home-screen-2x-mob.webp");
-  } */
-  /* .bottle {
+  .image {
     background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");
-  } */
+ }
 }
 
 @media screen and (min-width: 768px) {
-  .section {
-    /* background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp"); */
-    flex-direction: column;
-  }
-
-  .wrap {
-    align-items: center;
-  }
-
-  .norma {
+    .norma {
     padding-top: 24px;
     padding-bottom: 8px;
     width: 100%;
@@ -60,31 +48,20 @@
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
-    /* background-position: left 75px; */
     width: 518px;
     height: 386px;
   }
-  /* 
-  .bottle {
-    background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");
-    width: 528px;
-    height: 386px;
-  } */
-
+  
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .section {
-      background-image: url("../../images/homePage/Background-Home-screen-2x-tab.webp");
-    }
-
-    /* .bottle {
-      background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");
-    } */
+    .image {
+      background-image: url("../../images/homePage/Bottle-home-2x-tab.webp");
   }
+}
 }
 
 @media screen and (min-width: 1440px) {
   .section {
-    background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
+    /* background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp"); */
     display: flex;
     flex-direction: row;
     gap: 32px;
@@ -106,8 +83,6 @@
     background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
     background-repeat: no-repeat;
     background-size: cover;
-    /* margin-left: -73px; */
-    /* background-position: left 75px; */
     width: 592px;
     height: 548px;
   }
@@ -121,18 +96,8 @@
     padding-bottom: 0;
   }
 
-  /* .bottle {
-    background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
-    width: 738%;
-    height: 548px;
-  } */
-
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .section {
-      background-image: url("../../images/homePage/Background-Home-screen-2x-desktop.webp");
-    }
-
-    .bottle {
+    .image {
       background-image: url("../../images/homePage/Bottle-home-2x-desktop.webp");
     }
   }

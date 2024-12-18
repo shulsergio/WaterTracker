@@ -17,8 +17,6 @@ export default function HomePage() {
 
   return (
     <section className={css.section}>
-      {/* <div className={css.bottleWrap}> */}
-      {/* <div className={css.bottle}> */}
       <div className={css.wrap}>
         <div className={css.norma}>
           <DailyNorma />

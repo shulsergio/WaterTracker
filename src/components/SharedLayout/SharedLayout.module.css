@@ -31,11 +31,12 @@
   .background {
     background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
     min-width: 1440px;
+    min-height: 800px;
     background-position: center 64px;
   }
 
   .container {
-    max-width: 1440px;
+    min-width: 1440px;
     padding: 12px 112px;
     margin: 0;
   }
