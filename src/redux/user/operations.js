@@ -76,12 +76,16 @@ export const uploadPhoto2 = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
-  "user/updateProfile",
-  async (updatedData, thunkAPI) => {
+  "user/update",
+  async (dataToSend, thunkAPI) => {
     try {
-      console.log(updatedData);
-
-      const response = await axios.patch("/user/update", updatedData);
+      console.log("///updatedataToSend dataToSend-", dataToSend);
+      console.log("///updatedataToSend dataToSend-", { dataToSend });
+      const response = await axios.patch("/user/update", dataToSend);
+      console.log(
+        "///after response.data updatedataToSend dataToSend-",
+        response.data
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

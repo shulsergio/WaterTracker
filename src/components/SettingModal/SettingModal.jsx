@@ -13,10 +13,15 @@ import Button from "../button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
 
 const SettingModal = ({ onClose }) => {
+  console.log("------SettingModal ------");
   const dispatch = useDispatch();
   const avatarUrl = useSelector((state) => state.user.avatarUrl);
   const email = useSelector(selectUser).email;
+  const name = useSelector(selectUser).name;
+  const gender = useSelector(selectUser).gender;
   const [preview, setPreview] = useState(null);
+  console.log("==== avatarUrl", avatarUrl);
+  console.log("==== email", email);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -32,8 +37,8 @@ const SettingModal = ({ onClose }) => {
   };
 
   const initialValues = {
-    gender: "Women",
-    name: "",
+    gender: gender,
+    name: name,
     email: email || "",
     outdatedPassword: "",
     newPassword: "",
@@ -45,38 +50,18 @@ const SettingModal = ({ onClose }) => {
     email: Yup.string()
       .email("Invalid email address.")
       .required("Email is required."),
-    // outdatedPassword: Yup.string().when("newPassword", {
-    //   is: (newPassword) => newPassword && newPassword.length > 0,
-    //   then: Yup.string().required("Outdated password is required."),
-    //   otherwise: Yup.string().notRequired(),
-    // }),
-    // newPassword: Yup.string().when("outdatedPassword", {
-    //   is: (outdatedPassword) => outdatedPassword && outdatedPassword.length > 0,
-    //   then: Yup.string().required("New password is required."),
-    //   otherwise: Yup.string().notRequired(),
-    // }),
-    // repeatNewPassword: Yup.string().when("newPassword", {
-    //   is: (newPassword) => newPassword && newPassword.length > 0,
-    //   then: Yup.string()
-    //     .oneOf([Yup.ref("newPassword")], "Passwords must match.")
-    //     .required("Please confirm your new password."),
-    //   otherwise: Yup.string().notRequired(),
-    // }),
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
     const { gender, name, email, outdatedPassword, newPassword } = values;
 
     const dataToSend = {
-      gender,
-      name: name || undefined, // Не відправляємо порожнє ім'я
-      email,
-      ...(newPassword && {
-        outdatedPassword,
-        newPassword,
-      }),
+      gender: gender,
+      name: name, // нужна проверка JOI
+      email: email,
+      password: newPassword === "" ? null : newPassword,
     };
-
+    console.log("=== dataToSend", dataToSend);
     dispatch(updateUserProfile(dataToSend))
       .then(() => onSave()) // Якщо все пройшло успішно
       .catch((error) => console.error("Error updating profile:", error));
@@ -119,16 +104,16 @@ const SettingModal = ({ onClose }) => {
               <div className={styles.fieldGroup}>
                 <label className={styles.label}>Your gender identity</label>
                 <RadioButton
-                  value="Women"
+                  value="Woman"
                   selectedValue={values.gender}
-                  onChange={() => setFieldValue("gender", "Women")}
-                  label="Women"
+                  onChange={() => setFieldValue("gender", "Woman")}
+                  label="Woman"
                 />
                 <RadioButton
-                  value="Men"
+                  value="Man"
                   selectedValue={values.gender}
-                  onChange={() => setFieldValue("gender", "Men")}
-                  label="Men"
+                  onChange={() => setFieldValue("gender", "Man")}
+                  label="Man"
                 />
               </div>
 
@@ -234,9 +219,3 @@ const SettingModal = ({ onClose }) => {
   );
 };
 export default SettingModal;
-
-// const handleSave = () => {
-//   console.log("Profile updated!");
-// };
-
-// <SettingModal onSave={handleSave} />
