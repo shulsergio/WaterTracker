@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser, updateDailyNorm, uploadPhoto } from "./operations.js";
+import {
+  fetchUser,
+  updateDailyNorm,
+  updateUserProfile,
+  // uploadPhoto,
+  uploadPhoto2,
+} from "./operations.js";
 // import { logIn } from "../auth/operations";
 // import axios from "axios";
 
@@ -7,9 +13,13 @@ const initialState = {
   data: null,
   isLoading: false,
   error: null,
+
   photoUrl: null,
   photoStatus: "idle", // Стан завантаження фото: idle | loading | succeeded | failed
   photoError: null,
+
+  avatarUrl: null,
+  status: "idle",
 };
 
 const userSlice = createSlice({
@@ -22,6 +32,9 @@ const userSlice = createSlice({
 
     clearUserData(state) {
       state.data = null;
+    },
+    clearUserError(state) {
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -50,21 +63,33 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(uploadPhoto.pending, (state) => {
-        state.photoStatus = "loading";
-        state.photoError = null;
+      .addCase(uploadPhoto2.pending, (state) => {
+        state.status = "loading";
       })
-      .addCase(uploadPhoto.fulfilled, (state, action) => {
-        state.photoStatus = "succeeded";
-        state.photoUrl = action.payload.avatarUrl;
-        console.log("action.payload.avatarUrl", state.photoUrl);
+      .addCase(uploadPhoto2.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
       })
-      .addCase(uploadPhoto.rejected, (state, action) => {
-        state.photoStatus = "failed";
-        state.photoError = action.payload;
+      .addCase(uploadPhoto2.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+
+      .addCase(updateUserProfile.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
+export const userReducer = userSlice.reducer;
 export const { setIsLoading, setUserData, clearUserData } = userSlice.actions;
 export default userSlice.reducer;

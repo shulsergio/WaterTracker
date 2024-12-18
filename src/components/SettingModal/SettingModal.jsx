@@ -1,287 +1,229 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import css from "./SettingModal.module.css";
-import * as Yup from "yup";
-import axios from "axios";
-import Button from "../button/Button.jsx";
-import RadioButton from "../radio-button/RadioButton.jsx";
-import { BiHide, BiShow } from "react-icons/bi";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectError,
-  selectPhotoUrl,
-  selectStatus,
-} from "../../redux/user/selectors.js";
-import { uploadPhoto } from "../../redux/user/operations.js";
+  updateUserProfile,
+  uploadPhoto2,
+} from "../../redux/user/operations.js";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import styles from "./SettingModal.module.css"; // Стилі форми
+import { selectUser } from "../../redux/user/selectors.js";
+import RadioButton from "../radio-button/RadioButton.jsx";
+import Button from "../button/Button.jsx";
 
-const validationSchema = Yup.object({
-  password: Yup.string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
-});
-
-const SettingModal = ({ userData, onCloseModal }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [file, setFile] = useState(null);
+const SettingModal = ({ onSave }) => {
   const dispatch = useDispatch();
+  const avatarUrl = useSelector((state) => state.user.avatarUrl);
+  const email = useSelector(selectUser).email;
+  const [preview, setPreview] = useState(null);
 
-  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Створення прев'ю для відображення
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(file);
+
+      // Відправка файлу на сервер
+      dispatch(uploadPhoto2(file));
+    }
+  };
 
   const initialValues = {
-    name: userData?.name || "",
-    email: userData?.email || "",
-    gender: userData?.gender || "Women",
-    currentPassword: "",
+    gender: "Women",
+    name: "",
+    email: email || "",
+    outdatedPassword: "",
     newPassword: "",
-    confirmPassword: "",
-    photo: userData?.photo || "https://via.placeholder.com/150", // Default placeholder
+    repeatNewPassword: "",
   };
 
-  const photoUrl = useSelector(selectPhotoUrl);
-  const status = useSelector(selectStatus);
-  const error = useSelector(selectError);
+  const validationSchema = Yup.object({
+    gender: Yup.string().required("Please select your gender."),
+    email: Yup.string()
+      .email("Invalid email address.")
+      .required("Email is required."),
+    // outdatedPassword: Yup.string().when("newPassword", {
+    //   is: (newPassword) => newPassword && newPassword.length > 0,
+    //   then: Yup.string().required("Outdated password is required."),
+    //   otherwise: Yup.string().notRequired(),
+    // }),
+    // newPassword: Yup.string().when("outdatedPassword", {
+    //   is: (outdatedPassword) => outdatedPassword && outdatedPassword.length > 0,
+    //   then: Yup.string().required("New password is required."),
+    //   otherwise: Yup.string().notRequired(),
+    // }),
+    // repeatNewPassword: Yup.string().when("newPassword", {
+    //   is: (newPassword) => newPassword && newPassword.length > 0,
+    //   then: Yup.string()
+    //     .oneOf([Yup.ref("newPassword")], "Passwords must match.")
+    //     .required("Please confirm your new password."),
+    //   otherwise: Yup.string().notRequired(),
+    // }),
+  });
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]); // Зберігаємо вибраний файл
-  };
-  console.log(file);
+  const handleSubmit = (values, { setSubmitting }) => {
+    const { gender, name, email, outdatedPassword, newPassword } = values;
 
-  const handleUpload = () => {
-    if (file) {
-      dispatch(uploadPhoto(file)); // Відправляємо файл на сервер
-    }
-  };
+    const dataToSend = {
+      gender,
+      name: name || undefined, // Не відправляємо порожнє ім'я
+      email,
+      ...(newPassword && {
+        outdatedPassword,
+        newPassword,
+      }),
+    };
 
-  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    try {
-      const updatedData = {
-        name: values.name,
-        email: values.email,
-        gender: values.gender,
-        currentPassword: values.currentPassword,
-        newPassword: values.newPassword,
-        confirmPassword: values.confirmPassword,
-      };
-      await axios.patch("http://localhost:3000/user/avatar", updatedData);
-      onCloseModal();
-    } catch (error) {
-      setErrors({
-        general: error.response?.data?.message || "Failed to update user data.",
-      });
-    } finally {
-      setSubmitting(false);
-    }
+    dispatch(updateUserProfile(dataToSend))
+      .then(() => onSave()) // Якщо все пройшло успішно
+      .catch((error) => console.error("Error updating profile:", error));
+    setSubmitting(false);
   };
 
   return (
-    <div className="modal">
-      <div className="modal">
-        <h1>Upload Photo</h1>
-        <div>
-          {photoUrl ? (
-            <img src={photoUrl} alt="User Avatar" width="150" />
-          ) : (
-            <p>No photo uploaded</p>
-          )}
-        </div>
-        <input type="file" onChange={handleFileChange} accept="image/*" />
-        <button onClick={handleUpload} disabled={status === "loading"}>
-          {status === "loading" ? "Uploading..." : "Upload Photo"}
-        </button>
-        {status === "failed" && <p style={{ color: "red" }}>{error}</p>}
-        <button onClick={onCloseModal}>Close</button>
+    <div>
+      <div style={{ textAlign: "center" }}>
+        <label htmlFor="fileInput" style={{ cursor: "pointer" }}>
+          <img
+            src={preview || avatarUrl || "default-avatar.png"}
+            alt="Avatar"
+            style={{
+              width: "150px",
+              height: "150px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              marginBottom: "10px",
+            }}
+          />
+          <p style={{ color: "#007BFF" }}>Upload a photo</p>
+        </label>
+        <input
+          id="fileInput"
+          type="file"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
       </div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, setFieldValue, values, errors, touched }) => (
-          <Form className={css.form}>
-            {/* Photo Section */}
-            {/* <div className="photo-section">
-              <div className="photo-circle">
-                {values.photo ? (
-                  <img
-                    src={values.photo}
-                    alt="User Avatar"
-                    className="user-photo"
-                  />
-                ) : (
-                  <div className="photo-placeholder">No Photo</div> // вставити першу букву як в юзерменю
-                )}
-              </div>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={() => handleFileChange()}
+        {({ values, setFieldValue }) => (
+          <Form className={styles.form}>
+            <div className={styles.fieldGroup}>
+              <label className={styles.label}>Your gender identity</label>
+              <RadioButton
+                value="Women"
+                selectedValue={values.gender}
+                onChange={() => setFieldValue("gender", "Women")}
+                label="Women"
               />
-            </div> */}
-            {/* Gender Section */}
-
-            <RadioButton
-              value="Women"
-              selectedValue={values.gender}
-              onChange={(value) => setFieldValue("gender", value)}
-              label="Women"
-            />
-            <RadioButton
-              value="Men"
-              selectedValue={values.gender}
-              onChange={(value) => setFieldValue("gender", value)}
-              label="Men"
-            />
-            {/* Name Section */}
-            <div>
-              <label className={css.label}>
-                Your Name
-                <Field
-                  type="text"
-                  name="name"
-                  placeholder="Enter your name"
-                  className={css.input}
-                />
-              </label>
-              <ErrorMessage
-                name="name"
-                component="div"
-                className={css.errorMessage}
+              <RadioButton
+                value="Men"
+                selectedValue={values.gender}
+                onChange={() => setFieldValue("gender", "Men")}
+                label="Men"
               />
             </div>
-            {/* Email Section */}
-            <div>
-              <label className={css.label}>
-                Email
-                <Field
-                  type="email"
-                  name="email"
-                  className={`${css.input} ${
-                    touched.email && errors.email ? css.inputError : ""
-                  }`}
-                  placeholder="Enter your email"
-                />
+
+            <div className={styles.fieldGroup}>
+              <label htmlFor="name" className={styles.label}>
+                Your name
               </label>
+              <Field
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your name (optional)"
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.fieldGroup}>
+              <label htmlFor="email" className={styles.label}>
+                E-mail
+              </label>
+              <Field
+                id="email"
+                name="email"
+                type="email"
+                className={styles.input}
+              />
               <ErrorMessage
                 name="email"
                 component="div"
-                className={css.errorMessage}
+                className={styles.error}
               />
             </div>
-            {/* Password Section */}
-            <div>
-              <label className={css.label}>
-                Current Password
-                <div>
-                  <Field
-                    type="password"
-                    name="currentPassword"
-                    className={
-                      touched.password && errors.password
-                        ? `${css.input} ${css.inputError}`
-                        : css.input
-                    }
-                  />
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className={css.eyeButton}
-                    aria-label="Toggle password visibility"
-                  >
-                    {showPassword ? (
-                      <BiShow className={css.eye} />
-                    ) : (
-                      <BiHide className={css.eye} />
-                    )}
-                  </button>
-                </div>
-              </label>
-              <ErrorMessage
-                name="currentPassword"
-                component="div"
-                className={css.errorMessage}
-              />
 
-              <label className={css.label}>
-                New Password
-                <div className={css.passwordWrapper}>
+            <div className={styles.fieldGroup}>
+              <label className={styles.label} style={{ fontWeight: "bold" }}>
+                Password
+              </label>
+              <div>
+                <div className={styles.fieldGroup}>
+                  <label htmlFor="outdatedPassword" className={styles.label}>
+                    Outdated password
+                  </label>
                   <Field
+                    id="outdatedPassword"
+                    name="outdatedPassword"
                     type="password"
+                    placeholder="Enter your current password"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="outdatedPassword"
+                    component="div"
+                    className={styles.error}
+                  />
+                </div>
+
+                <div className={styles.fieldGroup}>
+                  <label htmlFor="newPassword" className={styles.label}>
+                    New password
+                  </label>
+                  <Field
+                    id="newPassword"
                     name="newPassword"
-                    className={
-                      touched.password && errors.password
-                        ? `${css.input} ${css.inputError}`
-                        : css.input
-                    }
-                  />
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className={css.eyeButton}
-                    aria-label="Toggle password visibility"
-                  >
-                    {showPassword ? (
-                      <BiShow className={css.eye} />
-                    ) : (
-                      <BiHide className={css.eye} />
-                    )}
-                  </button>
-                </div>
-              </label>
-              <ErrorMessage
-                name="newPassword"
-                component="div"
-                className="error-message"
-              />
-
-              <label className={css.label}>
-                Confirm New Password
-                <div className={css.passwordWrapper}>
-                  <Field
                     type="password"
-                    name="confirmPassword"
-                    className={
-                      touched.password && errors.password
-                        ? `${css.input} ${css.inputError}`
-                        : css.input
-                    }
+                    placeholder="Enter your new password"
+                    className={styles.input}
                   />
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className={css.eyeButton}
-                    aria-label="Toggle password visibility"
-                  >
-                    {showPassword ? (
-                      <BiShow className={css.eye} />
-                    ) : (
-                      <BiHide className={css.eye} />
-                    )}
-                  </button>
+                  <ErrorMessage
+                    name="newPassword"
+                    component="div"
+                    className={styles.error}
+                  />
                 </div>
-              </label>
-              <ErrorMessage
-                name="confirmPassword"
-                component="div"
-                className={css.errorMessage}
-              />
+
+                <div className={styles.fieldGroup}>
+                  <label htmlFor="repeatNewPassword" className={styles.label}>
+                    Repeat new password
+                  </label>
+                  <Field
+                    id="repeatNewPassword"
+                    name="repeatNewPassword"
+                    type="password"
+                    placeholder="Repeat your new password"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="repeatNewPassword"
+                    component="div"
+                    className={styles.error}
+                  />
+                </div>
+              </div>
             </div>
-            {/* Error Message */}
-            <ErrorMessage
-              name="general"
-              component="p"
-              className={css.errorMessage}
-            />
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              className={css.saveButton}
-              disabled={isSubmitting}
-            >
+
+            <Button types="primary" type="submit" className={styles.saveButton}>
               Save
             </Button>
-            {/* <button type="submit" disabled={isSubmitting}>
-              Save
-            </button> */}
           </Form>
         )}
       </Formik>
@@ -290,3 +232,9 @@ const SettingModal = ({ userData, onCloseModal }) => {
 };
 
 export default SettingModal;
+
+// const handleSave = () => {
+//   console.log("Profile updated!");
+// };
+
+// <SettingModal onSave={handleSave} />
