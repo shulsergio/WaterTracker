@@ -12,11 +12,11 @@ import css from "./HomePage.module.css";
  */
 export default function HomePage() {
   // const { openModal, isOpen, closeModal } = useModal();
-
   console.log("Rendered HomePage");
-
   return (
     <section className={css.section}>
+      {/* <div className={css.bottleWrap}> */}
+      {/* <div className={css.bottle}> */}
       <div className={css.wrap}>
         <div className={css.norma}>
           <DailyNorma />

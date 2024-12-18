@@ -7,8 +7,9 @@ export default function SigninPage() {
     <>
       <div className={css.container}>
         <div className={css.background}>
+          <div className={css.box}>
             <AuthFormSignIn />
-           <div className={css.backgroundImage}> </div>
+        </div>
         </div>
         </div>
     </>

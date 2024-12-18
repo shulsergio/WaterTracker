@@ -21,9 +21,7 @@ const arrayOfDays = (dayOfMonth, year, month, monthWater, dailyNorma) => {
     daysArray.push({
       id: i,
       date: new Date(year, month, i),
-      dailyNorma: find
-        ? Math.floor(find.dailyNorma / 100) / 10
-        : Math.floor(dailyNorma / 100) / 10,
+      dailyNorma: Math.floor(dailyNorma / 100) / 10,
       consumedPercentage: find ? Math.floor(find.consumedPercentage * 100) : 0,
       numberGlasses: find ? find.numberGlasses : 0,
     });
@@ -93,7 +91,8 @@ const MonthStatsTable = () => {
           <button
             type="button"
             className={s.calendarButton}
-            onClick={handleDecrement}>
+            onClick={handleDecrement}
+          >
             <Icon
               id="icon-left-arrow"
               className={s.icon}
@@ -110,7 +109,8 @@ const MonthStatsTable = () => {
             type="button"
             className={s.calendarButton}
             onClick={handleIncrement}
-            disabled={isDisabled}>
+            disabled={isDisabled}
+          >
             <Icon
               id="icon-right-arrow"
               className={s.icon}
@@ -127,7 +127,8 @@ const MonthStatsTable = () => {
               <button
                 type="button"
                 className={buildLinkClass(consumedPercentage)}
-                disabled={date >= presentDay}>
+                disabled={date >= presentDay}
+              >
                 {date.getDate()}
                 <div className={s.dayAction}>
                   <DaysGeneralStats
@@ -143,7 +144,7 @@ const MonthStatsTable = () => {
               </button>
               <p className={s.percentage}>{consumedPercentage}%</p>
             </li>
-          ),
+          )
         )}
       </ul>
     </div>

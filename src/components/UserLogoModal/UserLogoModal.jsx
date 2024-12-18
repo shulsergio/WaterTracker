@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import css from "./UserLogoModal.module.css";
 import UserLogoutModal from "../UserLogoutModal/UserLogoutModal";
 import Icon from "../Icon/Icon";
+import SettingModal from "../SettingModal/SettingModal";
 // import SettingModal from '../SettingModal/SettingModal';
 
 const UserLogoModal = ({ toggleModal }) => {
@@ -67,7 +68,7 @@ const UserLogoModal = ({ toggleModal }) => {
           </div>
         </div>
       )}
-      {/* {isSettingModalOpen && (
+      {isSettingModalOpen && (
         <SettingModal
           onClose={() => {
             setIsSettingModalOpen(false);
@@ -75,7 +76,7 @@ const UserLogoModal = ({ toggleModal }) => {
           }}
           isShow={isSettingModalOpen}
         />
-      )} */}
+      )}
       {isLogoutModalOpen && (
         <UserLogoutModal
           isShow={isLogoutModalOpen}
@@ -89,4 +90,4 @@ const UserLogoModal = ({ toggleModal }) => {
     </>
   );
 };
-export default UserLogoModal
+export default UserLogoModal;
