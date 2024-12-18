@@ -11,6 +11,7 @@
   margin: -8px -20px -8px -20px;
   align-items: center;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   height: 100%;
 }
@@ -51,13 +52,13 @@
     padding-top: 80px;
   }
 
-  .layer {
+  /* .layer {
     background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
     flex-wrap: nowrap;
     background-repeat: no-repeat;
     background-size: auto;
     width: 1216px;
-  }
+  } */
 
   .wrapper {
     display: flex;
