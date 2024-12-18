@@ -20,9 +20,9 @@ export default function HomePage() {
       {/* <div className={css.bottleWrap}> */}
       {/* <div className={css.bottle}> */}
       <div className={css.wrap}>
-      <div className={css.norma}>
-        <DailyNorma />
-      </div>
+        <div className={css.norma}>
+          <DailyNorma />
+        </div>
       <div className={css.image} />
       <div className={css.WaterRatioPanel}>
         <WaterRatioPanel />

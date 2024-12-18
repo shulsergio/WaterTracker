@@ -1,12 +1,5 @@
-.section {
-  background-image: url("../../images/homePage/Background-Home-screen-1x-mob.webp");
-  /* display: flex;
-  flex-direction: column; */
-  /* background-repeat: no-repeat; */
-  background-size: auto;
-  /* margin: -8px -20px -8px -20px; */
-  /* width: 320px; */
-  height: 100%;
+.wrap {
+  margin-bottom: 15px;
 }
 
 .norma {
@@ -26,7 +19,7 @@
 }
 
 .WaterRatioPanel {
-  padding-top: 16px;
+  /* padding-top: 16px; */
   width: 100%;
   height: 100%;
   padding-bottom: 80px;
@@ -37,9 +30,9 @@
 }
 
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
-  .section {
+  /* .section {
     background-image: url("../../images/homePage/Background-Home-screen-2x-mob.webp");
-  }
+  } */
   /* .bottle {
     background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");
   } */
@@ -47,8 +40,12 @@
 
 @media screen and (min-width: 768px) {
   .section {
-    background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp");
+    /* background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp"); */
     flex-direction: column;
+  }
+
+  .wrap {
+    align-items: center;
   }
 
   .norma {
@@ -90,7 +87,8 @@
     background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
     display: flex;
     flex-direction: row;
-    /* gap: 32px; */
+    gap: 32px;
+    margin-top: 4px;
   }
 
   .wrap {
@@ -108,15 +106,19 @@
     background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0;
+    /* margin-left: -73px; */
     /* background-position: left 75px; */
-    width: 738px;
+    width: 592px;
     height: 548px;
   }
 
   .WaterRatioPanel {
     width: 592px;
     height: 90px;
+  }
+
+  .todayWaterGlassList {
+    padding-bottom: 0;
   }
 
   /* .bottle {
