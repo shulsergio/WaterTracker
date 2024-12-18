@@ -23,13 +23,13 @@
   background-position: center 52px;
   background-size: cover;
   background-repeat: no-repeat;
-  /* margin-left: -20px; */
+  margin-left: -20px;
 }
 
 .wrapper {
-  /* padding-left: 20px; */
+  padding-left: 20px;
   height: 608px;
-  background-image: url("../../images/bottle/mobile/Bottle-mobile1x.webp");
+  background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg");
   background-size: 280px 210px;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -47,9 +47,9 @@
 
   .wrapper {
     /* padding-top: 16px; */
-    background-image: url("../../images/bottle/tablet/Bottle-tablet1x.webp");
+    background-image: url("../../images/bottle/tablet/Bottle-SignUp-tablet.svg");
     background-size: 706px 548px;
-    background-position: 80px center;
+    background-position: 90px center;
   }
 }
 
@@ -68,8 +68,8 @@
     /* padding-top: 138px; */
     /* padding-right: 198px; */
     /* padding-bottom: 196px; */
-    background-image: url("../../images/bottle/tablet/Bottle-tablet1x.webp");
-    background-size: 736px 680px;
+    background-image: url("../../images/bottle/desktop/Bottle-SignUp-desktop.svg");
+    background-size: 916px 680px;
     background-position: -51px center;
   }
   .box {
