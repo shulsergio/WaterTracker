@@ -1,5 +1,4 @@
 import DailyNorma from "../../components/DailyNorma/DailyNorma.jsx";
-import SettingModal from "../../components/SettingModal/SettingModal.jsx";
 import TodayWaterGlassList from "../../components/TodayWaterGlassList/TodayWaterGlassList.jsx";
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel.jsx";
 // import useModal from "../../hooks/useModal.js";
@@ -32,7 +31,6 @@ export default function HomePage() {
       <div className={css.todayWaterGlassList}>
         <TodayWaterGlassList />
       </div>
-      <SettingModal />
     </section>
   );
 }
