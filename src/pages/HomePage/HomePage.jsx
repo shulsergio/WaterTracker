@@ -12,9 +12,7 @@ import css from "./HomePage.module.css";
  */
 export default function HomePage() {
   // const { openModal, isOpen, closeModal } = useModal();
-
   console.log("Rendered HomePage");
-
   return (
     <section className={css.section}>
       {/* <div className={css.bottleWrap}> */}
@@ -23,10 +21,10 @@ export default function HomePage() {
         <div className={css.norma}>
           <DailyNorma />
         </div>
-        <div className={css.image} />
-        <div className={css.WaterRatioPanel}>
-          <WaterRatioPanel />
-        </div>
+      <div className={css.image} />
+      <div className={css.WaterRatioPanel}>
+        <WaterRatioPanel />
+      </div>
       </div>
       <div className={css.todayWaterGlassList}>
         <TodayWaterGlassList />
