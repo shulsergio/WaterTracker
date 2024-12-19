@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getDayWaterList = createAsyncThunk(
   "water/dayWaterList",
-  async (date = "2024-12-16T23:10", thunkAPI) => {
+  async (date = new Date().toISOString().split("T")[0], thunkAPI) => {
     try {
       console.log("-------- getDayWaterList -----");
       const response = await axios.get("/water/daily", {
