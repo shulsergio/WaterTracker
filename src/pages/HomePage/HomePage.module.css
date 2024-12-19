@@ -10,7 +10,7 @@
 }
 
 .image {
-  background-image: url("../../images/homePage/Bottle-home-1x-mob.webp");
+  background-image: var(--bottle-home-1x-mob);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -31,7 +31,7 @@
 
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .image {
-    background-image: url("../../images/homePage/Bottle-home-2x-mob.webp");
+    background-image: var(--bottle-home-2x-mob);
  }
 }
 
@@ -44,7 +44,7 @@
   }
 
   .image {
-    background-image: url("../../images/homePage/Bottle-home-1x-tab.webp");
+    background-image: var(--bottle-home-2x-tab);
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
@@ -54,7 +54,7 @@
   
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
     .image {
-      background-image: url("../../images/homePage/Bottle-home-2x-tab.webp");
+      background-image: var(--bottle-home-2x-tab);
   }
 }
 }
@@ -80,7 +80,7 @@
   }
 
   .image {
-    background-image: url("../../images/homePage/Bottle-home-1x-desktop.webp");
+    background-image: var(--bottle-home-2x-desktop);
     background-repeat: no-repeat;
     background-size: cover;
     width: 592px;
@@ -98,7 +98,7 @@
 
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
     .image {
-      background-image: url("../../images/homePage/Bottle-home-2x-desktop.webp");
+      background-image: var(--bottle-home-2x-desktop);
     }
   }
 }
