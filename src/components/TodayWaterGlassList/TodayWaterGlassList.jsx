@@ -3,14 +3,12 @@ import MonthStatsTable from "../MonthStatsTable/MonthStatsTable";
 import TodayWaterItem from "../TodayWaterItem/TodayWaterItem";
 import Button from "../button/Button";
 import Icon from "../Icon/Icon";
-import { useDispatch, useSelector } from "react-redux";
-import { selectdayWater } from "../../redux/dayWaterList/selectors";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getDayWaterList } from "../../redux/dayWaterList/operations";
 
 const TodayWaterGlassList = () => {
   const dispatch = useDispatch();
-  const data = useSelector(selectdayWater);
 
   useEffect(() => {
     dispatch(getDayWaterList());
