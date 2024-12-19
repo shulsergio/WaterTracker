@@ -3,23 +3,31 @@ import Icon from "../Icon/Icon.jsx";
 import s from "./MonthStatsTable.module.css";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats.jsx";
 import clsx from "clsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
+import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
+import { selectUser } from "../../redux/user/selectors.js";
 
-const arrayOfDays = (dayOfMonth, year, month, monthWater) => {
-  const days = [];
+const newDayString = (year, month, day) => {
+  return new Date(year, month, day + 1).toISOString().split("T")[0];
+};
+
+const arrayOfDays = (dayOfMonth, year, month, monthWater, dailyNorma) => {
+  const daysArray = [];
   for (let i = 1; i <= dayOfMonth; i++) {
-    const newDate = new Date(year, month, i + 1).toISOString().split("T")[0];
+    const newDate = newDayString(year, month, i);
     const find = monthWater.find(({ date }) => date.includes(newDate));
 
-    days.push({
+    daysArray.push({
       id: i,
       date: new Date(year, month, i),
+      dailyNorma: Math.floor(dailyNorma / 100) / 10,
       consumedPercentage: find ? Math.floor(find.consumedPercentage * 100) : 0,
       numberGlasses: find ? find.numberGlasses : 0,
     });
   }
-  return days;
+
+  return daysArray;
 };
 
 const buildLinkClass = (consumedPercentage) => {
@@ -27,7 +35,9 @@ const buildLinkClass = (consumedPercentage) => {
 };
 
 const MonthStatsTable = () => {
+  const dispatch = useDispatch();
   const monthWater = useSelector(selectMonthWater);
+  const user = useSelector(selectUser);
 
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -57,16 +67,20 @@ const MonthStatsTable = () => {
     setUserMonth(new Date(year, numberMonth));
   }, [year, numberMonth]);
 
-  days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater);
+  days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater, user.dailyNorm);
 
   const handleDecrement = () => {
-    setNumberMonth(numberMonth - 1);
+    const newNumberMonth = numberMonth - 1;
+    setNumberMonth(newNumberMonth);
     days = [];
+    dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   const handleIncrement = () => {
-    setNumberMonth(numberMonth + 1);
+    const newNumberMonth = numberMonth + 1;
+    setNumberMonth(newNumberMonth);
     days = [];
+    dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   return (
