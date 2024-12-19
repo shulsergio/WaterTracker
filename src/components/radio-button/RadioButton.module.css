@@ -5,7 +5,7 @@
   position: relative;
 }
 
-input[type='radio'] {
+input[type="radio"] {
   display: none;
 }
 
@@ -21,7 +21,7 @@ input[type='radio'] {
 }
 
 .customRadio::after {
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   background-color: var(--primary-color-blue);
@@ -34,6 +34,6 @@ input[type='radio'] {
   transition: opacity 0.3s;
 }
 
-input[type='radio']:checked + .customRadio::after {
+input[type="radio"]:checked + .customRadio::after {
   opacity: 1;
 }

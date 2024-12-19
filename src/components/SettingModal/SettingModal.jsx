@@ -87,10 +87,10 @@ const SettingModal = ({ onClose }) => {
     setSubmitting(false);
   };
 
-  const handleRemovePhoto = () => {
-    event.stopPropagation();
-    setPreview(null); // Скидаємо прев'ю зображення
-  };
+  // const handleRemovePhoto = () => {
+  //   event.stopPropagation();
+  //   setPreview(null); // Скидаємо прев'ю зображення
+  // };
 
   const getAvatar = () => {
     // if (avatarUrl && avatarUrl !== "null") {
@@ -135,7 +135,7 @@ const SettingModal = ({ onClose }) => {
     <Modal title="Setting" classNameModal={styles.modal} onClose={onClose}>
       <>
         <div className={styles.avatarContainer}>
-          <p className={styles.label}>Your photo</p>
+          <p className={styles.labelYourPhoto}>Your photo</p>
           <div className={styles.avatarAndTextWrapper}>
             <label htmlFor="fileInput" className={styles.avatarLabel}>
               <div className={styles.avatarWrapper}>
@@ -163,7 +163,7 @@ const SettingModal = ({ onClose }) => {
                 />
               </div>
             </label>
-            <div className={styles.actionsWrapper}>
+            {/* <div className={styles.actionsWrapper}>
               {preview && (
                 <>
                   <Icon
@@ -181,7 +181,7 @@ const SettingModal = ({ onClose }) => {
                   </button>
                 </>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
         <Formik
@@ -195,18 +195,20 @@ const SettingModal = ({ onClose }) => {
                 <div className={styles.leftWrapper}>
                   <div className={styles.fieldGroup}>
                     <label className={styles.label}>Your gender identity</label>
-                    <RadioButton
-                      value="Women"
-                      selectedValue={values.gender}
-                      onChange={() => setFieldValue("gender", "Women")}
-                      label="Women"
-                    />
-                    <RadioButton
-                      value="Men"
-                      selectedValue={values.gender}
-                      onChange={() => setFieldValue("gender", "Men")}
-                      label="Men"
-                    />
+                    <div className={styles.radioButtonWrapper}>
+                      <RadioButton
+                        value="Women"
+                        selectedValue={values.gender}
+                        onChange={() => setFieldValue("gender", "Women")}
+                        label="Women"
+                      />
+                      <RadioButton
+                        value="Men"
+                        selectedValue={values.gender}
+                        onChange={() => setFieldValue("gender", "Men")}
+                        label="Men"
+                      />
+                    </div>
                   </div>
                   <div className={styles.fieldGroup}>
                     <label htmlFor="name" className={styles.label}>
@@ -239,14 +241,12 @@ const SettingModal = ({ onClose }) => {
                 </div>
 
                 <div className={styles.rightWrapper}>
-                  <label
-                    className={styles.label}
-                    style={{ fontWeight: "bold" }}
-                  >
-                    Password
-                  </label>
+                  <label className={styles.label}>Password</label>
                   <div className={styles.fieldGroup}>
-                    <label htmlFor="outdatedPassword" className={styles.label}>
+                    <label
+                      htmlFor="outdatedPassword"
+                      className={styles.radioButtonWrapper}
+                    >
                       Outdated password
                     </label>
                     <Field
@@ -264,7 +264,10 @@ const SettingModal = ({ onClose }) => {
                   </div>
 
                   <div className={styles.fieldGroup}>
-                    <label htmlFor="newPassword" className={styles.label}>
+                    <label
+                      htmlFor="newPassword"
+                      className={styles.radioButtonWrapper}
+                    >
                       New password
                     </label>
                     <Field
@@ -282,7 +285,10 @@ const SettingModal = ({ onClose }) => {
                   </div>
 
                   <div className={styles.fieldGroup}>
-                    <label htmlFor="repeatNewPassword" className={styles.label}>
+                    <label
+                      htmlFor="repeatNewPassword"
+                      className={styles.radioButtonWrapper}
+                    >
                       Repeat new password
                     </label>
                     <Field
