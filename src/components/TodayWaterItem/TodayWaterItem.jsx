@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux";
 import AmountWaterModal from "../AmountWaterModal/AmountWaterModal";
 import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import Icon from "../Icon/Icon";
 import css from "./TodayWaterItem.module.css";
 import { useState } from "react";
+import { selectdayWater } from "../../redux/dayWaterList/selectors";
 
 const TodayWaterItem = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setisDeleteOpen] = useState(false);
+  const water = useSelector(selectdayWater);
 
   const handleEditClick = () => {
     setIsEditOpen(true);
