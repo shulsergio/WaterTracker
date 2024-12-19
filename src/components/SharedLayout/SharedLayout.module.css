@@ -1,7 +1,7 @@
 .background {
   min-height: 100vh;
   min-width: 320px;
-  background-image: url("../../images/homePage/Background-Home-screen-1x-mob.webp");
+  background-image: var(--background-mob-homescreen);
   background-position: center 108px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -15,9 +15,10 @@
 
 @media screen and (min-width: 768px) {
   .background {
-    background-image: url("../../images/homePage/Background-Home-screen-1x-tab.webp");
+    background-image: var(--background-tab-homescreen);
     min-width: 768px;
     background-position: center 88px;
+    background-size: contain;
   }
 
   .container {
@@ -29,15 +30,16 @@
 
 @media screen and (min-width: 1440px) {
   .background {
-    background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp");
-    min-width: 1440px;
+    background-image: var(--background-desktop-homescreen);
+    max-width: 1440px;
     min-height: 800px;
     background-position: center 64px;
+    
   }
 
   .container {
     min-width: 1440px;
     padding: 12px 112px;
-    margin: 0;
+    
   }
 }
