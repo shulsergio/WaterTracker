@@ -14,6 +14,7 @@ export const clearAuthHeader = () => {
 };
 
 //POST  user/signUp
+
 export const signUp = createAsyncThunk(
   "auth/signup",
   async (credentials, thunkAPI) => {
@@ -29,7 +30,7 @@ export const signUp = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       console.log("Return in signUP data-", data);
       console.log("Return in signUP data-", data.data.token);
@@ -41,10 +42,11 @@ export const signUp = createAsyncThunk(
       thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 //POST  user/login
+
 export const logIn = createAsyncThunk(
   "auth/signin",
   async (credentials, thunkAPI) => {
@@ -53,7 +55,7 @@ export const logIn = createAsyncThunk(
       const { data } = await axios.post("auth/signin", credentials);
       console.log(
         "data.data.accessToken in auth!!!!Slice",
-        data.data.accessToken
+        data.data.accessToken,
       );
 
       setAuthHeader(data.data.accessToken);
@@ -68,8 +70,10 @@ export const logIn = createAsyncThunk(
       thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
+
+//POST users/logout
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
@@ -79,3 +83,41 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+//GET refresh/user
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    //Reading the token from the state via getState()
+    const reduxState = thunkAPI.getState();
+    const persistedToken = reduxState.auth.token;
+
+    if (persistedToken === null) {
+      // If there is no token, exit without performing any request
+      return thunkAPI.rejectWithValue("Unable to fetch user");
+    }
+
+    try {
+      // If there is a token, add it to the HTTP header and perform the request
+      console.log("persistedToken: ", persistedToken);
+      setAuthHeader(persistedToken);
+      const response = await axios.get("/user");
+      console.log("Refresh response Data:", response.data.data);
+      await thunkAPI.dispatch(fetchUser());
+      await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
+      await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
+      thunkAPI.dispatch(setIsLoading(false));
+      return  response.data.data ;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const reduxState = thunkAPI.getState();
+
+      return reduxState.auth.token !== null;
+    },
+  },
+);
