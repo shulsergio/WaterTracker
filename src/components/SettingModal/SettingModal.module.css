@@ -77,24 +77,32 @@
 }
 
 /* .avatarContainer {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 } */
 
 .avatarLabel {
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .avatarAndTextWrapper {
   display: flex;
   flex-direction: row;
+  gap: 8px;
 }
 
 .avatarWrapper {
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,6 +115,33 @@
   object-fit: cover;
 }
 
+.actionsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+.removePhotoButton {
+  color: var(--secondary-color-3);
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  text-align: start;
+  width: auto;
+  height: auto;
+}
+
+/* .removePhotoButton:hover {
+  background: #e04c4c;
+} */
+
 .emptyAvatar {
   font-size: 64px;
   font-weight: bold;
@@ -114,17 +149,26 @@
 }
 
 .uploadText {
-  color: #007bff;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #407bff;
 }
 
 .fileInput {
   display: none;
 }
 
-.icon {
+.iconUpArrow {
   background: transparent;
   fill: none;
   stroke: var(--primary-color-blue);
+}
+.iconDelete {
+  background: transparent;
+  fill: none;
+  stroke: var(--secondary-color-3);
 }
 
 @media screen and (min-width: 1440px) {

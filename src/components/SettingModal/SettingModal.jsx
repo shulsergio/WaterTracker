@@ -12,7 +12,6 @@ import RadioButton from "../radio-button/RadioButton.jsx";
 import Button from "../button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
 import Icon from "../Icon/Icon.jsx";
-import clsx from "clsx";
 
 const SettingModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -79,37 +78,66 @@ const SettingModal = ({ onClose }) => {
         newPassword,
       }),
     };
-
+    const onSave = () => {
+      console.log("onSave");
+    };
     dispatch(updateUserProfile(dataToSend))
       .then(() => onSave()) // Якщо все пройшло успішно
       .catch((error) => console.error("Error updating profile:", error));
     setSubmitting(false);
   };
 
+  const handleRemovePhoto = () => {
+    event.stopPropagation();
+    setPreview(null); // Скидаємо прев'ю зображення
+  };
+
   const getAvatar = () => {
+    // if (avatarUrl && avatarUrl !== "null") {
+    //   return (
+    //     <img src={avatarUrl} alt={name || "User"} className={styles.avatar} />
+    //   );
+    // }
+
+    // const letter =
+    //   (name && name[0].toUpperCase()) ||
+    //   (email && email[0].toUpperCase()) ||
+    //   "?";
+
+    // return <span className={styles.emptyAvatar}>{letter}</span>;
+    if (preview) {
+      return <img src={preview} alt="Avatar" className={styles.avatar} />;
+    }
+
+    // Якщо немає прев'ю, відображаємо ініціал або емейл користувача
     if (avatarUrl && avatarUrl !== "null") {
       return (
         <img src={avatarUrl} alt={name || "User"} className={styles.avatar} />
       );
     }
 
-    const letter =
-      (name && name[0].toUpperCase()) ||
-      (email && email[0].toUpperCase()) ||
-      "?";
+    if (name && name.length > 0) {
+      return (
+        <span className={styles.emptyAvatar}>{name[0].toUpperCase()}</span>
+      );
+    }
 
-    return <span className={styles.emptyAvatar}>{letter}</span>;
+    if (email && email.length > 0) {
+      return (
+        <span className={styles.emptyAvatar}>{email[0].toUpperCase()}</span>
+      );
+    }
+
+    return <span className={styles.emptyAvatar}>?</span>;
   };
 
   return (
     <Modal title="Setting" classNameModal={styles.modal} onClose={onClose}>
       <>
         <div className={styles.avatarContainer}>
-          <label htmlFor="fileInput">
-            Your photo
-            <div
-              className={clsx(styles.avatarAndTextWrapper, styles.avatarLabel)}
-            >
+          <p className={styles.label}>Your photo</p>
+          <div className={styles.avatarAndTextWrapper}>
+            <label htmlFor="fileInput" className={styles.avatarLabel}>
               <div className={styles.avatarWrapper}>
                 {preview ? (
                   <img src={preview} alt="Preview" className={styles.avatar} />
@@ -117,23 +145,44 @@ const SettingModal = ({ onClose }) => {
                   getAvatar()
                 )}
               </div>
-              <Icon
-                id="icon-up-arrow"
-                width={16}
-                height={16}
-                className={styles.icon}
-              />
-              <p className={styles.uploadText}>Upload a photo</p>
+              <div className={styles.actionsWrapper}>
+                {/* Якщо є прев'ю, можна видалити фото */}
+                <Icon
+                  id="icon-up-arrow"
+                  width={16}
+                  height={16}
+                  className={styles.iconUpArrow}
+                />
+                <p className={styles.uploadText}>Upload a photo</p>
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/*"
+                  className={styles.fileInput}
+                  onChange={handleFileChange}
+                />
+              </div>
+            </label>
+            <div className={styles.actionsWrapper}>
+              {preview && (
+                <>
+                  <Icon
+                    id="icon-delete"
+                    width={16}
+                    height={16}
+                    className={styles.iconDelete}
+                  />
+                  <button
+                    type="button"
+                    className={styles.removePhotoButton}
+                    onClick={handleRemovePhoto}
+                  >
+                    Remove photo
+                  </button>
+                </>
+              )}
             </div>
-          </label>
-
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/*"
-            className={styles.fileInput}
-            onChange={handleFileChange}
-          />
+          </div>
         </div>
         <Formik
           initialValues={initialValues}
