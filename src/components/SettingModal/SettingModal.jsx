@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  updateUserAvatar,
   updateUserProfile,
-  uploadPhoto2,
+  // uploadPhoto2,
 } from "../../redux/user/operations.js";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -32,7 +33,7 @@ const SettingModal = ({ onClose }) => {
       reader.readAsDataURL(file);
 
       // Відправка файлу на сервер
-      dispatch(uploadPhoto2(file));
+      dispatch(updateUserAvatar(file));
     }
   };
 
@@ -62,6 +63,7 @@ const SettingModal = ({ onClose }) => {
       password: newPassword === "" ? null : newPassword,
     };
     console.log("=== dataToSend", dataToSend);
+
     dispatch(updateUserProfile(dataToSend))
       .then(() => onSave()) // Якщо все пройшло успішно
       .catch((error) => console.error("Error updating profile:", error));

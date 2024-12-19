@@ -21,3 +21,15 @@ export const getDayWaterList = createAsyncThunk(
     }
   }
 );
+
+// export const updateWaterGlass = createAsyncThunk(
+//   "water/updateGlass",
+//   async ({ id, updatedGlass }, thunkAPI) => {
+//     try {
+//       const response = await axios.patch(`/water/glass/${id}`, updatedGlass);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
