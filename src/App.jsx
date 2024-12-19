@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./redux/auth/operations.js";
 import { selectIsRefreshing } from "./redux/auth/selectors.js";
+import { PrivateRoute } from "./components/Routs/PrivateRoute.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,13 +43,19 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="main" element={<MainPage />} />
-          <Route path="welcome" element={<WelcomePage />} />
+          {/* <Route path="welcome" element={<WelcomePage />} /> */}
           <Route path="signin" element={<SigninPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route
+            path="welcome"
+            element={
+              <RestrictedRoute component={<WelcomePage />} redirectTo="/home" />
+            }
+          />
+          <Route
             path="home"
             element={
-              <RestrictedRoute component={<HomePage />} redirectTo="/welcome" />
+              <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
             }
           />
           <Route index element={<Navigate to="/welcome" replace />} />
