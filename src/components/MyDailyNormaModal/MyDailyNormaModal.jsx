@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { updateDailyNorm } from "../../redux/user/operations";
 // import toast from "react-hot-toast";
 
-const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
+const MyDailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const [gender, setGender] = useState("woman");
 
@@ -27,7 +27,6 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
       return;
     } else {
       dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
-      // setDailyNorm(normToSave);
       onClose();
     }
   };
@@ -36,8 +35,7 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
     <Modal
       title="My daily norma"
       classNameModal={styles.modal}
-      onClose={onClose}
-    >
+      onClose={onClose}>
       <div className={styles.formuls}>
         <div>
           <span>For girl:</span>
