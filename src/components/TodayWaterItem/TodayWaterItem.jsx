@@ -21,8 +21,8 @@ const TodayWaterItem = () => {
   const water = useSelector(selectdayWater);
   const dispatch = useDispatch();
 
-  const logsInfo = water.logs.map(({ date, id, volume }) => ({
-    id,
+  const logsInfo = water.logs.map(({ date, _id, volume }) => ({
+    id: _id,
     date: date.slice(11, 16),
     volume,
   }));
@@ -88,15 +88,13 @@ const TodayWaterItem = () => {
               <button
                 onClick={() => handleEditClick(log)}
                 className={css.editIcon}
-                aria-label="Edit water norma"
-              >
+                aria-label="Edit water norma">
                 <Icon id="icon-edit" width={16} height={16} />
               </button>
               <button
                 onClick={() => handleDeleteClick(log.id)}
                 className={css.deleteIcon}
-                aria-label="Delete water norma"
-              >
+                aria-label="Delete water norma">
                 <Icon id="icon-delete" width={16} height={16} />
               </button>
             </div>
