@@ -5,7 +5,8 @@ import { getDayWaterList } from "../dayWaterList/operations.js";
 import { setIsLoading } from "./authSlice.js";
 import { getMonthWaterList } from "../monthWaterList/operations.js";
 // import { Navigate, useNavigate } from "react-router-dom";
-axios.defaults.baseURL = "https://bo-o-woa.onrender.com/";
+axios.defaults.baseURL = /* "http://localhost:3000/"; */ "https://bo-o-woa.onrender.com/";
+axios.defaults.withCredentials = true;
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
