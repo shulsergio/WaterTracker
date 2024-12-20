@@ -1,5 +1,10 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { addWaterGlass, getDayWaterList } from "./operations.js";
+import {
+  getDayWaterList,
+  updateWaterGlass,
+  deleteWaterGlass,
+} from "./operations.js";
+import toast from "react-hot-toast";
 
 const initialState = {
   data: null,
@@ -29,9 +34,30 @@ const dayWaterSlice = createSlice({
         state.data.logs.push(payload);
         state.error = null;
       })
-
+    
+      .addCase(updateWaterGlass.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.data.findIndex((log) => log.id === action.payload);
+        if (index !== -1) {
+          state.data[index] = action.payload;
+        }
+      })
+    
+      .addCase(deleteWaterGlass.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.data = state.data.filter((log) => log.id !== action.payload.id);
+      })
+    
+        .addCase(deleteWaterGlass.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error(`Delete failed: ${action.payload}`);
+      })
+    
       .addMatcher(
-        isAnyOf(getDayWaterList.pending, addWaterGlass.pending),
+        isAnyOf(getDayWaterList.pending, addWaterGlass.pending, updateWaterGlass.pending, deleteWaterGlass.pending),
         (state) => {
           state.isLoading = true;
           state.error = null;
@@ -39,14 +65,15 @@ const dayWaterSlice = createSlice({
       )
 
       .addMatcher(
-        isAnyOf(getDayWaterList.rejected, addWaterGlass.rejected),
+        isAnyOf(getDayWaterList.rejected, addWaterGlass.rejected, updateWaterGlass.rejected),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         },
       );
+
   },
 });
 
-export const { setdayWaterData, cleardayWaterData } = dayWaterSlice.actions;
+export const { cleardayWaterData } = dayWaterSlice.actions;
 export default dayWaterSlice.reducer;
