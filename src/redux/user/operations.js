@@ -17,10 +17,11 @@ export const fetchUser = createAsyncThunk(
 
 export const updateDailyNorm = createAsyncThunk(
   "user/updateDailyNorm",
-  async ({ dailyNorm }, thunkAPI) => {
+  async (dailyNorm, thunkAPI) => {
     try {
-      console.log("updateDailyNorm dailyNorm-", dailyNorm);
-      const response = await axios.patch("/user/daily", { dailyNorm });
+      console.log("BEFORE updateDailyNorm dailyNorm-", dailyNorm);
+      const response = await axios.patch("/user/daily", dailyNorm);
+      console.log("AFTER updateDailyNorm dailyNorm-", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

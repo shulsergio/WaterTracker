@@ -4,6 +4,7 @@ import { fetchUser } from "../user/operations.js";
 import { getDayWaterList } from "../dayWaterList/operations.js";
 import { setIsLoading } from "./authSlice.js";
 import { getMonthWaterList } from "../monthWaterList/operations.js";
+// import { Navigate, useNavigate } from "react-router-dom";
 axios.defaults.baseURL = "https://bo-o-woa.onrender.com/";
 
 const setAuthHeader = (token) => {
@@ -32,7 +33,7 @@ export const signUp = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
       console.log("Return in signUP data-", data);
       console.log("Return in signUP data-", data.data.token);
@@ -44,7 +45,7 @@ export const signUp = createAsyncThunk(
       thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  },
+  }
 );
 
 //POST  user/login
@@ -57,7 +58,7 @@ export const logIn = createAsyncThunk(
       const { data } = await axios.post("auth/signin", credentials);
       console.log(
         "data.data.accessToken in auth!!!!Slice",
-        data.data.accessToken,
+        data.data.accessToken
       );
 
       setAuthHeader(data.data.accessToken);
@@ -72,7 +73,7 @@ export const logIn = createAsyncThunk(
       thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 //POST users/logout
@@ -99,7 +100,7 @@ export const refreshUser = createAsyncThunk(
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
-
+    // const navigate = useNavigate();
     try {
       // If there is a token, add it to the HTTP header and perform the request
       console.log("persistedToken: ", persistedToken);
@@ -107,10 +108,13 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get("/user");
       console.log("Refresh response Data:", response.data.data);
       await thunkAPI.dispatch(fetchUser());
+
+      await thunkAPI.dispatch(fetchUser());
       await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
       await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
       thunkAPI.dispatch(setIsLoading(false));
-      return  response.data.data ;
+      // navigate("/home");
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -121,5 +125,5 @@ export const refreshUser = createAsyncThunk(
 
       return reduxState.auth.token !== null;
     },
-  },
+  }
 );
