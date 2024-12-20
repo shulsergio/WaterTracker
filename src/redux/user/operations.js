@@ -17,10 +17,11 @@ export const fetchUser = createAsyncThunk(
 
 export const updateDailyNorm = createAsyncThunk(
   "user/updateDailyNorm",
-  async ({ dailyNorm }, thunkAPI) => {
+  async (dailyNorm, thunkAPI) => {
     try {
-      console.log("updateDailyNorm dailyNorm-", dailyNorm);
-      const response = await axios.patch("/user/daily", { dailyNorm });
+      console.log("BEFORE updateDailyNorm dailyNorm-", dailyNorm);
+      const response = await axios.patch("/user/daily", dailyNorm);
+      console.log("AFTER updateDailyNorm dailyNorm-", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -55,19 +56,44 @@ export const updateDailyNorm = createAsyncThunk(
 //   }
 // );
 
-export const uploadPhoto2 = createAsyncThunk(
-  "user/uploadPhoto2",
-  async (file, thunkAPI) => {
-    const formData = new FormData();
-    formData.append("photo", file);
+// export const uploadPhoto2 = createAsyncThunk(
+//   "user/uploadPhoto2",
+//   async (file, thunkAPI) => {
+//     const formData = new FormData();
+//     formData.append("photo", file);
 
+//     try {
+//       const response = await axios.patch("/user/avatar", formData, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
+
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+export const updateUserAvatar = createAsyncThunk(
+  "user/updateUserAvatar",
+  async (file, thunkAPI) => {
     try {
+      const formData = new FormData();
+      formData.append("avatarUrl", file);
+
+      console.log("///updateUserAvatar dataToSend-", formData);
+      console.log("///updateUserAvatar dataToSend-", { formData });
       const response = await axios.patch("/user/avatar", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
+      console.log(
+        "///after response.data updateUserAvatar dataToSend-",
+        response.data
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -76,12 +102,16 @@ export const uploadPhoto2 = createAsyncThunk(
 );
 
 export const updateUserProfile = createAsyncThunk(
-  "user/updateProfile",
-  async (updatedData, thunkAPI) => {
+  "user/update",
+  async (dataToSend, thunkAPI) => {
     try {
-      console.log(updatedData);
-
-      const response = await axios.patch("/user/update", updatedData);
+      console.log("///updatedataToSend dataToSend-", dataToSend);
+      console.log("///updatedataToSend dataToSend-", { dataToSend });
+      const response = await axios.patch("/user/update", dataToSend);
+      console.log(
+        "///after response.data updatedataToSend dataToSend-",
+        response.data
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

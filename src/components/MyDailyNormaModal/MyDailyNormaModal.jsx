@@ -27,7 +27,7 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
       return;
     } else {
       dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
-      setDailyNorm(normToSave);
+      // setDailyNorm(normToSave);
       onClose();
     }
   };

@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchUser,
   updateDailyNorm,
+  updateUserAvatar,
   updateUserProfile,
   // uploadPhoto,
-  uploadPhoto2,
+  // uploadPhoto2,
 } from "./operations.js";
 // import { logIn } from "../auth/operations";
 // import axios from "axios";
@@ -63,17 +64,17 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(uploadPhoto2.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(uploadPhoto2.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
-      })
-      .addCase(uploadPhoto2.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      })
+      // .addCase(uploadPhoto2.pending, (state) => {
+      //   state.status = "loading";
+      // })
+      // .addCase(uploadPhoto2.fulfilled, (state, action) => {
+      //   state.status = "succeeded";
+      //   state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
+      // })
+      // .addCase(uploadPhoto2.rejected, (state, action) => {
+      //   state.status = "failed";
+      //   state.error = action.payload;
+      // })
 
       .addCase(updateUserProfile.pending, (state) => {
         state.isLoading = true;
@@ -85,6 +86,17 @@ const userSlice = createSlice({
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateUserAvatar.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.payload;
       });
   },

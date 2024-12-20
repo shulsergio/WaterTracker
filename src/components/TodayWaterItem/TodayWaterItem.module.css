@@ -1,9 +1,16 @@
 .blockInfo {
-  padding-bottom: 12px;
-  display: flex;
   margin-right: 4px;
   align-items: center;
+}
+
+.logList {
   border-bottom: 1px solid #d7e3ff;
+}
+
+.logItem {
+  display: flex;
+  border-bottom: 1px solid #d7e3ff;
+  padding: 12px 0;
 }
 
 .iconContainer {

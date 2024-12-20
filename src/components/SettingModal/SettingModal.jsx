@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  updateUserAvatar,
   updateUserProfile,
-  uploadPhoto2,
+  // uploadPhoto2,
 } from "../../redux/user/operations.js";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -14,11 +15,16 @@ import Modal from "../Modal/Modal.jsx";
 import Icon from "../Icon/Icon.jsx";
 
 const SettingModal = ({ onClose }) => {
+  console.log("------SettingModal ------");
   const dispatch = useDispatch();
   const avatarUrl = useSelector(selectUser).avatarUrl;
   const email = useSelector(selectUser).email;
+  const gender = useSelector(selectUser).gender;
+
   const name = useSelector(selectUser).name;
   const [preview, setPreview] = useState(null);
+  console.log("==== avatarUrl", avatarUrl);
+  console.log("==== email", email);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -29,13 +35,13 @@ const SettingModal = ({ onClose }) => {
       reader.readAsDataURL(file);
 
       // Відправка файлу на сервер
-      dispatch(uploadPhoto2(file));
+      dispatch(updateUserAvatar(file));
     }
   };
 
   const initialValues = {
-    gender: "Women",
-    name: "",
+    gender: gender,
+    name: name,
     email: email || "",
     outdatedPassword: "",
     newPassword: "",
@@ -47,23 +53,6 @@ const SettingModal = ({ onClose }) => {
     email: Yup.string()
       .email("Invalid email address.")
       .required("Email is required."),
-    // outdatedPassword: Yup.string().when("newPassword", {
-    //   is: (newPassword) => newPassword && newPassword.length > 0,
-    //   then: Yup.string().required("Outdated password is required."),
-    //   otherwise: Yup.string().notRequired(),
-    // }),
-    // newPassword: Yup.string().when("outdatedPassword", {
-    //   is: (outdatedPassword) => outdatedPassword && outdatedPassword.length > 0,
-    //   then: Yup.string().required("New password is required."),
-    //   otherwise: Yup.string().notRequired(),
-    // }),
-    // repeatNewPassword: Yup.string().when("newPassword", {
-    //   is: (newPassword) => newPassword && newPassword.length > 0,
-    //   then: Yup.string()
-    //     .oneOf([Yup.ref("newPassword")], "Passwords must match.")
-    //     .required("Please confirm your new password."),
-    //   otherwise: Yup.string().notRequired(),
-    // }),
   });
 
   const handleSubmit = (values, { setSubmitting }) => {

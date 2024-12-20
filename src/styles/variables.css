@@ -16,6 +16,20 @@
   --button-shadow-hover: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
 
   --font-roboto: "Roboto", sans-serif;
+
+  /* --url-1: url(../images/homePage/Bottle-home-1x-mob.webp); */
+  --background-mob-homescreen: url(../images/homePage/light/Background-home-screen-1x-light-mob.webp);
+  --background-tab-homescreen: url(../images/homePage/light/Background-home-screen-1x-light-tab.webp);
+  --background-desktop-homescreen: url(../images/homePage/light/Background-home-screen-1x-light-desktop.webp);
+
+  --bottle-home-1x-mob: url(../images/homePage/light/Bottle-home-screen-1x-light-mob.webp);
+  --bottle-home-2x-mob: url(../images/homePage/light/Bottle-home-screen-2x-light-mob.webp);
+
+  --bottle-home-1x-tab: url(../images/homePage/light/Bottle-home-screen-1x-light-tab.webp);
+  --bottle-home-2x-tab: url(../images/homePage/light/Bottle-home-screen-2x-light-tab.webp);
+
+  --bottle-home-1x-desktop: url(../images/homePage/light/Bottle-home-screen-1x-light-desktop.webp);
+  --bottle-home-2x-desktop: url(../images/homePage/light/Bottle-home-screen-2x-light-desktop.webp);
 }
 
 [data-theme="dark"] {
@@ -27,4 +41,18 @@
   --secondary-color-4: #2f3875;
   --secondary-color-5: #ffa756;
   --secondary-color---5: #2a3052;
+
+  --background-mob-homescreen: url(../images/homePage/dark/Bottle-home-screen-1x-dark-mob.webp);
+  --background-tab-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-tab.webp);
+  --background-desktop-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-desktop.webp);
+
+  --bottle-home-1x-mob: url(../images/homePage/dark/Bottle-home-screen-1x-dark-mob.webp);
+  --bottle-home-2x-mob: url(../images/homePage/dark/Bottle-home-screen-2x-dark-mob.webp);
+
+  --bottle-home-1x-tab: url(../images/homePage/dark/Bottle-home-screen-1x-dark-tab.webp);
+  --bottle-home-2x-tab: url(../images/homePage/dark/Bottle-home-screen-2x-dark-tab.webp);
+
+  --bottle-home-1x-desktop: url(../images/homePage/dark/Bottle-home-screen-1x-dark-desktop.webp);
+  --bottle-home-2x-desktop: url(../images/homePage/dark/Bottle-home-screen-2x-dark-desktop.webp);
+
 }

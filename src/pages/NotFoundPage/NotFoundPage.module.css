@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.errCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errNum {
+  font-size: 100px;
+  margin: 0 10px;
+  color: var(--primary-color-blue);
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
+.text {
+  margin-top: 20px;
+  font-size: 40px;
+  color: var(--primary-color-blue);
+}
+
+@media screen and (max-width: 320px) {
+.errNum {
+    font-size: 50px;
+}
+.icon{
+  width: 50px;
+  height: 50px;
+}
+.text{
+    font-size: 20px;
+}
+}

@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from "./modalSlice.js";
-import AuthReducer from "./auth/authSlice.js";
+import authReducer from "./auth/authSlice.js";
 import userReducer from "./user/userSlice.js";
 import monthReducer from "./monthWaterList/monthWaterSlice";
 import dayReducer from "./dayWaterList/dayWaterSlice.js";
 import {
-  // persistStore,
-  // persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -14,14 +14,23 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const store = configureStore({
+const persistAuthConfig = {
+  key: "jwt-token",
+  storage,
+  whitelist: ["token"],
+};
+
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
+
+export const store = configureStore({
   reducer: {
     monthWater: monthReducer,
     dayWater: dayReducer,
     user: userReducer,
     modal: modalReducer,
-    auth: AuthReducer,
+    auth: persistedAuthReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -30,6 +39,5 @@ const store = configureStore({
       },
     }),
 });
-export default store;
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
