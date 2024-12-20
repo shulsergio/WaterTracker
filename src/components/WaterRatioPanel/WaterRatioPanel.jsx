@@ -47,8 +47,7 @@ const WaterRatioPanel = () => {
             />
             <div
               className={styles.progressSlider}
-              style={{ left: sliderPosition }}
-            ></div>
+              style={{ left: sliderPosition }}></div>
           </div>
         </div>
         <div className={styles.markersContainer}>
@@ -59,8 +58,7 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 0 && progressPercentage < 50
                   ? styles.markerTextActive
                   : ""
-              }`}
-            >
+              }`}>
               0%
             </div>
           </div>
@@ -71,8 +69,7 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 50 && progressPercentage < 100
                   ? styles.markerTextActive
                   : ""
-              }`}
-            >
+              }`}>
               50%
             </div>
           </div>
@@ -81,8 +78,7 @@ const WaterRatioPanel = () => {
             <div
               className={`${styles.markerText} ${
                 progressPercentage === 100 ? styles.markerTextActive : ""
-              }`}
-            >
+              }`}>
               100%
             </div>
           </div>

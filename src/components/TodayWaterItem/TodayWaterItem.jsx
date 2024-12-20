@@ -30,6 +30,8 @@ const TodayWaterItem = () => {
     volume,
   }));
 
+  console.log("logsInfo: ", logsInfo);
+
   return (
     <div className={css.blockInfo}>
       <ul className={css.loglist}>
@@ -44,20 +46,24 @@ const TodayWaterItem = () => {
               <button
                 onClick={handleEditClick}
                 className={css.editIcon}
-                aria-label="Edit water norma"
-              >
+                aria-label="Edit water norma">
                 <Icon id="icon-edit" width={16} height={16} />
               </button>
               <button
                 onClick={handleDeleteClick}
                 className={css.deleteIcon}
-                aria-label="Delete water norma"
-              >
+                aria-label="Delete water norma">
                 <Icon id="icon-delete" width={16} height={16} />
               </button>
             </div>
             {isEditOpen && (
-              <AmountWaterModal onClose={handleModalClose} isEdit={true} />
+              <AmountWaterModal
+                onClose={handleModalClose}
+                isEdit={true}
+                id={id}
+                time={date}
+                volume={volume}
+              />
             )}
             {isDeleteOpen && <DeleteEntryModal onClose={handleModalClose} />}
           </li>
