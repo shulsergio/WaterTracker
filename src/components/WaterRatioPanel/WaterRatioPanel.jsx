@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styles from "./WaterRatioPanel.module.css";
-import AmountWaterModal from "../AmountWaterModal/AmountWaterModal";
 import { selectUser } from "../../redux/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors";
 import { selectdayWater } from "../../redux/dayWaterList/selectors";
+import AddWaterModal from "../AddWaterModal/AddWaterModal.jsx";
 
 const WaterRatioPanel = () => {
   console.log("------ WaterRatioPanel ------");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const monthWater = useSelector(selectMonthWater);
   const dayWater = useSelector(selectdayWater);
   console.log("monthWater- ", monthWater);
@@ -47,8 +47,7 @@ const WaterRatioPanel = () => {
             />
             <div
               className={styles.progressSlider}
-              style={{ left: sliderPosition }}
-            ></div>
+              style={{ left: sliderPosition }}></div>
           </div>
         </div>
         <div className={styles.markersContainer}>
@@ -59,8 +58,7 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 0 && progressPercentage < 50
                   ? styles.markerTextActive
                   : ""
-              }`}
-            >
+              }`}>
               0%
             </div>
           </div>
@@ -71,8 +69,7 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 50 && progressPercentage < 100
                   ? styles.markerTextActive
                   : ""
-              }`}
-            >
+              }`}>
               50%
             </div>
           </div>
@@ -81,8 +78,7 @@ const WaterRatioPanel = () => {
             <div
               className={`${styles.markerText} ${
                 progressPercentage === 100 ? styles.markerTextActive : ""
-              }`}
-            >
+              }`}>
               100%
             </div>
           </div>
@@ -92,7 +88,7 @@ const WaterRatioPanel = () => {
         <span className={styles.icon}>+</span> Add Water
       </button>
       {isModalOpen && (
-        <AmountWaterModal
+        <AddWaterModal
           isEdit={false}
           onClose={() => setIsModalOpen(false)}
           // onSubmit={addWater}

@@ -19,7 +19,20 @@ export const getDayWaterList = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
+);
+
+export const addWaterGlass = createAsyncThunk(
+  "water/addWaterGlass",
+  async (newGlass, thunkAPI) => {
+    try {
+      const response = await axios.post(`/water/glass`, newGlass);
+
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
 );
 
 // export const updateWaterGlass = createAsyncThunk(

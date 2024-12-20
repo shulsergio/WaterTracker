@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { fetchUser } from "../../redux/user/operations.js";
 import { getDayWaterList } from "../../redux/dayWaterList/operations.js";
 import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
+import { selectdayWater } from "../../redux/dayWaterList/selectors.js";
 // import { selectUser } from "../../redux/user/selectors.js";
 // import UserLogoutModal from "../../components/UserLogoutModal/UserLogoutModal.jsx";
 /**
@@ -21,15 +22,16 @@ import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
 export default function HomePage() {
   const dispatch = useDispatch();
   const DailyNorm = useSelector(selectDailyNorm);
+  const dayAddGlass = useSelector(selectdayWater);
   useEffect(() => {
-    if (!DailyNorm) {
+    if (!DailyNorm || !dayAddGlass) {
       dispatch(fetchUser());
       const today = new Date().toISOString().split("T")[0];
       dispatch(getDayWaterList(today));
       dispatch(getMonthWaterList(today));
       console.log("%%%% data upload %%%% and data- ", today);
     }
-  }, [DailyNorm, dispatch]);
+  }, [DailyNorm, dayAddGlass, dispatch]);
 
   console.log("Rendered HomePage");
   return (

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getDayWaterList } from "./operations.js";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { addWaterGlass, getDayWaterList } from "./operations.js";
 
 const initialState = {
   data: null,
@@ -17,19 +17,34 @@ const dayWaterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getDayWaterList.pending, (state) => {
-        state.isLoading = true;
+
+      .addCase(getDayWaterList.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.data = payload;
         state.error = null;
       })
-      .addCase(getDayWaterList.fulfilled, (state, action) => {
+
+      .addCase(addWaterGlass.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.data.logs.push(payload);
         state.error = null;
       })
-      .addCase(getDayWaterList.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+
+      .addMatcher(
+        isAnyOf(getDayWaterList.pending, addWaterGlass.pending),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        },
+      )
+
+      .addMatcher(
+        isAnyOf(getDayWaterList.rejected, addWaterGlass.rejected),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        },
+      );
   },
 });
 
