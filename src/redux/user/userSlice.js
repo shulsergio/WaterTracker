@@ -14,7 +14,6 @@ const initialState = {
   data: null,
   isLoading: false,
   error: null,
-
   photoUrl: null,
   photoStatus: "idle", // Стан завантаження фото: idle | loading | succeeded | failed
   photoError: null,
@@ -58,7 +57,7 @@ const userSlice = createSlice({
       })
       .addCase(updateDailyNorm.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data.dailyNorm = action.payload.dailyNorm;
+        state.data.dailyNorm = action.payload.data.dailyNorm;
       })
       .addCase(updateDailyNorm.rejected, (state, action) => {
         state.isLoading = false;
