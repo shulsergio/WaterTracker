@@ -23,8 +23,8 @@ const SettingModal = ({ onClose }) => {
 
   const name = useSelector(selectUser).name;
   const [preview, setPreview] = useState(null);
-  console.log("==== avatarUrl", avatarUrl);
-  console.log("==== email", email);
+  // console.log("==== avatarUrl", avatarUrl);
+  // console.log("==== email", email);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
