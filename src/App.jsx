@@ -20,7 +20,7 @@ function App() {
   const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
   const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
   const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
-  const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+  const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
   useEffect(() => {
     dispatch(refreshUser());
