@@ -64,15 +64,26 @@ const AuthSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.user = action.payload;
         state.isRefreshing = false;
-        state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        state.isRefreshing = false;
-        state.isLoading = false;
         state.error = action.payload;
+        state.isRefreshing = false;
       });
+    // .addCase(refreshUser.pending, (state) => {
+    //   state.isRefreshing = true;
+    // })
+    // .addCase(refreshUser.fulfilled, (state, action) => {
+    //   state.data = action.payload;
+    //   state.isRefreshing = false;
+    //   state.isLoggedIn = true;
+    // })
+    // .addCase(refreshUser.rejected, (state, action) => {
+    //   state.isRefreshing = false;
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // });
   },
 });
 const AuthReducer = AuthSlice.reducer;

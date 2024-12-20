@@ -89,41 +89,64 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 
 //GET refresh/user
 
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkAPI) => {
+//     //Reading the token from the state via getState()
+//     const reduxState = thunkAPI.getState();
+//     const persistedToken = reduxState.auth.token;
+
+//     if (persistedToken === null) {
+//       // If there is no token, exit without performing any request
+//       return thunkAPI.rejectWithValue("Unable to fetch user");
+//     }
+//     // const navigate = useNavigate();
+//     try {
+//       // If there is a token, add it to the HTTP header and perform the request
+//       console.log("persistedToken: ", persistedToken);
+//       setAuthHeader(persistedToken);
+//       const response = await axios.get("/user");
+//       console.log("Refresh response Data:", response.data.data);
+//       await thunkAPI.dispatch(fetchUser());
+
+//       await thunkAPI.dispatch(fetchUser());
+//       await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
+//       await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
+//       thunkAPI.dispatch(setIsLoading(false));
+//       // navigate("/home");
+//       return response.data.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   },
+//   {
+//     condition: (_, thunkAPI) => {
+//       const reduxState = thunkAPI.getState();
+
+//       return reduxState.auth.token !== null;
+//     },
+//   }
+// );
+
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    //Reading the token from the state via getState()
-    const reduxState = thunkAPI.getState();
-    const persistedToken = reduxState.auth.token;
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
-      // If there is no token, exit without performing any request
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("No token available");
     }
-    // const navigate = useNavigate();
-    try {
-      // If there is a token, add it to the HTTP header and perform the request
-      console.log("persistedToken: ", persistedToken);
-      setAuthHeader(persistedToken);
-      const response = await axios.get("/user");
-      console.log("Refresh response Data:", response.data.data);
-      await thunkAPI.dispatch(fetchUser());
 
-      await thunkAPI.dispatch(fetchUser());
-      await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
-      await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
-      thunkAPI.dispatch(setIsLoading(false));
-      // navigate("/home");
-      return response.data.data;
+    try {
+      const res = await axios.post("/auth/refresh", { token: persistedToken });
+
+      console.log("REFRESH DATA", res);
+      console.log("REFRESH DATA", res.data);
+
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
-  {
-    condition: (_, thunkAPI) => {
-      const reduxState = thunkAPI.getState();
-
-      return reduxState.auth.token !== null;
-    },
   }
 );

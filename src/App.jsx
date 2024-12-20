@@ -13,8 +13,6 @@ import { PrivateRoute } from "./components/Routs/PrivateRoute.jsx";
 function App() {
   const dispatch = useDispatch();
 
-  const isRefreshing = useSelector(selectIsRefreshing);
-
   const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
   const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
   const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
@@ -22,6 +20,7 @@ function App() {
   const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
   const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
