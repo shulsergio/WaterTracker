@@ -21,11 +21,12 @@ const AddWaterModal = ({ onClose }) => {
   const handleClick = () => {
     const [hours, minutes] = time.split(":").map(Number);
     date.setHours(hours, minutes, 0, 0);
+    date.toUTCString;
     const data = {
       volume: amount,
       date: date,
     };
-    // console.log("addWather Modal data: ", data);
+    console.log("addWather Modal data: ", data);
     dispatch(addWaterGlass(data));
     onClose();
   };
