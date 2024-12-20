@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDayWaterList, updateWaterGlass } from "./operations.js";
+import {
+  getDayWaterList,
+  updateWaterGlass,
+  deleteWaterGlass,
+} from "./operations.js";
+import toast from "react-hot-toast";
 
 const initialState = {
   data: null,
@@ -37,19 +42,30 @@ const dayWaterSlice = createSlice({
       .addCase(updateWaterGlass.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.dayWater.findIndex(
-          (dayIndex) => dayIndex.id === action.payload.id
-        );
+        const index = state.data.findIndex((log) => log.id === action.payload);
         if (index !== -1) {
-          state.contacts[index] = action.payload;
+          state.data[index] = action.payload;
         }
       })
       .addCase(updateWaterGlass.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(deleteWaterGlass.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteWaterGlass.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.data = state.data.filter((log) => log.id !== action.payload.id);
+      })
+      .addCase(deleteWaterGlass.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        toast.error(`Delete failed: ${action.payload}`);
       });
   },
 });
 
-export const { setdayWaterData, cleardayWaterData } = dayWaterSlice.actions;
+export const { cleardayWaterData } = dayWaterSlice.actions;
 export default dayWaterSlice.reducer;

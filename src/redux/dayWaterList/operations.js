@@ -25,12 +25,37 @@ export const getDayWaterList = createAsyncThunk(
 export const updateWaterGlass = createAsyncThunk(
   "water/updateGlass",
   async ({ id, updatedGlass }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue();
+    }
     try {
       const response = await axios.patch(`/water/glass/${id}`, updatedGlass);
       console.log("response in updateWaterGlass", response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteWaterGlass = createAsyncThunk(
+  "water/deleteGlass",
+  async (glassId, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token available");
+    }
+    try {
+      const response = await axios.delete(`water/glass/${glassId}`);
+      console.log("response in deleteWaterGlass", response);
+      return glassId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Error during delete operation:", error);
     }
   }
 );

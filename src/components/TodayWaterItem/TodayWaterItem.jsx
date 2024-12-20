@@ -5,12 +5,18 @@ import Icon from "../Icon/Icon";
 import css from "./TodayWaterItem.module.css";
 import { useState } from "react";
 import { selectdayWater } from "../../redux/dayWaterList/selectors";
-import { updateWaterGlass } from "../../redux/dayWaterList/operations";
+import {
+  deleteWaterGlass,
+  getDayWaterList,
+  updateWaterGlass,
+} from "../../redux/dayWaterList/operations";
+import toast from "react-hot-toast";
 
 const TodayWaterItem = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [editData, setEditData] = useState(null);
+  const [deleteData, setDeleteData] = useState(null);
 
   const water = useSelector(selectdayWater);
   const dispatch = useDispatch();
@@ -26,7 +32,9 @@ const TodayWaterItem = () => {
     setIsEditOpen(true);
   }; // log - id,volume, date
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (id) => {
+    console.log("Selected ID for deletion:", id);
+    setDeleteData(id);
     setIsDeleteOpen(true);
   };
 
@@ -42,10 +50,28 @@ const TodayWaterItem = () => {
       });
   };
 
+  const handleDelete = () => {
+    console.log("deleteData before dispatch:", deleteData);
+    dispatch(deleteWaterGlass(deleteData))
+      .unwrap()
+      .then(() => {
+        toast.success("Glass is deleted");
+        setIsDeleteOpen(false);
+        dispatch(getDayWaterList());
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+      })
+      .finally(() => {
+        handleModalClose();
+      });
+  };
+
   const handleModalClose = () => {
     setIsEditOpen(false);
     setIsDeleteOpen(false);
     setEditData(null);
+    setDeleteData(null);
   };
 
   return (
@@ -67,7 +93,7 @@ const TodayWaterItem = () => {
                 <Icon id="icon-edit" width={16} height={16} />
               </button>
               <button
-                onClick={handleDeleteClick}
+                onClick={() => handleDeleteClick(log.id)}
                 className={css.deleteIcon}
                 aria-label="Delete water norma"
               >
@@ -85,7 +111,13 @@ const TodayWaterItem = () => {
           onSave={handleSave}
         />
       )}
-      {isDeleteOpen && <DeleteEntryModal onClose={handleModalClose} />}
+      {isDeleteOpen && (
+        <DeleteEntryModal
+          onClose={handleModalClose}
+          isEdit={true}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   );
 };
