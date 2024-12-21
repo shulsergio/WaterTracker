@@ -16,15 +16,9 @@ import Icon from "../Icon/Icon.jsx";
 import toast from "react-hot-toast";
 
 const SettingModal = ({ onClose }) => {
-
   console.log("------SettingModal ------");
-
   const dispatch = useDispatch();
-
   const XavatarUrl = useSelector(selectUser).avatarUrl;
-  const Xemail = useSelector(selectUser).email;
-  const Xgender = useSelector(selectUser).gender;
-  const Xname = useSelector(selectUser).name;
 
   const [preview, setPreview] = useState(null);
 
@@ -40,17 +34,18 @@ const SettingModal = ({ onClose }) => {
       toast.error("Please upload a valid image file.");
     }
   };
+  const Xemail = useSelector(selectUser).email;
+  const Xgender = useSelector(selectUser).gender;
+  const Xname = useSelector(selectUser).name;
   const initialValues = {
     gender: Xgender,
     name: Xname,
     email: Xemail || "",
-    outDatedPassword: "",
+    outDatePassword: "",
     newPassword: "",
     repeatNewPassword: "",
   };
-
   console.log("Settings initialValues", initialValues);
-
   const validationSchema = Yup.object({
     gender: Yup.string().required("Please select your gender."),
     email: Yup.string()
@@ -67,17 +62,14 @@ const SettingModal = ({ onClose }) => {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
-    const { gender, name, email, outDatedPassword, newPassword } = values;
-
-    const ii = newPassword && { outDatedPassword, newPassword }; 
-
+    const { gender, name, email, outDatePassword, newPassword } = values;
+    const ii = newPassword && { outDatePassword, newPassword };
     console.log("ZZZZZZZZ - ", ii);
-
     const dataToSend = {
       gender,
       name,
       email,
-      ...(newPassword && { outDatedPassword, newPassword }),
+      ...(newPassword && { outDatePassword, newPassword }),
     };
     const onSave = () => {
       console.log("onSave");
@@ -101,18 +93,6 @@ const SettingModal = ({ onClose }) => {
   // };
 
   const getAvatar = () => {
-    // if (avatarUrl && avatarUrl !== "null") {
-    //   return (
-    //     <img src={avatarUrl} alt={name || "User"} className={styles.avatar} />
-    //   );
-    // }
-
-    // const letter =
-    //   (name && name[0].toUpperCase()) ||
-    //   (email && email[0].toUpperCase()) ||
-    //   "?";
-
-    // return <span className={styles.emptyAvatar}>{letter}</span>;
     if (preview) {
       return <img src={preview} alt="Avatar" className={styles.avatar} />;
     }
@@ -138,7 +118,6 @@ const SettingModal = ({ onClose }) => {
 
     return <span className={styles.emptyAvatar}>?</span>;
   };
-
   return (
     <Modal title="Setting" classNameModal={styles.modal} onClose={onClose}>
       <>
@@ -171,56 +150,7 @@ const SettingModal = ({ onClose }) => {
                 />
               </div>
             </label>
-            {/* <div className={styles.actionsWrapper}>
-              {preview && (
-                <>
-                  <Icon
-                    id="icon-delete"
-                    width={16}
-                    height={16}
-                    className={styles.iconDelete}
-                  />
-                  <button
-                    type="button"
-                    className={styles.removePhotoButton}
-                    onClick={handleRemovePhoto}
-                  >
-                    Remove photo
-                  </button>
-                </>
-              )}
-            </div> */}
           </div>
-        <div className={styles.avatarContainer}>
-          <label htmlFor="fileInput">
-            Your photo
-            <div
-              className={clsx(styles.avatarAndTextWrapper, styles.avatarLabel)}
-            >
-              <div className={styles.avatarWrapper}>
-                {preview ? (
-                  <img src={preview} alt="Preview" className={styles.avatar} />
-                ) : (
-                  getAvatar()
-                )}
-              </div>
-              <Icon
-                id="icon-up-arrow"
-                width={16}
-                height={16}
-                className={styles.icon}
-              />
-              <p className={styles.uploadText}>Upload a photo</p>
-            </div>
-          </label>
-
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/*"
-            className={styles.fileInput}
-            onChange={handleFileChange}
-          />
         </div>
         <Formik
           initialValues={initialValues}
@@ -277,71 +207,25 @@ const SettingModal = ({ onClose }) => {
                     />
                   </div>
                 </div>
-              <div className={styles.dataWrapper}>
-                <div className={styles.leftWrapper}>
-                  <div className={styles.fieldGroup}>
-                    <label className={styles.label}>Your gender identity</label>
-                    <RadioButton
-                      value="Women"
-                      selectedValue={values.gender}
-                      onChange={() => setFieldValue("gender", "Women")}
-                      label="Women"
-                    />
-                    <RadioButton
-                      value="Men"
-                      selectedValue={values.gender}
-                      onChange={() => setFieldValue("gender", "Men")}
-                      label="Men"
-                    />
-                  </div>
-                  <div className={styles.fieldGroup}>
-                    <label htmlFor="name" className={styles.label}>
-                      Your name
-                    </label>
-                    <Field
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Enter your name (optional)"
-                      className={styles.input}
-                    />
-                  </div>
-                  <div className={styles.fieldGroup}>
-                    <label htmlFor="email" className={styles.label}>
-                      E-mail
-                    </label>
-                    <Field
-                      id="email"
-                      name="email"
-                      type="email"
-                      className={styles.input}
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className={styles.error}
-                    />
-                  </div>
-                </div>
 
                 <div className={styles.rightWrapper}>
                   <label className={styles.label}>Password</label>
                   <div className={styles.fieldGroup}>
                     <label
-                      htmlFor="outDatedPassword"
+                      htmlFor="outDatePassword"
                       className={styles.radioButtonWrapper}
                     >
                       Outdated password
                     </label>
                     <Field
-                      id="outDatedPassword"
-                      name="outDatedPassword"
+                      id="outDatePassword"
+                      name="outDatePassword"
                       type="password"
                       placeholder="Enter your current password"
                       className={styles.input}
                     />
                     <ErrorMessage
-                      name="outDatedPassword"
+                      name="outDatePassword"
                       component="div"
                       className={styles.error}
                     />
@@ -394,13 +278,11 @@ const SettingModal = ({ onClose }) => {
               <Button type="primary" className={styles.saveButton}>
                 Save
               </Button>
-             </Form>
+            </Form>
           )}
         </Formik>
-      <div/>
       </>
     </Modal>
   );
-
-
+};
 export default SettingModal;
