@@ -157,6 +157,7 @@
   font-size: 18px;
   line-height: 1.33333;
   text-align: center;
+  transition: color 0.3s ease;
   @media screen and (min-width: 320px) {
     width: 280px;
     height: 36px;
@@ -172,6 +173,16 @@
 
 .addButton:hover {
   box-shadow: var(--button-shadow-hover);
+  color: var(--secondary-color-5);
+}
+
+.plusCircle {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+}
+
+.plusCircle:hover {
   color: var(--secondary-color-5);
 }
 

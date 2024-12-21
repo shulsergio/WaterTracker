@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors";
 import { selectdayWater } from "../../redux/dayWaterList/selectors";
 import AddWaterModal from "../AddWaterModal/AddWaterModal.jsx";
+import Icon from "../Icon/Icon.jsx";
 
 const WaterRatioPanel = () => {
   console.log("------ WaterRatioPanel ------");
@@ -88,7 +89,7 @@ const WaterRatioPanel = () => {
         </div>
       </div>
       <button onClick={() => setIsModalOpen(true)} className={styles.addButton}>
-        <span className={styles.icon}>+</span> Add Water
+        <Icon id="icon-plus-circle" className={styles.plusCircle} /> Add Water
       </button>
       {isModalOpen && (
         <AddWaterModal
@@ -102,3 +103,4 @@ const WaterRatioPanel = () => {
 };
 
 export default WaterRatioPanel;
+
