@@ -92,9 +92,9 @@ export const updateUserAvatar = createAsyncThunk(
       });
       console.log(
         "///after response.data updateUserAvatar dataToSend-",
-        response.data
+        response.data.data
       );
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -107,12 +107,11 @@ export const updateUserProfile = createAsyncThunk(
     try {
       console.log("///updatedataToSend dataToSend-", dataToSend);
       console.log("///updatedataToSend dataToSend-", { dataToSend });
-      const response = await axios.patch("/user/update", dataToSend);
-      console.log(
-        "///after response.data updatedataToSend dataToSend-",
-        response.data
-      );
-      return response.data;
+      const { data } = await axios.patch("/user/update", dataToSend);
+      console.log("///after data updatedataToSend dataToSend-", data);
+      console.log("///after data.data updatedataToSend dataToSend-", data.data);
+
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -69,8 +69,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-
-        state.data.user = action.payload;
+        state.data = action.payload;
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
@@ -81,7 +80,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.data.avatarUrl = action.payload.data.avatarUrl;
+        state.user.data.photoUrl = action.payload;
         state.data = action.payload;
         // Сервер має повертати оновлений URL аватара
       })
