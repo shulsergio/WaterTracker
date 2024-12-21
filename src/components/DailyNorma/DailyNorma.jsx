@@ -31,8 +31,8 @@ const DailyNorma = () => {
       <div className={styles.value}>
         <span className={styles.norma}>{dailyNorm} L</span>
         <Button
+          types={"text"}
           className={styles.editButton}
-          types="text"
           onClick={handleEditClick}
         >
           Edit
