@@ -63,25 +63,14 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      // .addCase(uploadPhoto2.pending, (state) => {
-      //   state.status = "loading";
-      // })
-      // .addCase(uploadPhoto2.fulfilled, (state, action) => {
-      //   state.status = "succeeded";
-      //   state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
-      // })
-      // .addCase(uploadPhoto2.rejected, (state, action) => {
-      //   state.status = "failed";
-      //   state.error = action.payload;
-      // })
-
       .addCase(updateUserProfile.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+
+        state.data.user = action.payload;
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
@@ -92,7 +81,9 @@ const userSlice = createSlice({
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
+        state.data.avatarUrl = action.payload.data.avatarUrl;
+        state.data = action.payload;
+        // Сервер має повертати оновлений URL аватара
       })
       .addCase(updateUserAvatar.rejected, (state, action) => {
         state.status = "failed";

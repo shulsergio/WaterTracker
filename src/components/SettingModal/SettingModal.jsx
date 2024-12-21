@@ -13,46 +13,52 @@ import RadioButton from "../radio-button/RadioButton.jsx";
 import Button from "../button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
 import Icon from "../Icon/Icon.jsx";
+import toast from "react-hot-toast";
 
 const SettingModal = ({ onClose }) => {
   console.log("------SettingModal ------");
   const dispatch = useDispatch();
-  const avatarUrl = useSelector(selectUser).avatarUrl;
-  const email = useSelector(selectUser).email;
-  const gender = useSelector(selectUser).gender;
+  const XavatarUrl = useSelector(selectUser).avatarUrl;
 
-  const name = useSelector(selectUser).name;
   const [preview, setPreview] = useState(null);
-  // console.log("==== avatarUrl", avatarUrl);
-  // console.log("==== email", email);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      // Створення прев'ю для відображення
+    if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result);
       reader.readAsDataURL(file);
-
-      // Відправка файлу на сервер
       dispatch(updateUserAvatar(file));
+      toast.success("Image upload");
+    } else {
+      toast.error("Please upload a valid image file.");
     }
   };
-
+  const Xemail = useSelector(selectUser).email;
+  const Xgender = useSelector(selectUser).gender;
+  const Xname = useSelector(selectUser).name;
   const initialValues = {
-    gender: gender,
-    name: name,
-    email: email || "",
+    gender: Xgender,
+    name: Xname,
+    email: Xemail || "",
     outdatedPassword: "",
     newPassword: "",
     repeatNewPassword: "",
   };
-
+  console.log("Settings initialValues", initialValues);
   const validationSchema = Yup.object({
     gender: Yup.string().required("Please select your gender."),
     email: Yup.string()
       .email("Invalid email address.")
       .required("Email is required."),
+    newPassword: Yup.string().min(
+      6,
+      "Password must be at least 6 characters long."
+    ),
+    repeatNewPassword: Yup.string().oneOf(
+      [Yup.ref("newPassword")],
+      "Passwords must match."
+    ),
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -60,19 +66,24 @@ const SettingModal = ({ onClose }) => {
 
     const dataToSend = {
       gender,
-      name: name || undefined, // Не відправляємо порожнє ім'я
+      name,
       email,
-      ...(newPassword && {
-        outdatedPassword,
-        newPassword,
-      }),
+      // newPassword: newPassword === "" ? null : newPassword,
+      // outdatedPassword: outdatedPassword === "" ? null : outdatedPassword,
     };
     const onSave = () => {
       console.log("onSave");
     };
     dispatch(updateUserProfile(dataToSend))
-      .then(() => onSave()) // Якщо все пройшло успішно
-      .catch((error) => console.error("Error updating profile:", error));
+      .then(() => {
+        onSave();
+        onClose();
+        return toast.success("Profile updated");
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+        return;
+      });
     setSubmitting(false);
   };
 
@@ -99,9 +110,9 @@ const SettingModal = ({ onClose }) => {
     }
 
     // Якщо немає прев'ю, відображаємо ініціал або емейл користувача
-    if (avatarUrl && avatarUrl !== "null") {
+    if (XavatarUrl && XavatarUrl !== "null") {
       return (
-        <img src={avatarUrl} alt={name || "User"} className={styles.avatar} />
+        <img src={XavatarUrl} alt={name || "User"} className={styles.avatar} />
       );
     }
 
@@ -111,9 +122,9 @@ const SettingModal = ({ onClose }) => {
       );
     }
 
-    if (email && email.length > 0) {
+    if (Xemail && Xemail.length > 0) {
       return (
-        <span className={styles.emptyAvatar}>{email[0].toUpperCase()}</span>
+        <span className={styles.emptyAvatar}>{Xemail[0].toUpperCase()}</span>
       );
     }
 
@@ -186,16 +197,16 @@ const SettingModal = ({ onClose }) => {
                     <label className={styles.label}>Your gender identity</label>
                     <div className={styles.radioButtonWrapper}>
                       <RadioButton
-                        value="Women"
+                        value="Woman"
                         selectedValue={values.gender}
-                        onChange={() => setFieldValue("gender", "Women")}
-                        label="Women"
+                        onChange={() => setFieldValue("gender", "Woman")}
+                        label="Woman"
                       />
                       <RadioButton
-                        value="Men"
+                        value="Man"
                         selectedValue={values.gender}
-                        onChange={() => setFieldValue("gender", "Men")}
-                        label="Men"
+                        onChange={() => setFieldValue("gender", "Man")}
+                        label="Man"
                       />
                     </div>
                   </div>
