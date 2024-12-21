@@ -22,6 +22,14 @@
   --background-tab-homescreen: url(../images/homePage/light/Background-home-screen-1x-light-tab.webp);
   --background-desktop-homescreen: url(../images/homePage/light/Background-home-screen-1x-light-desktop.webp);
 
+  --background-mob-welcomepage-1x: url(../images/homePage/Background-welcome-1x-light-mob.webp);
+  --background-tab-welcomepage-1x: url(../images/homePage/Background-welcome-1x-light-tab.webp);
+  --background-desktop-welcomepage-1x: url(../images/homePage/Background-welcome-1x-light-desktop.webp);
+
+  --background-mob-welcomepage-2x: url(../images/homePage/Background-welcome-2x-light-mob.webp);
+  --background-tab-welcomepage-2x: url(../images/homePage/Background-welcome-2x-light-tab.webp);
+  --background-desktop-welcomepage-2x: url(../images/homePage/Background-welcome-2x-light-desktop.webp);
+
   --bottle-home-1x-mob: url(../images/homePage/light/Bottle-home-screen-1x-light-mob.webp);
   --bottle-home-2x-mob: url(../images/homePage/light/Bottle-home-screen-2x-light-mob.webp);
 
@@ -42,10 +50,18 @@
   --secondary-color-5: #ffa756;
   --secondary-color---5: #2a3052;
 
-  --background-mob-homescreen: url(../images/homePage/dark/Bottle-home-screen-1x-dark-mob.webp);
+  --background-mob-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-mob.webp);
   --background-tab-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-tab.webp);
   --background-desktop-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-desktop.webp);
 
+  --background-mob-welcomepage-1x: url(../images/homePage/dark/Background-welcome-1x-dark-mob.webp);
+  --background-tab-welcomepage-1x: url(../images/homePage/dark/Background-welcome-1x-dark-tab.webp);
+  --background-desktop-welcomepage-1x: url(../images/homePage/dark/Background-welcome-1x-dark-desktop.webp);
+
+  --background-mob-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-mob.webp);
+  --background-tab-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-tab.webp);
+  --background-desktop-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-desktop.webp);
+  
   --bottle-home-1x-mob: url(../images/homePage/dark/Bottle-home-screen-1x-dark-mob.webp);
   --bottle-home-2x-mob: url(../images/homePage/dark/Bottle-home-screen-2x-dark-mob.webp);
 

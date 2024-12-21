@@ -1,6 +1,9 @@
 .section {
-  /* background-image: url("../../images/background/mobile/Background-mobile-1x.webp"); */
-  /* padding: 34px 20px; */
+  position: relative;
+  bottom: -8px;
+  left: -20px;
+  background-image: var(--background-mob-welcomepage-1x);
+  padding: 8px 20px;
   padding-top: 24px;
   flex-wrap: nowrap;
   /* margin: -8px -20px -8px -20px; */
@@ -8,7 +11,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  width: 320px;
   height: 100%;
+  margin: 0 auto;
 }
 .wrapper {
   display: flex;
@@ -17,40 +22,45 @@
 }
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .section {
-    background-image: url("../../images/background/mobile/Background-mobile-2x.webp");
+    background-image: var(--background-mob-welcomepage-2x);
   }
 }
 
 @media screen and (min-width: 768px) {
   .section {
-    background-image: url("../../images/background/tablet/Background-tab-1x.webp");
+    background-image: var(--background-tab-welcomepage-1x);
     flex-direction: column;
     gap: 60px;
+    bottom: -16px;
+    left: -32px;
     /* padding: 50px 32px; */
     padding-top: 40px;
+    width: 768px;
     /* margin: -16px -32px; */
-    height: 746px;
+    height: 800px;
   }
 
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
     .section {
-      background-image: url("../../images/background/tablet/Background-tab-2x.webp");
+      background-image: var(--background-tab-welcomepage-1x);
     }
   }
 }
 
 @media screen and (min-width: 1440px) {
   .section {
-    background-image: url("../../images/background/desktop/Background-desktop-1x.webp");
+    background-image: var(--background-desktop-welcomepage-1x);
     background-position: bottom;
     gap: 81px;
-    /* padding-left: 216px; */
+    padding-left: 216px;
     /* margin: -12px 0 0 -112px; */
     background-size: auto;
-    /* width: 1440px; */
-    height: 740px;
+    bottom: -12px;
+    left: -112px;
+    width: 1440px;
+    /* height: 740px; */
     padding-top: 80px;
-    padding-left: 104px;
+    /* padding-left: 104px; */
   }
 
   /* .layer {
@@ -71,7 +81,7 @@
 
   @media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
     .section {
-      background-image: url("../../images/background/desktop/Background-desktop-2x.webp");
+      background-image: var(--background-desktop-welcomepage-2x);
     }
   }
 }
