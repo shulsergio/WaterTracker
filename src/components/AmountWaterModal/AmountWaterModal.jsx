@@ -3,11 +3,11 @@ import Icon from "../Icon/Icon";
 import Modal from "../Modal/Modal";
 import Button from "../button/Button";
 import styles from "./AmountWaterModal.module.css";
-import toast from "react-hot-toast";
 
 const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
   const [amount, setAmount] = useState(data?.volume || 0);
   const [time, setTime] = useState(data?.date || "");
+  const [editAmount, setEditAmount] = useState(amount);
 
   const date = new Date();
   const [timeData, setTimeData] = useState(date.toISOString());
@@ -56,7 +56,7 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
       {isEdit && (
         <div className={styles.blockInfo}>
           <Icon id="glass-water" width={36} height={36} />
-          <span className={styles.blockInfoAmount}>250 ml</span>
+          <span className={styles.blockInfoAmount}>{editAmount}</span>
           <span className={styles.blockInfoTime}>{time}</span>
         </div>
       )}
