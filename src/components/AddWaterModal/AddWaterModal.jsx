@@ -21,7 +21,7 @@ const AddWaterModal = ({ onClose }) => {
   const handleClick = () => {
     const [hours, minutes] = time.split(":").map(Number);
     date.setHours(hours, minutes, 0, 0);
-    date.toUTCString;
+    date.toUTCString();
     const data = {
       volume: amount,
       date: date,
