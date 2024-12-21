@@ -3,23 +3,32 @@ import Icon from "../Icon/Icon.jsx";
 import s from "./MonthStatsTable.module.css";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats.jsx";
 import clsx from "clsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
+import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
+import { selectDailyNorm, selectUser } from "../../redux/user/selectors.js";
+import { selectdayWater } from "../../redux/dayWaterList/selectors.js";
 
-const arrayOfDays = (dayOfMonth, year, month, monthWater) => {
-  const days = [];
+const newDayString = (year, month, day) => {
+  return new Date(year, month, day + 1).toISOString().split("T")[0];
+};
+
+const arrayOfDays = (dayOfMonth, year, month, monthWater, dailyNorma) => {
+  const daysArray = [];
   for (let i = 1; i <= dayOfMonth; i++) {
-    const newDate = new Date(year, month, i + 1).toISOString().split("T")[0];
+    const newDate = newDayString(year, month, i);
     const find = monthWater.find(({ date }) => date.includes(newDate));
 
-    days.push({
+    daysArray.push({
       id: i,
       date: new Date(year, month, i),
+      dailyNorma: Math.floor(dailyNorma / 100) / 10,
       consumedPercentage: find ? Math.floor(find.consumedPercentage * 100) : 0,
       numberGlasses: find ? find.numberGlasses : 0,
     });
   }
-  return days;
+
+  return daysArray;
 };
 
 const buildLinkClass = (consumedPercentage) => {
@@ -27,7 +36,11 @@ const buildLinkClass = (consumedPercentage) => {
 };
 
 const MonthStatsTable = () => {
+  const dispatch = useDispatch();
   const monthWater = useSelector(selectMonthWater);
+  const user = useSelector(selectUser);
+  const dailyNorma = useSelector(selectDailyNorm);
+  const dayWater = useSelector(selectdayWater);
 
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -41,6 +54,7 @@ const MonthStatsTable = () => {
 
   const [userMonth, setUserMonth] = useState(newPresentDay);
   const [numberMonth, setNumberMonth] = useState(month);
+
   let days = [];
 
   const dayOfMonth = new Date(year, numberMonth + 1, 0).getDate();
@@ -55,17 +69,22 @@ const MonthStatsTable = () => {
 
   useEffect(() => {
     setUserMonth(new Date(year, numberMonth));
-  }, [year, numberMonth]);
+  }, [numberMonth, year]);
 
-  days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater);
+  useEffect(() => {
+    dispatch(getMonthWaterList(newDayString(year, numberMonth, 1)));
+  }, [dispatch, numberMonth, year, dailyNorma, dayWater]);
+
+  days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater, user.dailyNorm);
 
   const handleDecrement = () => {
-    setNumberMonth(numberMonth - 1);
+    setNumberMonth((prevNumberMonth) => prevNumberMonth - 1);
+
     days = [];
   };
 
   const handleIncrement = () => {
-    setNumberMonth(numberMonth + 1);
+    setNumberMonth((prevNumberMonth) => prevNumberMonth + 1);
     days = [];
   };
 
@@ -77,7 +96,8 @@ const MonthStatsTable = () => {
           <button
             type="button"
             className={s.calendarButton}
-            onClick={handleDecrement}>
+            onClick={handleDecrement}
+          >
             <Icon
               id="icon-left-arrow"
               className={s.icon}
@@ -85,16 +105,18 @@ const MonthStatsTable = () => {
               height="14"
             />
           </button>
-          <p className={s.calendarDate}>{`${userMonth.toLocaleString("en-US", {
-            month: "long",
-          })}, ${userMonth.toLocaleString("en-US", {
+          <p className={s.calendarDate}>{`${userMonth.toLocaleString(
+            "default",
+            { month: "long" }
+          )}, ${userMonth.toLocaleString("default", {
             year: "numeric",
           })}`}</p>
           <button
             type="button"
             className={s.calendarButton}
             onClick={handleIncrement}
-            disabled={isDisabled}>
+            disabled={isDisabled}
+          >
             <Icon
               id="icon-right-arrow"
               className={s.icon}
@@ -105,28 +127,30 @@ const MonthStatsTable = () => {
         </div>
       </div>
       <ul className={s.dayList}>
-        {days.map(({ id, date, consumedPercentage, numberGlasses }) => (
-          <li key={id} className={s.dayItem}>
-            <button
-              type="button"
-              className={buildLinkClass(consumedPercentage)}
-              disabled={date >= presentDay}>
-              {date.getDate()}
-              <div className={s.dayAction}>
-                <DaysGeneralStats
-                  day={date.getDate()}
-                  month={date.toLocaleString("en-US", {
-                    month: "long",
-                  })}
-                  dailyNorma={1.5}
-                  consumerPercentage={consumedPercentage}
-                  numberGlasses={numberGlasses}
-                />
-              </div>
-            </button>
-            <p className={s.percentage}>{consumedPercentage}%</p>
-          </li>
-        ))}
+        {days.map(
+          ({ id, date, consumedPercentage, numberGlasses, dailyNorma }) => (
+            <li key={id} className={s.dayItem}>
+              <button
+                type="button"
+                className={buildLinkClass(consumedPercentage)}
+                disabled={date >= presentDay}>
+                {date.getDate()}
+                <div className={s.dayAction}>
+                  <DaysGeneralStats
+                    day={date.getDate()}
+                    month={date.toLocaleString("default", {
+                      month: "long",
+                    })}
+                    dailyNorma={dailyNorma}
+                    consumerPercentage={consumedPercentage}
+                    numberGlasses={numberGlasses}
+                  />
+                </div>
+              </button>
+              <p className={s.percentage}>{consumedPercentage}%</p>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );

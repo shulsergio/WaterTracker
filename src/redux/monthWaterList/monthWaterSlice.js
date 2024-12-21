@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { getMonthWaterList } from "./operations";
 
 const initialState = {
@@ -17,18 +17,27 @@ const monthWaterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getMonthWaterList.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+
       .addCase(getMonthWaterList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
       })
-      .addCase(getMonthWaterList.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+
+
+      .addMatcher(isAnyOf(getMonthWaterList.pending), (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
+      .addMatcher(
+        isAnyOf(
+          getMonthWaterList.rejected,
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        },
+      );
   },
 });
 

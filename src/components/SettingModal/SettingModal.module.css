@@ -1,0 +1,185 @@
+.modal {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    max-width: 592px;
+  }
+}
+
+.dataWrapper {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11111;
+  color: var(--primery-color-black);
+}
+
+.radioButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  gap: 24px;
+}
+.input {
+  background-color: var(--primary-color-white);
+  padding: 12px 10px;
+  border: 1px solid var(--secondary-color---5);
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--primary-color-blue);
+}
+
+.input:active {
+  border: 1px solid #d7e3ff;
+}
+
+.input:focus {
+  border: 1px solid #d7e3ff;
+}
+
+.inputError {
+  border-color: #ef5050;
+  color: #ef5050;
+}
+
+::placeholder {
+  font-family: var(--font-family);
+  font-size: 16px;
+}
+
+.rightWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.saveButton {
+  margin: 0;
+  width: 100%;
+  max-width: 767px;
+}
+
+.avatarContainer {
+  margin-bottom: 24px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.labelYourPhoto {
+  margin: 0 0 8px;
+}
+
+.avatarAndTextWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.avatarLabel {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.avatarWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  /* margin-bottom: 10px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9ebbff; /* Колір фону, якщо немає аватара */
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.actionsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+
+.uploadText {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #407bff;
+}
+
+.fileInput {
+  display: none;
+}
+
+.iconUpArrow {
+  background: transparent;
+  fill: none;
+  stroke: var(--primary-color-blue);
+}
+.iconDelete {
+  background: transparent;
+  fill: none;
+  stroke: var(--secondary-color-3);
+}
+
+.removePhotoButton {
+  color: var(--secondary-color-3);
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  text-align: start;
+  width: auto;
+  height: auto;
+}
+
+/* .removePhotoButton:hover {
+  background: #e04c4c;
+} */
+
+/* .emptyAvatar {
+  font-size: 64px;
+  font-weight: bold;
+  color: #ffffff;
+} */
+
+/* @media screen and (min-width: 1440px) {
+  .form {
+    width: 384px;
+  }
+} */

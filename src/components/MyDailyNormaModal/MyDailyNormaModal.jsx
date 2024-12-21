@@ -5,9 +5,10 @@ import RadioButton from "../radio-button/RadioButton";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateDailyNorm } from "../../redux/user/operations";
+import { getDayWaterList } from "../../redux/dayWaterList/operations.js";
 // import toast from "react-hot-toast";
 
-const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
+const MyDailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const [gender, setGender] = useState("woman");
 
@@ -17,6 +18,7 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
   const amountWaterPerDay =
     gender === "woman" ? m * 0.03 + t * 0.4 : m * 0.04 + t * 0.6;
   const [customNorm, setCustomNorm] = useState("");
+
   const handleSave = () => {
     const normToSave = customNorm
       ? Number(customNorm) / 1000
@@ -27,7 +29,7 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
       return;
     } else {
       dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
-      setDailyNorm(normToSave);
+      dispatch(getDayWaterList());
       onClose();
     }
   };
@@ -36,8 +38,7 @@ const MyDailyNormaModal = ({ onClose, setDailyNorm }) => {
     <Modal
       title="My daily norma"
       classNameModal={styles.modal}
-      onClose={onClose}
-    >
+      onClose={onClose}>
       <div className={styles.formuls}>
         <div>
           <span>For girl:</span>

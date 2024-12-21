@@ -1,33 +1,71 @@
-.background {
-  width: 320px;
-  height: 100%;
-  background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
+.container {
+  min-height: 100vh;
+  /* background-image: url("../../images/background/mobile/Background-mobile-3x.webp"); */
+  background-position: center 52px;
   background-size: cover;
-}
-/* .backgroundImage {
-  padding-top: 66px;
-  height: 210px;
-  background-image: url("../../images/bottle/mobile/Bottle-mobile1x.jpg");
-  background-position: bottom;
   background-repeat: no-repeat;
-  background-size: cover;
+}
+
+.background {
+  height: 608px;
+  background-image: var(--bottle-home-1x-mob);
   background-size: 280px 210px;
-  background-color: transparent;
-} */
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding-top: 24px;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .background {
+    background-image: var(--bottle-home-2x-mob);
+
+ }
+}
 
 @media screen and (min-width: 768px) {
   .container {
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   .background {
+    background-image: var(--bottle-home-1x-tab);
+    background-size: 706px 548px;
+    background-position: 90px center;
+    padding-top: 52px;
+   
   }
-  .backgroundImage {
+  
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .background {
+      background-image: var(--bottle-home-2x-tab);
   }
 }
+
 @media screen and (min-width: 1440px) {
+  
   .container {
+    height: 800px;
+    background-repeat: no-repeat;
+    background-position:  top left;
   }
   .background {
+    height: 680px;
+    width: 916px;
+    background-image: var(--bottle-home-1x-desktop);
+    background-size: 916px 680px;
+    background-position: -100px center;
+    padding-top: 20px;
   }
-  .backgroundImage {
+  .box {
+    padding-top: 120px;
+    padding-left: 728px;
   }
+  
 }
+@media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
+    .image {
+      background-image: var(--bottle-home-2x-desktop);
+    }
+  }
