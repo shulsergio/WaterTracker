@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
 import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
 import { selectDailyNorm, selectUser } from "../../redux/user/selectors.js";
+import { selectdayWater } from "../../redux/dayWaterList/selectors.js";
 
 const newDayString = (year, month, day) => {
   return new Date(year, month, day + 1).toISOString().split("T")[0];
@@ -39,6 +40,7 @@ const MonthStatsTable = () => {
   const monthWater = useSelector(selectMonthWater);
   const user = useSelector(selectUser);
   const dailyNorma = useSelector(selectDailyNorm);
+  const dayWater = useSelector(selectdayWater);
 
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -46,16 +48,13 @@ const MonthStatsTable = () => {
 
   let [month, year] = [presentDay.getMonth(), presentDay.getFullYear()];
 
-  // const newPresentDay = useMemo(() => {
-  //   return new Date(year, month);
-  // }, [year, month]);
-
-  const newPresentDay = presentDay.toUTCString("Z");
-
-  console.log("MonthStatsTable newPresentDay: ", newPresentDay);
+  const newPresentDay = useMemo(() => {
+    return new Date(year, month);
+  }, [year, month]);
 
   const [userMonth, setUserMonth] = useState(newPresentDay);
   const [numberMonth, setNumberMonth] = useState(month);
+
   let days = [];
 
   const dayOfMonth = new Date(year, numberMonth + 1, 0).getDate();
@@ -70,25 +69,23 @@ const MonthStatsTable = () => {
 
   useEffect(() => {
     setUserMonth(new Date(year, numberMonth));
-  }, [year, numberMonth]);
+  }, [numberMonth, year]);
 
   useEffect(() => {
     dispatch(getMonthWaterList(newDayString(year, numberMonth, 1)));
-  }, [dispatch, numberMonth, year, dailyNorma]);
+  }, [dispatch, numberMonth, year, dailyNorma, dayWater]);
 
   days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater, user.dailyNorm);
 
   const handleDecrement = () => {
-    const newNumberMonth = numberMonth - 1;
-    setNumberMonth(newNumberMonth);
+    setNumberMonth((prevNumberMonth) => prevNumberMonth - 1);
+
     days = [];
   };
 
   const handleIncrement = () => {
-    const newNumberMonth = numberMonth + 1;
-    setNumberMonth(newNumberMonth);
+    setNumberMonth((prevNumberMonth) => prevNumberMonth + 1);
     days = [];
-    // dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   return (
@@ -107,9 +104,10 @@ const MonthStatsTable = () => {
               height="14"
             />
           </button>
-          <p className={s.calendarDate}>{`${userMonth.toLocaleString("en-US", {
-            month: "long",
-          })}, ${userMonth.toLocaleString("en-US", {
+          <p className={s.calendarDate}>{`${userMonth.toLocaleString(
+            "default",
+            { month: "long" },
+          )}, ${userMonth.toLocaleString("default", {
             year: "numeric",
           })}`}</p>
           <button
