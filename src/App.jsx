@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./redux/auth/operations.js";
 import { selectIsRefreshing } from "./redux/auth/selectors.js";
 import { PrivateRoute } from "./components/Routs/PrivateRoute.jsx";
+import Loader from "./components/Loader/Loader.jsx";
 // import { fetchUser } from "./redux/user/operations.js";
 // import Header from "./components/Header/Header.jsx";
 
@@ -29,7 +30,7 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Updating user info...</b>
+    <Loader/>
   ) : (
     <>
       <Toaster

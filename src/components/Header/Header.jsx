@@ -5,17 +5,16 @@ import UserLogo from "../UserLogo/UserLogo";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import Logo from "../Logo/Logo";
 import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  // Получение текущей темы из localStorage
   const [isDarkTheme, setIsDarkTheme] = useState(() => {
     const savedTheme = localStorage.getItem("isDarkTheme");
     return savedTheme ? JSON.parse(savedTheme) : false;
   });
 
-  // Применение темы при изменении
   useEffect(() => {
     document.documentElement.setAttribute(
       "data-theme",
@@ -29,15 +28,22 @@ const Header = () => {
   };
 
   return (
-    // <div className={css.headerContainer}>
     <header className={css.header}>
-      <Logo />
-      <button className={css.themeToggle} onClick={toggleTheme}>
-        {isDarkTheme ? "Light Mode" : "Dark Mode"}
-      </button>
-      {isLoggedIn ? <UserLogo /> : <UserAuth />}
+      <span className={css.boxItem}>
+        <Logo />
+
+        {isLoggedIn ? <UserLogo /> : <UserAuth />}
+      </span>
+      <span>
+        <button className={css.themeToggle} onClick={toggleTheme}>
+          {isDarkTheme ? (
+            <FaSun size={36} color="gold" />
+          ) : (
+            <FaMoon size={36} color="silver" />
+          )}
+        </button>
+      </span>
     </header>
-    // </div>
   );
 };
 export default Header;

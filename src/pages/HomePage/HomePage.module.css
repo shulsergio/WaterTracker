@@ -32,11 +32,11 @@
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .image {
     background-image: var(--bottle-home-2x-mob);
- }
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .norma {
+  .norma {
     padding-top: 24px;
     padding-bottom: 8px;
     width: 100%;
@@ -51,12 +51,12 @@
     width: 518px;
     height: 386px;
   }
-  
+
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
     .image {
       background-image: var(--bottle-home-2x-tab);
+    }
   }
-}
 }
 
 @media screen and (min-width: 1440px) {
@@ -65,7 +65,8 @@
     display: flex;
     flex-direction: row;
     gap: 32px;
-    margin-top: 4px;
+    /* margin-top: 4px; */
+    padding-top: 20px;
   }
 
   .wrap {
@@ -75,8 +76,8 @@
 
   .norma {
     width: 164px;
-    height: 76px;
-    padding: 0;
+    height: 26px;
+    padding-top: 30px;
   }
 
   .image {
