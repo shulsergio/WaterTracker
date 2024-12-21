@@ -19,7 +19,7 @@ export const getDayWaterList = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const addWaterGlass = createAsyncThunk(
@@ -32,7 +32,7 @@ export const addWaterGlass = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const updateWaterGlass = createAsyncThunk(
@@ -42,14 +42,14 @@ export const updateWaterGlass = createAsyncThunk(
     const token = state.auth.token;
 
     if (!token) {
-      return thunkAPI.rejectWithValue();
+      return thunkAPI.rejectWithValue("No token available");
     }
     try {
       const response = await axios.patch(`/water/glass/${id}`, updatedGlass);
       console.log("response in updateWaterGlass", response);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
