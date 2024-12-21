@@ -5,20 +5,23 @@
   background-position: center 108px;
   background-size: cover;
   background-repeat: no-repeat;
+  /* width: 100%; */
   
 }
 .container {
   padding: 8px 20px;
   margin: 0 auto;
   max-width: 320px;
+  /* position: absolute; */
  }
 
 @media screen and (min-width: 768px) {
   .background {
     background-image: var(--background-tab-homescreen);
     min-width: 768px;
+    background-size: cover;
     background-position: center 88px;
-    background-size: contain;
+    /* background-size: contain; */
   }
 
   .container {
@@ -31,10 +34,10 @@
 @media screen and (min-width: 1440px) {
   .background {
     background-image: var(--background-desktop-homescreen);
-    max-width: 1440px;
+    min-width: 1440px;
     min-height: 800px;
     background-position: center 64px;
-    
+    background-size: cover;
   }
 
   .container {
