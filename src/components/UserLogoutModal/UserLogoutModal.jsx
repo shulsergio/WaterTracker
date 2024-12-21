@@ -18,10 +18,10 @@ const UserLogoutModal = ({ onClose }) => {
       onClose={onClose}
       actionBtns={
         <>
-          <Button type="secondary" onClick={onClose}>
+          <Button types="secondary" onClick={onClose}>
             Cancel
           </Button>
-          <Button type="warning" onClick={clickLogOut}>
+          <Button types="warning" onClick={clickLogOut}>
             Log out
           </Button>
         </>

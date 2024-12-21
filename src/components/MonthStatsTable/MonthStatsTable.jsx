@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
 import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
-import { selectUser } from "../../redux/user/selectors.js";
+import { selectDailyNorm, selectUser } from "../../redux/user/selectors.js";
 
 const newDayString = (year, month, day) => {
   return new Date(year, month, day + 1).toISOString().split("T")[0];
@@ -38,6 +38,7 @@ const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthWater = useSelector(selectMonthWater);
   const user = useSelector(selectUser);
+  const dailyNorma = useSelector(selectDailyNorm);
 
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -45,9 +46,13 @@ const MonthStatsTable = () => {
 
   let [month, year] = [presentDay.getMonth(), presentDay.getFullYear()];
 
-  const newPresentDay = useMemo(() => {
-    return new Date(year, month);
-  }, [year, month]);
+  // const newPresentDay = useMemo(() => {
+  //   return new Date(year, month);
+  // }, [year, month]);
+
+  const newPresentDay = presentDay.toUTCString("Z");
+
+  console.log("MonthStatsTable newPresentDay: ", newPresentDay);
 
   const [userMonth, setUserMonth] = useState(newPresentDay);
   const [numberMonth, setNumberMonth] = useState(month);
@@ -67,20 +72,23 @@ const MonthStatsTable = () => {
     setUserMonth(new Date(year, numberMonth));
   }, [year, numberMonth]);
 
+  useEffect(() => {
+    dispatch(getMonthWaterList(newDayString(year, numberMonth, 1)));
+  }, [dispatch, numberMonth, year, dailyNorma]);
+
   days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater, user.dailyNorm);
 
   const handleDecrement = () => {
     const newNumberMonth = numberMonth - 1;
     setNumberMonth(newNumberMonth);
     days = [];
-    dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   const handleIncrement = () => {
     const newNumberMonth = numberMonth + 1;
     setNumberMonth(newNumberMonth);
     days = [];
-    dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
+    // dispatch(getMonthWaterList(newDayString(year, newNumberMonth, 1)));
   };
 
   return (
@@ -91,8 +99,7 @@ const MonthStatsTable = () => {
           <button
             type="button"
             className={s.calendarButton}
-            onClick={handleDecrement}
-          >
+            onClick={handleDecrement}>
             <Icon
               id="icon-left-arrow"
               className={s.icon}
@@ -109,8 +116,7 @@ const MonthStatsTable = () => {
             type="button"
             className={s.calendarButton}
             onClick={handleIncrement}
-            disabled={isDisabled}
-          >
+            disabled={isDisabled}>
             <Icon
               id="icon-right-arrow"
               className={s.icon}
@@ -121,31 +127,28 @@ const MonthStatsTable = () => {
         </div>
       </div>
       <ul className={s.dayList}>
-        {days.map(
-          ({ id, date, consumedPercentage, numberGlasses, dailyNorma }) => (
-            <li key={id} className={s.dayItem}>
-              <button
-                type="button"
-                className={buildLinkClass(consumedPercentage)}
-                disabled={date >= presentDay}
-              >
-                {date.getDate()}
-                <div className={s.dayAction}>
-                  <DaysGeneralStats
-                    day={date.getDate()}
-                    month={date.toLocaleString("en-US", {
-                      month: "long",
-                    })}
-                    dailyNorma={dailyNorma}
-                    consumerPercentage={consumedPercentage}
-                    numberGlasses={numberGlasses}
-                  />
-                </div>
-              </button>
-              <p className={s.percentage}>{consumedPercentage}%</p>
-            </li>
-          )
-        )}
+        {days.map(({ id, date, consumedPercentage, numberGlasses }) => (
+          <li key={id} className={s.dayItem}>
+            <button
+              type="button"
+              className={buildLinkClass(consumedPercentage)}
+              disabled={date >= presentDay}>
+              {date.getDate()}
+              <div className={s.dayAction}>
+                <DaysGeneralStats
+                  day={date.getDate()}
+                  month={date.toLocaleString("en-US", {
+                    month: "long",
+                  })}
+                  dailyNorma={1.5}
+                  consumerPercentage={consumedPercentage}
+                  numberGlasses={numberGlasses}
+                />
+              </div>
+            </button>
+            <p className={s.percentage}>{consumedPercentage}%</p>
+          </li>
+        ))}
       </ul>
     </div>
   );

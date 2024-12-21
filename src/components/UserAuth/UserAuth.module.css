@@ -1,21 +1,32 @@
-
-button, .authBtn{
-border: none;
-box-shadow: none;
-color:  var(--primary-color-blue);
+.authBtn {
+  border: none;
+  box-shadow: none;
+  color: var(--primary-color-blue);
+  width: 84px;
+  height: 28px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+  border-radius: unset;
+  background-color: var(--primary-color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 1.25;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.authBtn:hover{
-    box-shadow: none;
-    color:var(--secondary-color-5);
-  .icon{
+.authBtn:hover {
+  box-shadow: none;
+  color: var(--secondary-color-5);
+  .icon {
     stroke: var(--secondary-color-5);
-}
-}
-
-.icon{
-background: transparent;
-fill: none;
-stroke: var( --primary-color-black);
+  }
 }
 
+.icon {
+  background: transparent;
+  fill: none;
+  stroke: var(--primary-color-black);
+}

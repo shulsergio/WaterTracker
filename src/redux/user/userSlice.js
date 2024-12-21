@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchUser,
   updateDailyNorm,
+  updateUserAvatar,
   updateUserProfile,
   // uploadPhoto,
-  uploadPhoto2,
+  // uploadPhoto2,
 } from "./operations.js";
 // import { logIn } from "../auth/operations";
 // import axios from "axios";
@@ -13,7 +14,6 @@ const initialState = {
   data: null,
   isLoading: false,
   error: null,
-
   photoUrl: null,
   photoStatus: "idle", // Стан завантаження фото: idle | loading | succeeded | failed
   photoError: null,
@@ -57,24 +57,12 @@ const userSlice = createSlice({
       })
       .addCase(updateDailyNorm.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data.dailyNorm = action.payload.dailyNorm;
+        state.data.dailyNorm = action.payload.data.dailyNorm;
       })
       .addCase(updateDailyNorm.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(uploadPhoto2.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(uploadPhoto2.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.avatarUrl = action.payload.avatarUrl; // Сервер має повертати оновлений URL аватара
-      })
-      .addCase(uploadPhoto2.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      })
-
       .addCase(updateUserProfile.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -85,6 +73,19 @@ const userSlice = createSlice({
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateUserAvatar.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.data = action.payload;
+        // state.data = action.payload;
+        // Сервер має повертати оновлений URL аватара
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.payload;
       });
   },
