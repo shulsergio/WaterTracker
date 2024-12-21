@@ -15,7 +15,7 @@ const AddWaterModal = ({ onClose }) => {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    }),
+    })
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -28,7 +28,7 @@ const AddWaterModal = ({ onClose }) => {
     date.toISOString();
     const data = {
       volume: amount,
-      date: date,
+      date: date.toISOString(),
     };
     dispatch(addWaterGlass(data));
     onClose();

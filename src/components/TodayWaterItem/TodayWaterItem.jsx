@@ -18,24 +18,17 @@ const TodayWaterItem = () => {
   const [editData, setEditData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
 
-  const date = new Date();
-
-  const [time, setTime] = useState(
-    date.toLocaleTimeString("default", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hourCycle: "h23",
-    })
-  );
-
   const water = useSelector(selectdayWater);
   const dispatch = useDispatch();
 
-  const logsInfo = water.logs.map(({ date, _id, volume }) => ({
-    id: _id,
-    date: date.slice(11, 16),
-    volume,
-  }));
+  const logsInfo = water.logs.map(({ date, _id, volume }) => {
+    const localTime = new Date(date).toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    return { id: _id, date: localTime, volume };
+  });
 
   const handleEditClick = (log) => {
     setEditData(log);
@@ -92,7 +85,7 @@ const TodayWaterItem = () => {
             <div className={css.iconContainer}>
               <Icon id="glass-water" width={36} height={36} />
               <span className={css.blockInfoAmount}>{log.volume} ml</span>
-              <span className={css.blockInfoTime}>{time}</span>
+              <span className={css.blockInfoTime}>{log.date}</span>
             </div>
             <div className={css.buttons}>
               <button
