@@ -85,16 +85,17 @@ export const updateUserAvatar = createAsyncThunk(
 
       console.log("///updateUserAvatar dataToSend-", formData);
       console.log("///updateUserAvatar dataToSend-", { formData });
-      const response = await axios.patch("/user/avatar", formData, {
+      const { data } = await axios.patch("/user/avatar", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log("//PHOTO//after data updateUserAvatar dataToSend-", data);
       console.log(
-        "///after response.data updateUserAvatar dataToSend-",
-        response.data.data
+        "//PHOTO//after data.data updateUserAvatar dataToSend-",
+        data.data.avatarUrl
       );
-      return response.data.data;
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
