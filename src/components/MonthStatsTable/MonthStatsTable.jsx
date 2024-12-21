@@ -127,29 +127,30 @@ const MonthStatsTable = () => {
         </div>
       </div>
       <ul className={s.dayList}>
-        {days.map(({ id, date, consumedPercentage, numberGlasses }) => (
-          <li key={id} className={s.dayItem}>
-            <button
-              type="button"
-              className={buildLinkClass(consumedPercentage)}
-              disabled={date >= presentDay}
-            >
-              {date.getDate()}
-              <div className={s.dayAction}>
-                <DaysGeneralStats
-                  day={date.getDate()}
-                  month={date.toLocaleString("en-US", {
-                    month: "long",
-                  })}
-                  dailyNorma={1.5}
-                  consumerPercentage={consumedPercentage}
-                  numberGlasses={numberGlasses}
-                />
-              </div>
-            </button>
-            <p className={s.percentage}>{consumedPercentage}%</p>
-          </li>
-        ))}
+        {days.map(
+          ({ id, date, consumedPercentage, numberGlasses, dailyNorma }) => (
+            <li key={id} className={s.dayItem}>
+              <button
+                type="button"
+                className={buildLinkClass(consumedPercentage)}
+                disabled={date >= presentDay}>
+                {date.getDate()}
+                <div className={s.dayAction}>
+                  <DaysGeneralStats
+                    day={date.getDate()}
+                    month={date.toLocaleString("default", {
+                      month: "long",
+                    })}
+                    dailyNorma={dailyNorma}
+                    consumerPercentage={consumedPercentage}
+                    numberGlasses={numberGlasses}
+                  />
+                </div>
+              </button>
+              <p className={s.percentage}>{consumedPercentage}%</p>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );
