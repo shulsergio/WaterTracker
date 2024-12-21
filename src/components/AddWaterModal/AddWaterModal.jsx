@@ -4,7 +4,10 @@ import Modal from "../Modal/Modal";
 import Button from "../button/Button";
 import styles from "./AddWaterModal.module.css";
 import { useDispatch } from "react-redux";
-import { addWaterGlass } from "../../redux/dayWaterList/operations.js";
+import {
+  addWaterGlass,
+  getDayWaterList,
+} from "../../redux/dayWaterList/operations.js";
 
 const AddWaterModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -15,7 +18,7 @@ const AddWaterModal = ({ onClose }) => {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    })
+    }),
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -31,6 +34,7 @@ const AddWaterModal = ({ onClose }) => {
       date: date.toISOString(),
     };
     dispatch(addWaterGlass(data));
+    dispatch(getDayWaterList());
     onClose();
   };
 
