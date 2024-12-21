@@ -45,8 +45,9 @@ const TodayWaterItem = () => {
     dispatch(updateWaterGlass({ id: editData.id, updatedGlass }))
       .unwrap()
       .then(() => {
-        console.log("Updated successfuly");
+        toast.success("Glass is successfully updated");
         setIsEditOpen(false);
+        dispatch(getDayWaterList());
       })
       .catch((error) => {
         console.error("Error updating glass:", error);

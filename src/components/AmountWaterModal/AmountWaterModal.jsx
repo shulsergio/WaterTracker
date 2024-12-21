@@ -3,10 +3,21 @@ import Icon from "../Icon/Icon";
 import Modal from "../Modal/Modal";
 import Button from "../button/Button";
 import styles from "./AmountWaterModal.module.css";
+import toast from "react-hot-toast";
 
 const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
   const [amount, setAmount] = useState(data?.volume || 0);
   const [time, setTime] = useState(data?.date || "");
+
+  const date = new Date();
+  const [timeData, setTimeData] = useState(date.toISOString());
+  const [timeNow, setTimeNow] = useState(
+    date.toLocaleTimeString("default", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    })
+  );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
   const decrement = () =>
@@ -20,8 +31,20 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
   }, [data]);
 
   const handleSave = () => {
-    const updatedGlass = { volume: amount, date: time };
+    const updatedGlass = {
+      volume: amount,
+      date: new Date(timeData).toISOString(),
+    };
+    console.log("updated glass", updatedGlass);
     onSave(updatedGlass); // Pass updated data back to parent
+  };
+
+  const handleChangeTime = (e) => {
+    setTimeNow(e.target.value);
+  };
+
+  const handleChangeAmount = (e) => {
+    setAmount(e.target.value);
   };
 
   return (
@@ -34,7 +57,7 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
         <div className={styles.blockInfo}>
           <Icon id="glass-water" width={36} height={36} />
           <span className={styles.blockInfoAmount}>250 ml</span>
-          <span className={styles.blockInfoTime}>7:00 AM</span>
+          <span className={styles.blockInfoTime}>{time}</span>
         </div>
       )}
       <div>
@@ -59,6 +82,8 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
           id="weight"
           type="text"
           placeholder="Enter time"
+          value={timeNow}
+          onChange={handleChangeTime}
           className={styles.inputField}
         />
       </div>
@@ -71,11 +96,13 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
           id="waterAmount"
           type="text"
           placeholder="Enter amount"
+          value={amount}
+          onChange={handleChangeAmount}
           className={styles.inputField}
         />
       </div>
       <div className={styles.footerModal}>
-        <div className={styles.amount}>50ml</div>
+        <div className={styles.amount}>{amount} ml</div>
         <Button onClick={handleSave}>Save</Button>
       </div>
     </Modal>
