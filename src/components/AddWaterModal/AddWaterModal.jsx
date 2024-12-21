@@ -11,7 +11,11 @@ const AddWaterModal = ({ onClose }) => {
   const date = new Date();
   const [amount, setAmount] = useState(0);
   const [time, setTime] = useState(
-    date.toLocaleTimeString("ua-UA", { hour: "2-digit", minute: "2-digit" }),
+    date.toLocaleTimeString("default", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    }),
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -21,11 +25,11 @@ const AddWaterModal = ({ onClose }) => {
   const handleClick = () => {
     const [hours, minutes] = time.split(":").map(Number);
     date.setHours(hours, minutes, 0, 0);
+    date.toISOString();
     const data = {
       volume: amount,
       date: date,
     };
-    // console.log("addWather Modal data: ", data);
     dispatch(addWaterGlass(data));
     onClose();
   };
