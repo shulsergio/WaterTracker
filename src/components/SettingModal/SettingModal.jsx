@@ -41,7 +41,7 @@ const SettingModal = ({ onClose }) => {
     gender: Xgender,
     name: Xname,
     email: Xemail || "",
-    outdatedPassword: "",
+    outDatedPassword: "",
     newPassword: "",
     repeatNewPassword: "",
   };
@@ -52,8 +52,8 @@ const SettingModal = ({ onClose }) => {
       .email("Invalid email address.")
       .required("Email is required."),
     newPassword: Yup.string().min(
-      6,
-      "Password must be at least 6 characters long."
+      8,
+      "Password must be at least 8 characters long."
     ),
     repeatNewPassword: Yup.string().oneOf(
       [Yup.ref("newPassword")],
@@ -62,14 +62,14 @@ const SettingModal = ({ onClose }) => {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
-    const { gender, name, email, outdatedPassword, newPassword } = values;
-
+    const { gender, name, email, outDatedPassword, newPassword } = values;
+    const ii = newPassword && { outDatedPassword, newPassword };
+    console.log("ZZZZZZZZ - ", ii);
     const dataToSend = {
       gender,
       name,
       email,
-      // newPassword: newPassword === "" ? null : newPassword,
-      // outdatedPassword: outdatedPassword === "" ? null : outdatedPassword,
+      ...(newPassword && { outDatedPassword, newPassword }),
     };
     const onSave = () => {
       console.log("onSave");
@@ -244,20 +244,20 @@ const SettingModal = ({ onClose }) => {
                   <label className={styles.label}>Password</label>
                   <div className={styles.fieldGroup}>
                     <label
-                      htmlFor="outdatedPassword"
+                      htmlFor="outDatedPassword"
                       className={styles.radioButtonWrapper}
                     >
                       Outdated password
                     </label>
                     <Field
-                      id="outdatedPassword"
-                      name="outdatedPassword"
+                      id="outDatedPassword"
+                      name="outDatedPassword"
                       type="password"
                       placeholder="Enter your current password"
                       className={styles.input}
                     />
                     <ErrorMessage
-                      name="outdatedPassword"
+                      name="outDatedPassword"
                       component="div"
                       className={styles.error}
                     />

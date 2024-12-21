@@ -39,6 +39,7 @@
   gap: 24px;
 }
 .input {
+  background-color: var(--primary-color-white);
   padding: 12px 10px;
   border: 1px solid var(--secondary-color---5);
   border-radius: 6px;
