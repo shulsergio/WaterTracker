@@ -2,8 +2,11 @@ import Modal from "../Modal/Modal";
 import Button from "../button/Button";
 import styles from "./DeleteEntryModal.module.css";
 
-const DeleteEntryModal = ({ onClose }) => {
-  const clickDelete = () => {};
+const DeleteEntryModal = ({ onClose, onDelete }) => {
+  const clickDelete = () => {
+    onDelete();
+  };
+
   return (
     <Modal
       title="Delete entry"

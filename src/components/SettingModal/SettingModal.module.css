@@ -3,40 +3,54 @@
 
   @media screen and (min-width: 768px) {
     max-width: 592px;
-    width: 100%;
   }
 }
 
 .dataWrapper {
   display: flex;
-  flex-direction: row;
-}
-.label {
-  display: flex;
   flex-direction: column;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 133%;
-  color: #2f2f2f;
-  margin-top: 16px;
+
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+  }
 }
 
-.input {
-  border: 1px solid #d7e3ff;
-  border-radius: 6px;
-  padding: 12px 10px;
-  width: 280px;
-  height: 44px;
-  margin-top: 8px;
-  font-family: var(--font-family);
-  font-size: 16px;
-  line-height: 125%;
-  color: #407bff;
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 8px;
+  margin-bottom: 24px;
 }
+
+.label {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11111;
+  color: var(--primery-color-black);
+}
+
+.radioButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  gap: 24px;
+}
+.input {
+  background-color: var(--primary-color-white);
+  padding: 12px 10px;
+  border: 1px solid var(--secondary-color---5);
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--primary-color-blue);
+}
+
 .input:active {
   border: 1px solid #d7e3ff;
 }
+
 .input:focus {
   border: 1px solid #d7e3ff;
 }
@@ -49,52 +63,53 @@
 ::placeholder {
   font-family: var(--font-family);
   font-size: 16px;
-  /* color: #9ebbff; */
 }
 
-.text {
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 123%;
+.rightWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.saveButton {
   margin: 0;
+  width: 100%;
+  max-width: 767px;
 }
 
-.passwordWrapper {
-  position: relative;
-}
-
-.eyeButton {
-  position: absolute;
-  transform: translateY(110%);
-  background: none;
-  border: none;
+.avatarContainer {
+  margin-bottom: 24px;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
 }
 
-.eye {
-  width: 16px;
-  height: 16px;
-}
-
-/* .avatarContainer {
-  text-align: center;
-} */
-
-.avatarLabel {
-  cursor: pointer;
+.labelYourPhoto {
+  margin: 0 0 8px;
 }
 
 .avatarAndTextWrapper {
   display: flex;
   flex-direction: row;
+  gap: 8px;
+}
+
+.avatarLabel {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
 
 .avatarWrapper {
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,28 +122,64 @@
   object-fit: cover;
 }
 
-.emptyAvatar {
-  font-size: 64px;
-  font-weight: bold;
-  color: #ffffff;
+.actionsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
 }
 
 .uploadText {
-  color: #007bff;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #407bff;
 }
 
 .fileInput {
   display: none;
 }
 
-.icon {
+.iconUpArrow {
   background: transparent;
   fill: none;
   stroke: var(--primary-color-blue);
 }
+.iconDelete {
+  background: transparent;
+  fill: none;
+  stroke: var(--secondary-color-3);
+}
 
-@media screen and (min-width: 1440px) {
+.removePhotoButton {
+  color: var(--secondary-color-3);
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  text-align: start;
+  width: auto;
+  height: auto;
+}
+
+/* .removePhotoButton:hover {
+  background: #e04c4c;
+} */
+
+/* .emptyAvatar {
+  font-size: 64px;
+  font-weight: bold;
+  color: #ffffff;
+} */
+
+/* @media screen and (min-width: 1440px) {
   .form {
     width: 384px;
   }
-}
+} */
