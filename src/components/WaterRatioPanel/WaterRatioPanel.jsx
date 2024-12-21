@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './WaterRatioPanel.module.css';
 import AmountWaterModal from '../AmountWaterModal/AmountWaterModal';
+import Icon from '../Icon/Icon';
 
 const WaterRatioPanel = () => {
   const [currentWater, setCurrentWater] = useState(0);
@@ -51,7 +52,7 @@ const WaterRatioPanel = () => {
         </div>
       </div>
       <button onClick={() => setIsModalOpen(true)} className={styles.addButton}>
-        + Add Water
+      <Icon id='icon-plus-circle' className={styles.plusCircle} /> Add Water
       </button>
       {isModalOpen && (
         <AmountWaterModal
