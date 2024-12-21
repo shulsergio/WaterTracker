@@ -5,6 +5,7 @@ import RadioButton from "../radio-button/RadioButton";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateDailyNorm } from "../../redux/user/operations";
+import { getDayWaterList } from "../../redux/dayWaterList/operations.js";
 // import toast from "react-hot-toast";
 
 const MyDailyNormaModal = ({ onClose }) => {
@@ -17,6 +18,7 @@ const MyDailyNormaModal = ({ onClose }) => {
   const amountWaterPerDay =
     gender === "woman" ? m * 0.03 + t * 0.4 : m * 0.04 + t * 0.6;
   const [customNorm, setCustomNorm] = useState("");
+
   const handleSave = () => {
     const normToSave = customNorm
       ? Number(customNorm) / 1000
@@ -27,6 +29,7 @@ const MyDailyNormaModal = ({ onClose }) => {
       return;
     } else {
       dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
+      dispatch(getDayWaterList());
       onClose();
     }
   };

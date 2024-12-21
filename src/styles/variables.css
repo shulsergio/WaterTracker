@@ -62,6 +62,11 @@
   --background-tab-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-tab.webp);
   --background-desktop-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-desktop.webp);
   
+  --background-mob-signin: url(../images/homePage/dark/Background-element-SignIn-dark-mob1x.webp);
+  --background-mob-home-screen: url(../images/homePage/dark/Background-element-Home-screen-dark-mob1x.webp);
+  --background-tab-home-screen: url(../images/homePage/dark/Background-element-Home-Screen-dark-tab1x.webp);
+  --background-desktop-main-page: url(../images/homePage/dark//Background-element-Main-Page-dark-desk1x.webp);
+
   --bottle-home-1x-mob: url(../images/homePage/dark/Bottle-home-screen-1x-dark-mob.webp);
   --bottle-home-2x-mob: url(../images/homePage/dark/Bottle-home-screen-2x-dark-mob.webp);
 
