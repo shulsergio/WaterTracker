@@ -41,7 +41,7 @@ const SettingModal = ({ onClose }) => {
     gender: Xgender,
     name: Xname,
     email: Xemail || "",
-    outDatedPassword: "",
+    outDatePassword: "",
     newPassword: "",
     repeatNewPassword: "",
   };
@@ -62,14 +62,14 @@ const SettingModal = ({ onClose }) => {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
-    const { gender, name, email, outDatedPassword, newPassword } = values;
-    const ii = newPassword && { outDatedPassword, newPassword };
+    const { gender, name, email, outDatePassword, newPassword } = values;
+    const ii = newPassword && { outDatePassword, newPassword };
     console.log("ZZZZZZZZ - ", ii);
     const dataToSend = {
       gender,
       name,
       email,
-      ...(newPassword && { outDatedPassword, newPassword }),
+      ...(newPassword && { outDatePassword, newPassword }),
     };
     const onSave = () => {
       console.log("onSave");
@@ -93,18 +93,6 @@ const SettingModal = ({ onClose }) => {
   // };
 
   const getAvatar = () => {
-    // if (avatarUrl && avatarUrl !== "null") {
-    //   return (
-    //     <img src={avatarUrl} alt={name || "User"} className={styles.avatar} />
-    //   );
-    // }
-
-    // const letter =
-    //   (name && name[0].toUpperCase()) ||
-    //   (email && email[0].toUpperCase()) ||
-    //   "?";
-
-    // return <span className={styles.emptyAvatar}>{letter}</span>;
     if (preview) {
       return <img src={preview} alt="Avatar" className={styles.avatar} />;
     }
@@ -163,25 +151,6 @@ const SettingModal = ({ onClose }) => {
                 />
               </div>
             </label>
-            {/* <div className={styles.actionsWrapper}>
-              {preview && (
-                <>
-                  <Icon
-                    id="icon-delete"
-                    width={16}
-                    height={16}
-                    className={styles.iconDelete}
-                  />
-                  <button
-                    type="button"
-                    className={styles.removePhotoButton}
-                    onClick={handleRemovePhoto}
-                  >
-                    Remove photo
-                  </button>
-                </>
-              )}
-            </div> */}
           </div>
         </div>
         <Formik
@@ -244,20 +213,20 @@ const SettingModal = ({ onClose }) => {
                   <label className={styles.label}>Password</label>
                   <div className={styles.fieldGroup}>
                     <label
-                      htmlFor="outDatedPassword"
+                      htmlFor="outDatePassword"
                       className={styles.radioButtonWrapper}
                     >
                       Outdated password
                     </label>
                     <Field
-                      id="outDatedPassword"
-                      name="outDatedPassword"
+                      id="outDatePassword"
+                      name="outDatePassword"
                       type="password"
                       placeholder="Enter your current password"
                       className={styles.input}
                     />
                     <ErrorMessage
-                      name="outDatedPassword"
+                      name="outDatePassword"
                       component="div"
                       className={styles.error}
                     />

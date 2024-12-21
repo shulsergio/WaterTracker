@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./WaterRatioPanel.module.css";
-import { selectUser } from "../../redux/user/selectors";
+import { selectDailyNorm, selectUser } from "../../redux/user/selectors";
 import { useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors";
 import { selectdayWater } from "../../redux/dayWaterList/selectors";
@@ -11,28 +11,27 @@ const WaterRatioPanel = () => {
   // const dispatch = useDispatch();
   const monthWater = useSelector(selectMonthWater);
   const dayWater = useSelector(selectdayWater);
-  console.log("monthWater- ", monthWater);
-  console.log("dayWater- ", dayWater);
   const user = useSelector(selectUser);
+
   console.log("user- ", user);
-  const dailyGoal = user.dailyNorm; // Загальна норма в мл
+  const dailyGoal = useSelector(selectDailyNorm); // Загальна норма в мл
   console.log("dailyGoal- ", dailyGoal);
   console.log("dayWater.consumedPercentage- ", dayWater.consumedPercentage);
+
+  const [progressPercentage, setProgressPercentage] = useState();
+
+  useEffect(() => {
+    setProgressPercentage(dayWater.consumedPercentage * 100);
+  }, [dayWater.consumedPercentage, monthWater, dayWater, dailyGoal]);
+
+  console.log("monthWater- ", monthWater);
+  console.log("dayWater- ", dayWater);
 
   // const currentWater = 1100;
   // const [currentWater, setCurrentWater] = useState(selectUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // useEffect(() => {
-  //   // Обновляем состояние currentWater при загрузке страницы
-  //   setCurrentWater((prev) => Math.min(prev, dailyGoal));
-  // }, [dailyGoal]);
-
-  // const addWater = (amount) => {
-  //   setCurrentWater((prev) => Math.min(prev + amount, dailyGoal));
-  // };
-
-  const progressPercentage = dayWater.consumedPercentage * 100;
+  // const progressPercentage = dayWater.consumedPercentage * 100;
   const sliderPosition = `calc(${progressPercentage}% - 8px)`;
 
   return (
@@ -47,7 +46,8 @@ const WaterRatioPanel = () => {
             />
             <div
               className={styles.progressSlider}
-              style={{ left: sliderPosition }}></div>
+              style={{ left: sliderPosition }}
+            ></div>
           </div>
         </div>
         <div className={styles.markersContainer}>
@@ -58,7 +58,8 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 0 && progressPercentage < 50
                   ? styles.markerTextActive
                   : ""
-              }`}>
+              }`}
+            >
               0%
             </div>
           </div>
@@ -69,7 +70,8 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 50 && progressPercentage < 100
                   ? styles.markerTextActive
                   : ""
-              }`}>
+              }`}
+            >
               50%
             </div>
           </div>
@@ -78,7 +80,8 @@ const WaterRatioPanel = () => {
             <div
               className={`${styles.markerText} ${
                 progressPercentage === 100 ? styles.markerTextActive : ""
-              }`}>
+              }`}
+            >
               100%
             </div>
           </div>
