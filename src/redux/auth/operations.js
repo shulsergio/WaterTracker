@@ -5,7 +5,8 @@ import { getDayWaterList } from "../dayWaterList/operations.js";
 import { setIsLoading } from "./authSlice.js";
 import { getMonthWaterList } from "../monthWaterList/operations.js";
 // import { Navigate, useNavigate } from "react-router-dom";
-axios.defaults.baseURL = /* "http://localhost:3000/"; */ "https://bo-o-woa.onrender.com/";
+axios.defaults.baseURL =
+  /* "http://localhost:3000/"; */ "https://bo-o-woa.onrender.com/";
 axios.defaults.withCredentials = true;
 
 const setAuthHeader = (token) => {
@@ -140,12 +141,13 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      const res = await axios.post("/auth/refresh", { token: persistedToken });
+      const { data } = await axios.post("/auth/refresh", {
+        token: persistedToken,
+      });
 
-      console.log("REFRESH DATA", res);
-      console.log("REFRESH DATA", res.data);
-
-      return res.data;
+      return {
+        token: data.data.accessToken,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
