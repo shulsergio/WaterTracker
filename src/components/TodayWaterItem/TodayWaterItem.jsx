@@ -18,6 +18,16 @@ const TodayWaterItem = () => {
   const [editData, setEditData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
 
+  const date = new Date();
+
+  const [time, setTime] = useState(
+    date.toLocaleTimeString("default", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    })
+  );
+
   const water = useSelector(selectdayWater);
   const dispatch = useDispatch();
 
@@ -82,19 +92,21 @@ const TodayWaterItem = () => {
             <div className={css.iconContainer}>
               <Icon id="glass-water" width={36} height={36} />
               <span className={css.blockInfoAmount}>{log.volume} ml</span>
-              <span className={css.blockInfoTime}>{log.date}</span>
+              <span className={css.blockInfoTime}>{time}</span>
             </div>
             <div className={css.buttons}>
               <button
                 onClick={() => handleEditClick(log)}
                 className={css.editIcon}
-                aria-label="Edit water norma">
+                aria-label="Edit water norma"
+              >
                 <Icon id="icon-edit" width={16} height={16} />
               </button>
               <button
                 onClick={() => handleDeleteClick(log.id)}
                 className={css.deleteIcon}
-                aria-label="Delete water norma">
+                aria-label="Delete water norma"
+              >
                 <Icon id="icon-delete" width={16} height={16} />
               </button>
             </div>
