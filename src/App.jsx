@@ -30,7 +30,7 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Loader/>
+    <Loader />
   ) : (
     <>
       <Toaster
@@ -38,8 +38,8 @@ function App() {
         toastOptions={{
           duration: 5000,
           style: {
-            background: "#333",
-            color: "#fff",
+            background: "var(--secondary-color-4)",
+            color: "var(--primary-color-white)",
           },
         }}
       />

@@ -8,17 +8,19 @@ import {
   addWaterGlass,
   getDayWaterList,
 } from "../../redux/dayWaterList/operations.js";
+import toast from "react-hot-toast";
 
 const AddWaterModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const date = new Date();
+
   const [amount, setAmount] = useState(0);
   const [time, setTime] = useState(
     date.toLocaleTimeString("default", {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    }),
+    })
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -35,6 +37,7 @@ const AddWaterModal = ({ onClose }) => {
     };
     dispatch(addWaterGlass(data));
     dispatch(getDayWaterList());
+    toast.success("Water data added");
     onClose();
   };
 

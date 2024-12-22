@@ -12,11 +12,8 @@
   height: 76px;
   background-color: var(--primary-color-white);
   box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
-  transition: box-shadow 0.3s ease, color 0.3s ease;
 }
-.container:hover {
-  box-shadow: var(--button-shadow-hover);
-}
+
 .title {
   font-weight: 500;
   font-size: 18px;

@@ -97,7 +97,6 @@ const SettingModal = ({ onClose }) => {
       return <img src={preview} alt="Avatar" className={styles.avatar} />;
     }
 
-    // Якщо немає прев'ю, відображаємо ініціал або емейл користувача
     if (XavatarUrl && XavatarUrl !== "null") {
       return (
         <img src={XavatarUrl} alt={name || "User"} className={styles.avatar} />
