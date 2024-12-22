@@ -1,15 +1,11 @@
 # React + Vite
 
-# Water Tracker
-
 <h1>Water Tracker</h1>
 
 <p> Water Tracker - web app for control and monitoring daily and monthly water consumption.
 </p>
-## Technologies Used
+<h2>Technologies Used</h2>
 <p>Used - React, Node.js, MongoDB</p>
-
-## Team
 
 <h2>Team</h2>
 
@@ -20,9 +16,63 @@
           <th>Git</th>
     </tr>
     <tr>
-        <td> Shulga Sergiy </td>
+        <td>Sergiy</td>
         <td>Leam Lead </td>
-        <td>git</td>
-    </tr>
-  
+        <td><a href="https://github.com/shulsergio" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+    <tr>
+        <td> Gennadii</td>
+        <td>Scrum, Back End</td>
+        <td><a href="https://github.com/GenchikS" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>    <tr>
+        <td> Yuliia </td>
+        <td>Front End developer </td>
+        <td><a href="https://github.com/yuliia-vorobei" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>    <tr>
+        <td> Kate </td>
+        <td>Front End developer </td>
+        <td><a href="https://github.com/turchynska" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>    <tr>
+        <td> Svitlana </td>
+        <td>Front End developer </td>
+        <td><a href="https://github.com/svitlanahavrylets" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>    <tr>
+        <td> Alona </td>
+        <td>Front End developer </td>
+        <td><a href="https://github.com/AlenaZabolotskykh" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>    <tr>
+        <td> Inna </td>
+        <td>Front End developer </td>
+        <td><a href="https://github.com/Inna-Starovytska" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>    <tr>
+        <td> Vitalii </td>
+        <td> Front End developer </td>
+        <td><a href="https://github.com/baschenko" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+</tr>    <tr>
+        <td> Andriy </td>
+        <td> Front End developer </td>
+        <td><a href="https://github.com/AndriyGoncharuk" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+</tr>    <tr>
+        <td> Ostap </td>
+        <td> Front End developer </td>
+        <td><a href="https://github.com/OstapUrdey" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+</tr>    <tr>
+        <td> Vitalii </td>
+        <td> Front End developer </td>
+        <td><a href="https://github.com/0Vitaliy" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+</tr>    <tr>
+        <td> Ivan </td>
+        <td>Lead Back End developer </td>
+        <td><a href="https://github.com/bahioiiia" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+</tr>    <tr>
+        <td> Olexandr  </td>
+        <td> Back End developer </td>
+        <td><a href="https://github.com/Solovey260885" target="_blank" rel="noopener noreferrer">git</a></td>
+</tr>
+
 </table>
