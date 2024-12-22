@@ -36,15 +36,15 @@ const WaterRatioPanel = () => {
 
   console.log("monthWater- ", monthWater);
   console.log("dayWater- ", dayWater);
-
-  // const currentWater = 1100;
-  // const [currentWater, setCurrentWater] = useState(selectUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const progressPercentaged =
+    progressPercentage > 100 ? 100 : progressPercentage;
+  console.log("progressPercentaged - ", progressPercentaged);
+  console.log("progressPercentage - ", progressPercentage);
   // const progressPercentage = dayWater.consumedPercentage * 100;
-  const sliderPosition = `calc(${progressPercentage}% - 8px)`;
+  const sliderPosition = `calc(${progressPercentaged}% - 8px)`;
   const add1 = parseFloat(
-    (dailyGoal - (dailyGoal * progressPercentage) / 100).toFixed(1)
+    (dailyGoal - (dailyGoal * progressPercentaged) / 100).toFixed(1)
   );
   const additionalData =
     add1 > 0
@@ -55,21 +55,22 @@ const WaterRatioPanel = () => {
       <div className={styles.containerProgress}>
         <h2 className={styles.title}>Today</h2>
         <div className={styles.progressTrack}>
-          <div className={styles.progressBar} 
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}>
-                {isTooltipVisible && (
-                <div className={styles.infoTooltip}>{additionalData}</div>
-              )}
+          <div
+            className={styles.progressBar}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {isTooltipVisible && (
+              <div className={styles.infoTooltip}>{additionalData}</div>
+            )}
             <div
               className={styles.progressFilled}
-              style={{ width: `${progressPercentage}%` }}
+              style={{ width: `${progressPercentaged}%` }}
             />
             <div
               className={styles.progressSlider}
               style={{ left: sliderPosition }}
-            >
-            </div>
+            ></div>
           </div>
         </div>
         <div className={styles.markersContainer}>
@@ -77,7 +78,7 @@ const WaterRatioPanel = () => {
             <div className={styles.markerLine}></div>
             <div
               className={`${styles.markerText} ${
-                progressPercentage >= 0 && progressPercentage < 50
+                progressPercentage >= 0 && progressPercentaged < 50
                   ? styles.markerTextActive
                   : ""
               }`}
@@ -89,7 +90,7 @@ const WaterRatioPanel = () => {
             <div className={styles.markerLine}></div>
             <div
               className={`${styles.markerText} ${
-                progressPercentage >= 50 && progressPercentage < 100
+                progressPercentaged >= 50 && progressPercentaged < 100
                   ? styles.markerTextActive
                   : ""
               }`}
@@ -101,7 +102,7 @@ const WaterRatioPanel = () => {
             <div className={styles.markerLine}></div>
             <div
               className={`${styles.markerText} ${
-                progressPercentage === 100 ? styles.markerTextActive : ""
+                progressPercentaged === 100 ? styles.markerTextActive : ""
               }`}
             >
               100%
