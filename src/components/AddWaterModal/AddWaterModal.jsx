@@ -20,7 +20,7 @@ const AddWaterModal = ({ onClose }) => {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    })
+    }),
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -94,7 +94,9 @@ const AddWaterModal = ({ onClose }) => {
       </div>
       <div className={styles.footerModal}>
         <div className={styles.amount}>{amount}ml</div>
-        <Button onClick={handleClick}>Save</Button>
+        <Button onClick={handleClick} className={styles.buttonModal}>
+          Save
+        </Button>
       </div>
     </Modal>
   );

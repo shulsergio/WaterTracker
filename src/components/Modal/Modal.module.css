@@ -18,10 +18,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primary-color-white);
+  width: 280px;
   max-width: calc(100% - 40px);
 
   @media screen and (min-width: 768px) {
     padding: 32px 24px;
+    max-width: calc(100% - 64px);
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 592px;
   }
 }
 
