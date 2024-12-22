@@ -6,14 +6,13 @@
   background-size: cover;
   background-repeat: no-repeat;
   /* width: 100%; */
-  
 }
 .container {
   padding: 8px 20px;
   margin: 0 auto;
   max-width: 320px;
   /* position: absolute; */
- }
+}
 
 @media screen and (min-width: 768px) {
   .background {
@@ -29,7 +28,6 @@
   .container {
     max-width: 768px;
     padding: 16px 32px;
-    
   }
 }
 
@@ -45,6 +43,5 @@
   .container {
     min-width: 1440px;
     padding: 12px 112px;
-    
   }
 }

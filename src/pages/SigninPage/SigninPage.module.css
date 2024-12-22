@@ -18,8 +18,7 @@
 @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .background {
     background-image: var(--bottle-home-2x-mob);
-
- }
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -33,39 +32,35 @@
     background-size: 706px 548px;
     background-position: 90px center;
     padding-top: 52px;
-   
   }
-  
 }
 @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .background {
-      background-image: var(--bottle-home-2x-tab);
+  .background {
+    background-image: var(--bottle-home-2x-tab);
   }
 }
 
 @media screen and (min-width: 1440px) {
-  
   .container {
     height: 800px;
     background-repeat: no-repeat;
-    background-position:  top left;
+    background-position: top left;
   }
   .background {
     height: 680px;
     width: 916px;
     background-image: var(--bottle-home-1x-desktop);
     background-size: 916px 680px;
-    background-position: -100px center;
+    background-position: -51px center;
     padding-top: 20px;
   }
   .box {
     padding-top: 120px;
     padding-left: 728px;
   }
-  
 }
 @media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
-    .image {
-      background-image: var(--bottle-home-2x-desktop);
-    }
+  .image {
+    background-image: var(--bottle-home-2x-desktop);
   }
+}
