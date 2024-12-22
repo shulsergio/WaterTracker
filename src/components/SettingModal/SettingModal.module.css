@@ -80,11 +80,6 @@
   border: 1px solid #d7e3ff;
 }
 
-.inputError {
-  border-color: #ef5050;
-  color: #ef5050;
-}
-
 ::placeholder {
   font-family: var(--font-family);
   font-size: 16px;
@@ -224,3 +219,57 @@
     width: 384px;
   }
 } */
+
+@media screen and (min-width: 1440px) {
+  .nameEmailWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 12px;
+  top: 55%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .passwordWrapper {
+    width: 100%;
+  }
+
+  .eyeButton {
+    right: 8px; /* Можливо, менший відступ для планшетів */
+  }
+}
+
+.eye {
+  width: 16px;
+  height: 16px;
+}
+
+.input {
+  padding-right: 40px; /* Простір для іконки ока */
+}
+
+.errorMessage {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  color: #ef5050;
+}
