@@ -30,17 +30,30 @@ const SettingModal = ({ onClose }) => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
+  // const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   const validationSchema = Yup.object().shape({
-    gender: Yup.string().required("Please select your gender."),
+    name: Yup.string()
+      .min(2, "Name must be at least 2 characters")
+      .max(32, "Name must be at maximum 32 characters"),
+    gender: Yup.string().required("Please select your gender"),
     email: Yup.string()
-      .email("Invalid email address.")
-      .required("Email is required."),
+      // .email("Invalid email address")
+      .matches(emailRegexp, "Invalid email address")
+      .required("Email is required"),
+    outDatePassword: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .max(64, "Password must be at maximum 64 characters"),
     newPassword: Yup.string()
-      .min(8, "Password must be at least 8 characters long.")
-      .required("New password is required."),
+      .min(8, "Password must be at least 8 characters")
+      .max(64, "Password must be at maximum 64 characters"),
+    // .required("New password is required"),
     repeatNewPassword: Yup.string()
-      .oneOf([Yup.ref("newPassword"), null], "Passwords must match.")
-      .required("Please confirm your new password."),
+      .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
+      .min(8, "Password must be at least 8 characters")
+      .max(64, "Password must be at maximum 64 characters"),
+    // .required("Please confirm your new password"),
   });
 
   const initialValues = {
@@ -214,8 +227,13 @@ const SettingModal = ({ onClose }) => {
                         id="name"
                         name="name"
                         type="text"
-                        placeholder="Enter your name (optional)"
+                        placeholder="Name"
                         className={styles.input}
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className={styles.errorMessage}
                       />
                     </div>
                     <div className={styles.fieldGroup}>
@@ -226,6 +244,7 @@ const SettingModal = ({ onClose }) => {
                         id="email"
                         name="email"
                         type="email"
+                        placeholder="E-mail"
                         className={styles.input}
                       />
                       <ErrorMessage
@@ -251,7 +270,7 @@ const SettingModal = ({ onClose }) => {
                         id="outDatePassword"
                         name="outDatePassword"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Enter your current password"
+                        placeholder="Password"
                         className={
                           touched.outDatePassword && errors.outDatePassword
                             ? `${styles.input} ${styles.inputError}`
@@ -289,7 +308,7 @@ const SettingModal = ({ onClose }) => {
                           id="newPassword"
                           name="newPassword"
                           type={showNewPassword ? "text" : "password"}
-                          placeholder="Enter your new password"
+                          placeholder="Password"
                           className={
                             touched.newPassword && errors.newPassword
                               ? `${styles.input} ${styles.inputError}`
@@ -328,7 +347,7 @@ const SettingModal = ({ onClose }) => {
                           id="repeatNewPassword"
                           name="repeatNewPassword"
                           type={showRepeatPassword ? "text" : "password"}
-                          placeholder="Repeat your new password"
+                          placeholder="Password"
                           className={
                             touched.repeatNewPassword &&
                             errors.repeatNewPassword
