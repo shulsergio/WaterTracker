@@ -1,79 +1,80 @@
-/* .background {
-  width: 320px;
-  height: 572px;
-  padding: 0;
-  /* background-image: url("../../images/background/mobile/Background-mobile-3x.webp"); */
-/* background-size: cover;
-  background-position: center 52px; */
-
-/* @media screen and (min-width: 768px) {
-  .wrapper {
-    background-image: url("../../images/background/tablet/Background-tab-signup.webp");
-    background-repeat: no-repeat;
-  }
-  .text {
-    padding-top: 40px;
-  }
-} */
-
 .container {
+  padding-top: 24px;
   min-height: 100vh;
   width: 320px;
-  background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
+  /* background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
   background-position: center 52px;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   margin-left: -20px;
 }
 
 .wrapper {
   padding-left: 20px;
   height: 608px;
-  background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg");
+  background-image: var(--bottle-home-1x-mob);
   background-size: 280px 210px;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center bottom 30px;
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .background {
+    background-image: var(--bottle-home-2x-mob);
+  }
 }
 
 @media screen and (min-width: 768px) {
   .container {
     width: 768px;
-    background-image: url("../../images/background/tablet/Background-tab-signup.webp");
+    /* background-image: url("../../images/background/tablet/Background-tab-signup.webp");
     background-position: top;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     /* margin-left: -20px; */
   }
 
   .wrapper {
-    /* padding-top: 16px; */
-    background-image: url("../../images/bottle/tablet/Bottle-SignUp-tablet.svg");
+    padding-top: 40px;
+    background-image: var(--bottle-home-1x-tab);
     background-size: 706px 548px;
-    background-position: 90px center;
+    background-position: 112px center;
+  }
+}
+
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .background {
+    background-image: var(--bottle-home-2x-tab);
   }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
+    padding-top: 0;
     width: 1440px;
     height: 800px;
-    background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
+    /* background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
     background-repeat: no-repeat;
-    background-position: top left;
+    background-position: top left; */
     /* background-size: 1404px 582px; */
   }
   .wrapper {
     padding-top: 20px;
-    height: 700px;
+    height: 680px;
     /* padding-top: 138px; */
     /* padding-right: 198px; */
     /* padding-bottom: 196px; */
-    background-image: url("../../images/bottle/desktop/Bottle-SignUp-desktop.svg");
+    background-image: var(--bottle-home-1x-desktop);
     background-size: 916px 680px;
     background-position: -51px center;
   }
   .box {
     padding-top: 120px;
     padding-left: 728px;
+  }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
+  .wrapper {
+    background-image: var(--bottle-home-2x-desktop);
   }
 }
