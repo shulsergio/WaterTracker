@@ -98,10 +98,10 @@ const MyDailyNormaModal = ({ onClose }) => {
             onChange={(e) => setT(Number(e.target.value))}
           />
         </div>
-        <p className={styles.textAmount}>
-          <div> The required amount of water in liters per day:</div>
+        <div className={styles.textAmount}>
+          <p> The required amount of water in liters per day:</p>
           <span>{m ? amountWaterPerDay.toFixed(1) : 0} L</span>
-        </p>
+        </div>
       </div>
       <div className={styles.inputWithLabel}>
         <label htmlFor={"waterAmount"} className={styles.labelAmount}>
