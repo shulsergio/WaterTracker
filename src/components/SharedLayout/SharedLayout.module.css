@@ -2,7 +2,7 @@
   min-height: 100vh;
   min-width: 320px;
   background-image: var(--background-mob-homescreen);
-  background-position: center 108px;
+  background-position: center 136px;
   background-size: cover;
   background-repeat: no-repeat;
   /* width: 100%; */
@@ -20,8 +20,10 @@
     background-image: var(--background-tab-homescreen);
     min-width: 768px;
     background-size: cover;
-    background-position: center 88px;
-    /* background-size: contain; */
+    /* background-position: center 138px left -10px; */
+    background-position: 138px -10px;
+    background-size: cover;
+    min-height: 800px;
   }
 
   .container {
