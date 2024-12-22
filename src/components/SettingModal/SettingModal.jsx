@@ -12,12 +12,14 @@ import { selectUser } from "../../redux/user/selectors.js";
 import RadioButton from "../radio-button/RadioButton.jsx";
 import Button from "../button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
+import Icon from "../Icon/Icon.jsx";
+import toast from "react-hot-toast";
 
 const SettingModal = ({ onClose }) => {
   console.log("------SettingModal ------");
   const dispatch = useDispatch();
-  const avatarUrl = useSelector((state) => state.user.avatarUrl);
-  const email = useSelector(selectUser).email;
+  const XavatarUrl = useSelector(selectUser).avatarUrl;
+
   const [preview, setPreview] = useState(null);
 
   const handleFileChange = (event) => {
@@ -85,31 +87,70 @@ const SettingModal = ({ onClose }) => {
     setSubmitting(false);
   };
 
+  // const handleRemovePhoto = () => {
+  //   event.stopPropagation();
+  //   setPreview(null); // Скидаємо прев'ю зображення
+  // };
+
+  const getAvatar = () => {
+    if (preview) {
+      return <img src={preview} alt="Avatar" className={styles.avatar} />;
+    }
+
+    if (XavatarUrl && XavatarUrl !== "null") {
+      return (
+        <img src={XavatarUrl} alt={name || "User"} className={styles.avatar} />
+      );
+    }
+
+    if (name && name.length > 0) {
+      return (
+        <span className={styles.emptyAvatar}>{name[0].toUpperCase()}</span>
+      );
+    }
+
+    if (Xemail && Xemail.length > 0) {
+      return (
+        <span className={styles.emptyAvatar}>{Xemail[0].toUpperCase()}</span>
+      );
+    }
+
+    return <span className={styles.emptyAvatar}>?</span>;
+  };
+
   return (
     <Modal title="Setting" classNameModal={styles.modal} onClose={onClose}>
       <>
-        <div style={{ textAlign: "center" }}>
-          <label htmlFor="fileInput" style={{ cursor: "pointer" }}>
-            <img
-              src={preview || avatarUrl || "default-avatar.png"}
-              alt="Avatar"
-              style={{
-                width: "150px",
-                height: "150px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                marginBottom: "10px",
-              }}
-            />
-            <p style={{ color: "#007BFF" }}>Upload a photo</p>
-          </label>
-          <input
-            id="fileInput"
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-          />
+        <div className={styles.avatarContainer}>
+          <p className={styles.labelYourPhoto}>Your photo</p>
+          <div className={styles.avatarAndTextWrapper}>
+            <label htmlFor="fileInput" className={styles.avatarLabel}>
+              <div className={styles.avatarWrapper}>
+                {preview ? (
+                  <img src={preview} alt="Preview" className={styles.avatar} />
+                ) : (
+                  getAvatar()
+                )}
+              </div>
+              <div className={styles.actionsWrapper}>
+                {/* Якщо є прев'ю, можна видалити фото */}
+                <Icon
+                  id="icon-up-arrow"
+                  width={16}
+                  height={16}
+                  className={styles.iconUpArrow}
+                />
+                <p className={styles.uploadText}>Upload a photo</p>
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/*"
+                  className={styles.fileInput}
+                  onChange={handleFileChange}
+                />
+              </div>
+            </label>
+          </div>
         </div>
         <Formik
           initialValues={initialValues}
@@ -118,58 +159,58 @@ const SettingModal = ({ onClose }) => {
         >
           {({ values, setFieldValue }) => (
             <Form className={styles.form}>
-              <div className={styles.fieldGroup}>
-                <label className={styles.label}>Your gender identity</label>
-                <RadioButton
-                  value="Women"
-                  selectedValue={values.gender}
-                  onChange={() => setFieldValue("gender", "Women")}
-                  label="Women"
-                />
-                <RadioButton
-                  value="Men"
-                  selectedValue={values.gender}
-                  onChange={() => setFieldValue("gender", "Men")}
-                  label="Men"
-                />
-              </div>
-
-              <div className={styles.fieldGroup}>
-                <label htmlFor="name" className={styles.label}>
-                  Your name
-                </label>
-                <Field
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Enter your name (optional)"
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.fieldGroup}>
-                <label htmlFor="email" className={styles.label}>
-                  E-mail
-                </label>
-                <Field
-                  id="email"
-                  name="email"
-                  type="email"
-                  className={styles.input}
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className={styles.error}
-                />
-              </div>
-
-              <div className={styles.fieldGroup}>
-                <label className={styles.label} style={{ fontWeight: "bold" }}>
-                  Password
-                </label>
-                <div>
+              <div className={styles.dataWrapper}>
+                <div className={styles.leftWrapper}>
+                  <div className={styles.rightWrapper}>
+                    <label className={styles.label}>Your gender identity</label>
+                    <div className={styles.radioButtonWrapper}>
+                      <RadioButton
+                        value="Woman"
+                        selectedValue={values.gender}
+                        onChange={() => setFieldValue("gender", "Woman")}
+                        label="Woman"
+                      />
+                      <RadioButton
+                        value="Man"
+                        selectedValue={values.gender}
+                        onChange={() => setFieldValue("gender", "Man")}
+                        label="Man"
+                      />
+                    </div>
+                  </div>
                   <div className={styles.fieldGroup}>
+                    <label htmlFor="name" className={styles.label}>
+                      Your name
+                    </label>
+                    <Field
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Enter your name (optional)"
+                      className={styles.input}
+                    />
+                  </div>
+                  <div className={styles.fieldGroup}>
+                    <label htmlFor="email" className={styles.label}>
+                      E-mail
+                    </label>
+                    <Field
+                      id="email"
+                      name="email"
+                      type="email"
+                      className={styles.input}
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className={styles.error}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.rightWrapper}>
+                  <label className={styles.label}>Password</label>
+                  <div className={styles.fieldGroupPas}>
                     <label
                       htmlFor="outDatePassword"
                       className={styles.radioButtonWrapper}
@@ -190,7 +231,7 @@ const SettingModal = ({ onClose }) => {
                     />
                   </div>
 
-                  <div className={styles.fieldGroup}>
+                  <div className={styles.fieldGroupPas}>
                     <label
                       htmlFor="newPassword"
                       className={styles.radioButtonWrapper}
@@ -211,7 +252,7 @@ const SettingModal = ({ onClose }) => {
                     />
                   </div>
 
-                  <div className={styles.fieldGroup}>
+                  <div className={styles.fieldGroupPas}>
                     <label
                       htmlFor="repeatNewPassword"
                       className={styles.radioButtonWrapper}

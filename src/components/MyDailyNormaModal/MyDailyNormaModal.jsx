@@ -39,16 +39,16 @@ const MyDailyNormaModal = ({ onClose }) => {
       title="My daily norma"
       classNameModal={styles.modal}
       onClose={onClose}>
-      <div className={styles.formuls}>
-        <div>
+      <ul className={styles.formulas}>
+        <li className={styles.formulasItem}>
           <span>For girl:</span>
-          <span className={styles.formul}> V=(M*0,03) + (T*0,4)</span>
-        </div>
-        <div>
+          <span className={styles.formula}> V=(M*0,03) + (T*0,4)</span>
+        </li>
+        <li className={styles.formulasItem}>
           <span>For man:</span>
-          <span className={styles.formul}> V=(M*0,04) + (T*0,6)</span>
-        </div>
-      </div>
+          <span className={styles.formula}> V=(M*0,04) + (T*0,6)</span>
+        </li>
+      </ul>
       <div className={styles.desc}>
         <span>*</span> V is the volume of the water norm in liters per day, M is
         your body weight, T is the time of active sports, or another type of
@@ -98,10 +98,10 @@ const MyDailyNormaModal = ({ onClose }) => {
             onChange={(e) => setT(Number(e.target.value))}
           />
         </div>
-        <p className={styles.textAmount}>
-          The required amount of water in liters per day:{" "}
+        <div className={styles.textAmount}>
+          <p> The required amount of water in liters per day:</p>
           <span>{m ? amountWaterPerDay.toFixed(1) : 0} L</span>
-        </p>
+        </div>
       </div>
       <div className={styles.inputWithLabel}>
         <label htmlFor={"waterAmount"} className={styles.labelAmount}>

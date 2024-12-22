@@ -91,65 +91,22 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 
 //GET refresh/user
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     //Reading the token from the state via getState()
-//     const reduxState = thunkAPI.getState();
-//     const persistedToken = reduxState.auth.token;
-
-//     if (persistedToken === null) {
-//       // If there is no token, exit without performing any request
-//       return thunkAPI.rejectWithValue("Unable to fetch user");
-//     }
-//     // const navigate = useNavigate();
-//     try {
-//       // If there is a token, add it to the HTTP header and perform the request
-//       console.log("persistedToken: ", persistedToken);
-//       setAuthHeader(persistedToken);
-//       const response = await axios.get("/user");
-//       console.log("Refresh response Data:", response.data.data);
-//       await thunkAPI.dispatch(fetchUser());
-
-//       await thunkAPI.dispatch(fetchUser());
-//       await thunkAPI.dispatch(getDayWaterList("2024-12-16T23:10"));
-//       await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
-//       thunkAPI.dispatch(setIsLoading(false));
-//       // navigate("/home");
-//       return response.data.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-//   {
-//     condition: (_, thunkAPI) => {
-//       const reduxState = thunkAPI.getState();
-
-//       return reduxState.auth.token !== null;
-//     },
-//   }
-// );
-
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue("No token available");
-    }
-
-    try {
-      const { data } = await axios.post("/auth/refresh", {
-        token: persistedToken,
-      });
-
-      return {
-        token: data.data.accessToken,
-      };
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+    setAuthHeader(state.auth.token);
+    thunkAPI.dispatch(setIsLoading(true));
+    await thunkAPI.dispatch(fetchUser());
+    await thunkAPI.dispatch(getDayWaterList(today));
+    await thunkAPI.dispatch(getMonthWaterList("2024-12-16T23:10"));
+    thunkAPI.dispatch(setIsLoading(false));
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const state = thunkAPI.getState();
+      console.log("state", state);
+      return state.auth.token !== null;
+    },
   }
 );

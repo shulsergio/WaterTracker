@@ -2,7 +2,7 @@
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    max-width: 592px;
+    max-width: 860px;
   }
 }
 
@@ -12,6 +12,9 @@
 
   @media screen and (min-width: 1440px) {
     flex-direction: row;
+    gap: 24px;
+    justify-content: space-around;
+    margin-bottom: 24px;
   }
 }
 
@@ -21,13 +24,31 @@
   justify-content: space-around;
   gap: 8px;
   margin-bottom: 24px;
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0px;
+  }
 }
 
+.fieldGroupPas {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 8px;
+}
 .label {
   font-weight: 500;
   font-size: 18px;
   line-height: 1.11111;
   color: var(--primery-color-black);
+}
+
+.labelPas {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11111;
+  color: var(--primery-color-black);
+  margin-bottom: 24px;
 }
 
 .radioButtonWrapper {
@@ -39,12 +60,16 @@
   gap: 24px;
 }
 .input {
-  background-color: var(--primary-color-white);
   padding: 12px 10px;
   border: 1px solid var(--secondary-color---5);
   border-radius: 6px;
   font-size: 16px;
   color: var(--primary-color-blue);
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 392px;
+  }
 }
 
 .input:active {
@@ -65,17 +90,33 @@
   font-size: 16px;
 }
 
+.leftWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .rightWrapper {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 24px;
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0px;
+  }
 }
 
 .saveButton {
   margin: 0;
   width: 100%;
   max-width: 767px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 160px;
+    margin-left: auto;
+    display: block;
+  }
 }
 
 .avatarContainer {

@@ -48,12 +48,26 @@
   align-items: center;
   gap: 8px;
   font-size: 16px;
+  stroke: var(--primary-color-blue);
+  color: var(--primary-color-blue);
+  background-color: transparent;
+}
+
+.button:hover {
+  stroke: var(--secondary-color-5);
+  color: var(--secondary-color-5);
+  box-shadow: none;
+}
+
+.button:hover,
+.button:hover .iconPlus {
+  stroke: var(--secondary-color-5);
+  fill: var(--secondary-color-5);
 }
 
 .iconPlus {
-  fill: none;
-  stroke-width: 1px;
   stroke: var(--primary-color-blue);
+  fill: var(--primary-color-blue);
 }
 
 @media screen and (min-width: 768px) {

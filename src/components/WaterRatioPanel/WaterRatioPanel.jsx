@@ -6,6 +6,7 @@ import { selectMonthWater } from "../../redux/monthWaterList/selectors";
 import { selectdayWater } from "../../redux/dayWaterList/selectors";
 import AddWaterModal from "../AddWaterModal/AddWaterModal.jsx";
 import Icon from "../Icon/Icon.jsx";
+import Button from "../button/Button.jsx";
 
 const WaterRatioPanel = () => {
   console.log("------ WaterRatioPanel ------");
@@ -75,8 +76,7 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 0 && progressPercentage < 50
                   ? styles.markerTextActive
                   : ""
-              }`}
-            >
+              }`}>
               0%
             </div>
           </div>
@@ -87,8 +87,7 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 50 && progressPercentage < 100
                   ? styles.markerTextActive
                   : ""
-              }`}
-            >
+              }`}>
               50%
             </div>
           </div>
@@ -97,16 +96,15 @@ const WaterRatioPanel = () => {
             <div
               className={`${styles.markerText} ${
                 progressPercentage === 100 ? styles.markerTextActive : ""
-              }`}
-            >
+              }`}>
               100%
             </div>
           </div>
         </div>
       </div>
-      <button onClick={() => setIsModalOpen(true)} className={styles.addButton}>
+      <Button onClick={() => setIsModalOpen(true)} className={styles.addButton}>
         <Icon id="icon-plus-circle" className={styles.plusCircle} /> Add Water
-      </button>
+      </Button>
       {isModalOpen && (
         <AddWaterModal
           isEdit={false}
@@ -119,4 +117,3 @@ const WaterRatioPanel = () => {
 };
 
 export default WaterRatioPanel;
-

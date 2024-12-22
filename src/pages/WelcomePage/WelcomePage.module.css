@@ -29,6 +29,8 @@
 @media screen and (min-width: 768px) {
   .section {
     background-image: var(--background-tab-welcomepage-1x);
+    /* background-image: url("../../images/background/tablet/Background-tab-1x.webp"); */
+    background-position: center;
     flex-direction: column;
     gap: 60px;
     bottom: -16px;
@@ -37,7 +39,7 @@
     padding-top: 40px;
     width: 768px;
     /* margin: -16px -32px; */
-    height: 800px;
+    height: 736px;
   }
 
   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
@@ -62,14 +64,6 @@
     padding-top: 80px;
     /* padding-left: 104px; */
   }
-
-  /* .layer {
-    background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
-    flex-wrap: nowrap;
-    background-repeat: no-repeat;
-    background-size: auto;
-    width: 1216px;
-  } */
 
   .wrapper {
     display: flex;

@@ -55,33 +55,23 @@ const userSlice = createSlice({
         state.data = action.payload;
       })
 
-      // .addCase(updateUserAvatar.pending, (state) => {
-      //   state.status = "loading";
-      // })
-
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
         // state.data = action.payload;
-        // Сервер має повертати оновлений URL аватара
       })
-
-      // .addCase(updateUserAvatar.rejected, (state, action) => {
-      //   state.status = "failed";
-      //   state.error = action.payload;
-      // })
 
       .addMatcher(
         isAnyOf(
           fetchUser.pending,
           updateDailyNorm.pending,
           updateUserProfile.pending,
-          updateUserAvatar.pending,
+          updateUserAvatar.pending
         ),
         (state) => {
           state.isLoading = true;
           state.error = null;
-        },
+        }
       )
 
       .addMatcher(
@@ -89,12 +79,12 @@ const userSlice = createSlice({
           fetchUser.rejected,
           updateDailyNorm.rejected,
           updateUserProfile.rejected,
-          updateUserAvatar.rejected,
+          updateUserAvatar.rejected
         ),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
-        },
+        }
       );
   },
 });

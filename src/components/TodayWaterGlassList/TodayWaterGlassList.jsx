@@ -1,7 +1,6 @@
 import css from "./TodayWaterGlassList.module.css";
 import MonthStatsTable from "../MonthStatsTable/MonthStatsTable";
 import TodayWaterItem from "../TodayWaterItem/TodayWaterItem";
-import Button from "../button/Button";
 import Icon from "../Icon/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -34,30 +33,30 @@ const TodayWaterGlassList = () => {
         <h2 className={css.title}>Today</h2>
 
         {isEmpty && (
-          <Button types="text" className={css.button} onClick={handleAddWater}>
+          <button className={css.button} onClick={handleAddWater}>
             <Icon
               id="icon-plus"
               width="16"
               height="16"
               className={css.iconPlus}
             />
-            Add water
-          </Button>
+            <span className={css.btnName}> Add water</span>
+          </button>
         )}
 
         <div className={css.waterList}>
           <TodayWaterItem />
         </div>
         {!isEmpty && (
-          <Button types="text" className={css.button} onClick={handleAddWater}>
+          <button className={css.button} onClick={handleAddWater}>
             <Icon
               id="icon-plus"
               width="16"
               height="16"
               className={css.iconPlus}
             />
-            Add water
-          </Button>
+            <span className={css.btnName}> Add water</span>
+          </button>
         )}
       </div>
       <MonthStatsTable />

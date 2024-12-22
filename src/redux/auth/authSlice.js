@@ -4,7 +4,7 @@ import { signUp, logIn, logOut, refreshUser } from "./operations";
 const initialState = {
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isRefreshing: true,
   isAuthHederSet: false,
   isLoading: false,
   error: null,
@@ -64,9 +64,9 @@ const AuthSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isRefreshing = false;
         state.isLoggedIn = true;
+        state.user = action.payload;
+        state.isRefreshing = true;
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.error = action.payload;
