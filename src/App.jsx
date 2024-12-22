@@ -30,8 +30,6 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Loader />
-  ) : (
     <>
       <Toaster
         position="top-center"
@@ -65,6 +63,8 @@ function App() {
         </Route>
       </Routes>
     </>
+  ) : (
+    <Loader />
   );
 }
 

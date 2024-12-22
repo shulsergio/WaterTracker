@@ -63,14 +63,6 @@
     /* padding-left: 104px; */
   }
 
-  /* .layer {
-    background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
-    flex-wrap: nowrap;
-    background-repeat: no-repeat;
-    background-size: auto;
-    width: 1216px;
-  } */
-
   .wrapper {
     display: flex;
     align-items: flex-end;
