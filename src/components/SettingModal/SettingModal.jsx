@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateUserAvatar,
   updateUserProfile,
-  // uploadPhoto2,
 } from "../../redux/user/operations.js";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import styles from "./SettingModal.module.css"; // Стилі форми
 import { selectUser } from "../../redux/user/selectors.js";
+import { BiShow, BiHide } from "react-icons/bi";
+import * as Yup from "yup";
+import styles from "./SettingModal.module.css";
 import RadioButton from "../radio-button/RadioButton.jsx";
 import Button from "../button/Button.jsx";
 import Modal from "../Modal/Modal.jsx";
@@ -17,13 +17,45 @@ import toast from "react-hot-toast";
 
 const SettingModal = ({ onClose }) => {
   console.log("------SettingModal ------");
-  const dispatch = useDispatch();
+
   const XavatarUrl = useSelector(selectUser).avatarUrl;
+  const Xemail = useSelector(selectUser).email;
+  const Xgender = useSelector(selectUser).gender;
+  const Xname = useSelector(selectUser).name;
+
+  const dispatch = useDispatch();
 
   const [preview, setPreview] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
+  const validationSchema = Yup.object().shape({
+    gender: Yup.string().required("Please select your gender."),
+    email: Yup.string()
+      .email("Invalid email address.")
+      .required("Email is required."),
+    newPassword: Yup.string()
+      .min(8, "Password must be at least 8 characters long.")
+      .required("New password is required."),
+    repeatNewPassword: Yup.string()
+      .oneOf([Yup.ref("newPassword"), null], "Passwords must match.")
+      .required("Please confirm your new password."),
+  });
+
+  const initialValues = {
+    gender: Xgender,
+    name: Xname,
+    email: Xemail || "",
+    outDatePassword: "",
+    newPassword: "",
+    repeatNewPassword: "",
+  };
+  console.log("Settings initialValues", initialValues);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result);
@@ -34,46 +66,24 @@ const SettingModal = ({ onClose }) => {
       toast.error("Please upload a valid image file.");
     }
   };
-  const Xemail = useSelector(selectUser).email;
-  const Xgender = useSelector(selectUser).gender;
-  const Xname = useSelector(selectUser).name;
-  const initialValues = {
-    gender: Xgender,
-    name: Xname,
-    email: Xemail || "",
-    outDatePassword: "",
-    newPassword: "",
-    repeatNewPassword: "",
-  };
-  console.log("Settings initialValues", initialValues);
-  const validationSchema = Yup.object({
-    gender: Yup.string().required("Please select your gender."),
-    email: Yup.string()
-      .email("Invalid email address.")
-      .required("Email is required."),
-    newPassword: Yup.string().min(
-      8,
-      "Password must be at least 8 characters long."
-    ),
-    repeatNewPassword: Yup.string().oneOf(
-      [Yup.ref("newPassword")],
-      "Passwords must match."
-    ),
-  });
 
   const handleSubmit = (values, { setSubmitting }) => {
     const { gender, name, email, outDatePassword, newPassword } = values;
+
     const ii = newPassword && { outDatePassword, newPassword };
     console.log("ZZZZZZZZ - ", ii);
+
     const dataToSend = {
       gender,
       name,
       email,
       ...(newPassword && { outDatePassword, newPassword }),
     };
+
     const onSave = () => {
-      console.log("onSave");
+      console.log("onSave"); //не знаю чи це потрібно =================================
     };
+
     dispatch(updateUserProfile(dataToSend))
       .then(() => {
         onSave();
@@ -85,6 +95,22 @@ const SettingModal = ({ onClose }) => {
         return;
       });
     setSubmitting(false);
+  };
+
+  const togglePasswordVisibility = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setShowPassword((prev) => !prev);
+  };
+  const toggleNewPasswordVisibility = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setShowNewPassword((prev) => !prev);
+  };
+  const toggleRepeatPasswordVisibility = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setShowRepeatPassword((prev) => !prev);
   };
 
   // const handleRemovePhoto = () => {
@@ -158,7 +184,7 @@ const SettingModal = ({ onClose }) => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, setFieldValue }) => (
+          {({ values, setFieldValue, touched, errors }) => (
             <Form className={styles.form}>
               <div className={styles.dataWrapper}>
                 <div className={styles.leftWrapper}>
@@ -179,33 +205,35 @@ const SettingModal = ({ onClose }) => {
                       />
                     </div>
                   </div>
-                  <div className={styles.fieldGroup}>
-                    <label htmlFor="name" className={styles.label}>
-                      Your name
-                    </label>
-                    <Field
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Enter your name (optional)"
-                      className={styles.input}
-                    />
-                  </div>
-                  <div className={styles.fieldGroup}>
-                    <label htmlFor="email" className={styles.label}>
-                      E-mail
-                    </label>
-                    <Field
-                      id="email"
-                      name="email"
-                      type="email"
-                      className={styles.input}
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className={styles.error}
-                    />
+                  <div className={styles.nameEmailWrapper}>
+                    <div className={styles.fieldGroup}>
+                      <label htmlFor="name" className={styles.label}>
+                        Your name
+                      </label>
+                      <Field
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Enter your name (optional)"
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.fieldGroup}>
+                      <label htmlFor="email" className={styles.label}>
+                        E-mail
+                      </label>
+                      <Field
+                        id="email"
+                        name="email"
+                        type="email"
+                        className={styles.input}
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className={styles.errorMessage}
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -218,59 +246,114 @@ const SettingModal = ({ onClose }) => {
                     >
                       Outdated password
                     </label>
-                    <Field
-                      id="outDatePassword"
-                      name="outDatePassword"
-                      type="password"
-                      placeholder="Enter your current password"
-                      className={styles.input}
-                    />
-                    <ErrorMessage
-                      name="outDatePassword"
-                      component="div"
-                      className={styles.error}
-                    />
+                    <div className={styles.passwordWrapper}>
+                      <Field
+                        id="outDatePassword"
+                        name="outDatePassword"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your current password"
+                        className={
+                          touched.outDatePassword && errors.outDatePassword
+                            ? `${styles.input} ${styles.inputError}`
+                            : styles.input
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className={styles.eyeButton}
+                        aria-label="Toggle password visibility"
+                      >
+                        {showPassword ? (
+                          <BiShow className={styles.eye} />
+                        ) : (
+                          <BiHide className={styles.eye} />
+                        )}
+                      </button>
+                      <ErrorMessage
+                        name="outDatePassword"
+                        component="div"
+                        className={styles.errorMessage}
+                      />
+                    </div>
                   </div>
 
                   <div className={styles.fieldGroupPas}>
                     <label
                       htmlFor="newPassword"
-                      className={styles.radioButtonWrapper}
+                      className={styles.fieldGroupPas}
                     >
                       New password
+                      <div className={styles.passwordWrapper}>
+                        <Field
+                          id="newPassword"
+                          name="newPassword"
+                          type={showNewPassword ? "text" : "password"}
+                          placeholder="Enter your new password"
+                          className={
+                            touched.newPassword && errors.newPassword
+                              ? `${styles.input} ${styles.inputError}`
+                              : styles.input
+                          }
+                        />
+                        <button
+                          type="button"
+                          onClick={toggleNewPasswordVisibility}
+                          className={styles.eyeButton}
+                          aria-label="Toggle new password visibility"
+                        >
+                          {showNewPassword ? (
+                            <BiShow className={styles.eye} />
+                          ) : (
+                            <BiHide className={styles.eye} />
+                          )}
+                        </button>
+                      </div>
                     </label>
-                    <Field
-                      id="newPassword"
-                      name="newPassword"
-                      type="password"
-                      placeholder="Enter your new password"
-                      className={styles.input}
-                    />
                     <ErrorMessage
                       name="newPassword"
                       component="div"
-                      className={styles.error}
+                      className={styles.errorMessage}
                     />
                   </div>
 
                   <div className={styles.fieldGroupPas}>
                     <label
                       htmlFor="repeatNewPassword"
-                      className={styles.radioButtonWrapper}
+                      className={styles.fieldGroupPas}
                     >
                       Repeat new password
+                      <div className={styles.passwordWrapper}>
+                        <Field
+                          id="repeatNewPassword"
+                          name="repeatNewPassword"
+                          type={showRepeatPassword ? "text" : "password"}
+                          placeholder="Repeat your new password"
+                          className={
+                            touched.repeatNewPassword &&
+                            errors.repeatNewPassword
+                              ? `${styles.input} ${styles.inputError}`
+                              : styles.input
+                          }
+                        />
+                        <button
+                          type="button"
+                          onClick={toggleRepeatPasswordVisibility}
+                          className={styles.eyeButton}
+                          aria-label="Toggle repeat new password visibility"
+                        >
+                          {showRepeatPassword ? (
+                            <BiShow className={styles.eye} />
+                          ) : (
+                            <BiHide className={styles.eye} />
+                          )}
+                        </button>
+                      </div>
                     </label>
-                    <Field
-                      id="repeatNewPassword"
-                      name="repeatNewPassword"
-                      type="password"
-                      placeholder="Repeat your new password"
-                      className={styles.input}
-                    />
                     <ErrorMessage
                       name="repeatNewPassword"
                       component="div"
-                      className={styles.error}
+                      className={styles.errorMessage}
                     />
                   </div>
                 </div>
