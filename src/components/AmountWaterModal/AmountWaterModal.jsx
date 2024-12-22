@@ -3,6 +3,7 @@ import Icon from "../Icon/Icon";
 import Modal from "../Modal/Modal";
 import Button from "../button/Button";
 import styles from "./AmountWaterModal.module.css";
+import toast from "react-hot-toast";
 
 const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
   const [amount, setAmount] = useState(data?.volume || 0);
@@ -16,7 +17,7 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    }),
+    })
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -36,7 +37,11 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
       date: new Date(timeData).toISOString(),
     };
     console.log("updated glass", updatedGlass);
-    onSave(updatedGlass); // Pass updated data back to parent
+    if (updatedGlass.volume > 0) {
+      onSave(updatedGlass); // Pass updated data back to parent
+    } else {
+      toast.error("Should be at least 1 ml");
+    }
   };
 
   const handleChangeTime = (e) => {
@@ -51,11 +56,12 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
     <Modal
       title={isEdit ? "Edit the entered amount of water" : "Add water"}
       classNameModal={styles.modal}
-      onClose={onClose}>
+      onClose={onClose}
+    >
       {isEdit && (
         <div className={styles.blockInfo}>
           <Icon id="glass-water" width={36} height={36} />
-          <span className={styles.blockInfoAmount}>{editAmount}</span>
+          <span className={styles.blockInfoAmount}>{editAmount} ml</span>
           <span className={styles.blockInfoTime}>{time}</span>
         </div>
       )}
