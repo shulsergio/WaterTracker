@@ -59,7 +59,7 @@
   height: 8px;
   background: var(--secondary-color---5);
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-bottom: 7px;
 }
 
@@ -80,7 +80,26 @@
   border: 1px solid var(--primary-color-blue);
   border-radius: 100%;
   transition: left 0.3s ease-in-out;
-  pointer-events: none;
+  cursor: pointer;
+}
+
+.infoTooltip {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color-white);
+  border: 1px solid var(--secondary-color-2);
+  box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
+  color: var(--primary-color-black);
+  border-radius: 10px;
+  z-index: 999;
+  padding: 5px 10px;
+  white-space: nowrap;
+  font-family: var(--font-roboto);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33333;
 }
 
 .markersContainer {
@@ -177,20 +196,11 @@
 }
 
 .plusCircle {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--primary-color);
 }
 
 .plusCircle:hover {
   color: var(--secondary-color-5);
-}
-
-@media screen and (min-width: 320px) {
-}
-
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 1440px) {
 }

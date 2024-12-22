@@ -13,6 +13,14 @@ const WaterRatioPanel = () => {
   const monthWater = useSelector(selectMonthWater);
   const dayWater = useSelector(selectdayWater);
   const user = useSelector(selectUser);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const handleMouseEnter = () => {
+    setIsTooltipVisible(true);
+    };
+
+  const handleMouseLeave = () => {
+    setIsTooltipVisible(false);
+    };
 
   console.log("user- ", user);
   const dailyGoal = useSelector(selectDailyNorm); // Загальна норма в мл
@@ -48,7 +56,15 @@ const WaterRatioPanel = () => {
             <div
               className={styles.progressSlider}
               style={{ left: sliderPosition }}
-            ></div>
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              {isTooltipVisible && (
+                <div className={styles.infoTooltip}>
+                  Динамічна інформація про прогрес
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className={styles.markersContainer}>
