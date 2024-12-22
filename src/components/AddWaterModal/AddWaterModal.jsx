@@ -20,7 +20,7 @@ const AddWaterModal = ({ onClose }) => {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    }),
+    })
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -35,10 +35,15 @@ const AddWaterModal = ({ onClose }) => {
       volume: amount,
       date: date.toISOString(),
     };
-    dispatch(addWaterGlass(data));
-    dispatch(getDayWaterList());
-    toast.success("Water data added");
+
     onClose();
+    if (amount > 0) {
+      dispatch(addWaterGlass(data));
+      dispatch(getDayWaterList());
+      toast.success("Water data added");
+    } else {
+      toast.error("Somethimg went wrong");
+    }
   };
 
   const handleChangeTime = (e) => {
@@ -58,7 +63,7 @@ const AddWaterModal = ({ onClose }) => {
           <button onClick={decrement} className={styles.calcBlockBtn}>
             <Icon id="icon-minus" className={styles.calcIcon} />
           </button>
-          <div className={styles.valueWaterMl}>{amount}ml</div>
+          <div className={styles.valueWaterMl}>{amount} ml</div>
           <button onClick={increment} className={styles.calcBlockBtn}>
             <Icon id="icon-increment" width={14} height={14} />
           </button>
