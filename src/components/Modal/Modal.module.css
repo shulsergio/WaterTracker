@@ -14,9 +14,9 @@
   border-radius: 10px;
   padding: 24px 12px;
   position: absolute;
-  top: 50%;
+  top: 40px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   background-color: var(--primary-color-white);
   width: 280px;
   max-width: calc(100% - 40px);
@@ -29,6 +29,8 @@
 
   @media screen and (min-width: 1440px) {
     width: 592px;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
