@@ -7,16 +7,16 @@ import styles from "./AmountWaterModal.module.css";
 const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
   const [amount, setAmount] = useState(data?.volume || 0);
   const [time, setTime] = useState(data?.date || "");
-  const [editAmount, setEditAmount] = useState(amount);
+  const editAmount = amount;
 
   const date = new Date();
-  const [timeData, setTimeData] = useState(date.toISOString());
+  const timeData = date.toISOString();
   const [timeNow, setTimeNow] = useState(
     date.toLocaleTimeString("default", {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    })
+    }),
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -51,8 +51,7 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
     <Modal
       title={isEdit ? "Edit the entered amount of water" : "Add water"}
       classNameModal={styles.modal}
-      onClose={onClose}
-    >
+      onClose={onClose}>
       {isEdit && (
         <div className={styles.blockInfo}>
           <Icon id="glass-water" width={36} height={36} />
@@ -103,7 +102,9 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
       </div>
       <div className={styles.footerModal}>
         <div className={styles.amount}>{amount} ml</div>
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={handleSave} className={styles.buttonModal}>
+          Save
+        </Button>
       </div>
     </Modal>
   );
