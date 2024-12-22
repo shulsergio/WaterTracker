@@ -1,6 +1,13 @@
-<h1>Water Tracker</h1>
+<style>
+  .highlight {
+    font-weight: bold;
+    color: blue;
+  }
+</style>
 
-<p> Water Tracker - web app for control and monitoring daily and monthly water consumption.
+<h1 class="highlight">Water Tracker</h1>
+
+<p> <span class="highlight">Water Tracker</span> - web app for control and monitoring daily and monthly water consumption.
 With the ability to register, change parameters and maintain statistics on water consumption.
 Additionally, it is possible to change the theme of the application
 </p>
