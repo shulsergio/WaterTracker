@@ -98,7 +98,7 @@
   align-items: center;
 }
 
-.textAmount div {
+.textAmount p {
   width: 190px;
   margin-right: 6px;
   @media screen and (min-width: 768px) {
