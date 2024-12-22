@@ -55,7 +55,12 @@ const WaterRatioPanel = () => {
       <div className={styles.containerProgress}>
         <h2 className={styles.title}>Today</h2>
         <div className={styles.progressTrack}>
-          <div className={styles.progressBar}>
+          <div className={styles.progressBar} 
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}>
+                {isTooltipVisible && (
+                <div className={styles.infoTooltip}>{additionalData}</div>
+              )}
             <div
               className={styles.progressFilled}
               style={{ width: `${progressPercentage}%` }}
@@ -63,12 +68,7 @@ const WaterRatioPanel = () => {
             <div
               className={styles.progressSlider}
               style={{ left: sliderPosition }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
             >
-              {isTooltipVisible && (
-                <div className={styles.infoTooltip}>{additionalData}</div>
-              )}
             </div>
           </div>
         </div>
