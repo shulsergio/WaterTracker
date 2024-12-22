@@ -96,8 +96,7 @@ const MonthStatsTable = () => {
           <button
             type="button"
             className={s.calendarButton}
-            onClick={handleDecrement}
-          >
+            onClick={handleDecrement}>
             <Icon
               id="icon-left-arrow"
               className={s.icon}
@@ -105,18 +104,16 @@ const MonthStatsTable = () => {
               height="14"
             />
           </button>
-          <p className={s.calendarDate}>{`${userMonth.toLocaleString(
-            "default",
-            { month: "long" }
-          )}, ${userMonth.toLocaleString("default", {
+          <p className={s.calendarDate}>{`${userMonth.toLocaleString("en-US", {
+            month: "long",
+          })}, ${userMonth.toLocaleString("default", {
             year: "numeric",
           })}`}</p>
           <button
             type="button"
             className={s.calendarButton}
             onClick={handleIncrement}
-            disabled={isDisabled}
-          >
+            disabled={isDisabled}>
             <Icon
               id="icon-right-arrow"
               className={s.icon}
@@ -138,7 +135,7 @@ const MonthStatsTable = () => {
                 <div className={s.dayAction}>
                   <DaysGeneralStats
                     day={date.getDate()}
-                    month={date.toLocaleString("default", {
+                    month={date.toLocaleString("en-US", {
                       month: "long",
                     })}
                     dailyNorma={dailyNorma}
