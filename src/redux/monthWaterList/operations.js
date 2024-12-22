@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logOut } from "../auth/operations";
 
 export const getMonthWaterList = createAsyncThunk(
   "water/monthWaterList",
@@ -17,6 +18,10 @@ export const getMonthWaterList = createAsyncThunk(
       console.log("response.data in getMonthWaterList", response.data);
       return response.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

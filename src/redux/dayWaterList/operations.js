@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logOut } from "../auth/operations";
 
 export const getDayWaterList = createAsyncThunk(
   "water/dayWaterList",
@@ -17,6 +18,10 @@ export const getDayWaterList = createAsyncThunk(
       console.log("response.data in getDayWaterList", response.data);
       return response.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -30,6 +35,10 @@ export const addWaterGlass = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -49,6 +58,10 @@ export const updateWaterGlass = createAsyncThunk(
       console.log("response in updateWaterGlass", response);
       return response.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -68,6 +81,10 @@ export const deleteWaterGlass = createAsyncThunk(
       console.log("response in deleteWaterGlass", response);
       return glassId;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue("Error during delete operation:", error);
     }
   }
