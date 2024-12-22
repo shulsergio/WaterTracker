@@ -40,14 +40,14 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 1.11111;
-  color: var(--primery-color-black);
+  color: var(--primary-color-black);
 }
 
 .labelPas {
   font-weight: 500;
   font-size: 18px;
   line-height: 1.11111;
-  color: var(--primery-color-black);
+  color: var(--primary-color-black);
   margin-bottom: 24px;
 }
 
@@ -173,7 +173,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.28571;
-  color: #407bff;
+  color: var(--primary-color-blue);
 }
 
 .fileInput {
@@ -271,5 +271,5 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 129%;
-  color: #ef5050;
+  color: var(--secondary-color-3);
 }
