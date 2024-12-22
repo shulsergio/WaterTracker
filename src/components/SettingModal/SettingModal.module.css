@@ -36,6 +36,7 @@
   justify-content: space-around;
   gap: 8px;
 }
+
 .label {
   font-weight: 500;
   font-size: 18px;
@@ -59,6 +60,7 @@
   line-height: 1.25;
   gap: 24px;
 }
+
 .input {
   padding: 12px 10px;
   border: 1px solid var(--secondary-color---5);
@@ -66,6 +68,7 @@
   font-size: 16px;
   color: var(--primary-color-blue);
   width: 100%;
+  padding-right: 40px;
 
   @media screen and (min-width: 768px) {
     width: 392px;
@@ -73,16 +76,16 @@
 }
 
 .input:active {
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--secondary-color---5);
 }
 
 .input:focus {
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--secondary-color---5);
 }
 
-::placeholder {
-  font-family: var(--font-family);
-  font-size: 16px;
+.input::placeholder {
+  color: var(--primary-color-blue);
+  font-size: 16px; /* Розмір шрифту */
 }
 
 .leftWrapper {
@@ -149,7 +152,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #9ebbff; /* Колір фону, якщо немає аватара */
+  background-color: var(
+    --secondary-color-4
+  ); /* Колір фону, якщо немає аватара */
 }
 
 .avatar {
@@ -206,9 +211,8 @@
 
 /* .removePhotoButton:hover {
   background: #e04c4c;
-} */
-
-/* .emptyAvatar {
+}
+.emptyAvatar {
   font-size: 64px;
   font-weight: bold;
   color: #ffffff;
@@ -261,10 +265,7 @@
 .eye {
   width: 16px;
   height: 16px;
-}
-
-.input {
-  padding-right: 40px; /* Простір для іконки ока */
+  color: var(--primary-color-blue);
 }
 
 .errorMessage {
