@@ -1,8 +1,28 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Water Tracker
 
-Currently, two official plugins are available:
+<h1>Water Tracker</h1>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p> Water Tracker - web app for control and monitoring daily and monthly water consumption.
+</p>
+## Technologies Used
+<p>Used - React, Node.js, MongoDB</p>
+
+## Team
+
+<h2>Team</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Role</th>
+          <th>Git</th>
+    </tr>
+    <tr>
+        <td> Shulga Sergiy </td>
+        <td>Leam Lead </td>
+        <td>git</td>
+    </tr>
+  
+</table>
