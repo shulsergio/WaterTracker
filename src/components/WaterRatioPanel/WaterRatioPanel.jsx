@@ -17,11 +17,11 @@ const WaterRatioPanel = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const handleMouseEnter = () => {
     setIsTooltipVisible(true);
-    };
+  };
 
   const handleMouseLeave = () => {
     setIsTooltipVisible(false);
-    };
+  };
 
   console.log("user- ", user);
   const dailyGoal = useSelector(selectDailyNorm); // Загальна норма в мл
@@ -43,7 +43,13 @@ const WaterRatioPanel = () => {
 
   // const progressPercentage = dayWater.consumedPercentage * 100;
   const sliderPosition = `calc(${progressPercentage}% - 8px)`;
-
+  const add1 = parseFloat(
+    (dailyGoal - (dailyGoal * progressPercentage) / 100).toFixed(1)
+  );
+  const additionalData =
+    add1 > 0
+      ? `Today still need to drink ${add1}ml `
+      : `Norm of drinking water is ${add1} more`;
   return (
     <div className={styles.progressContainer}>
       <div className={styles.containerProgress}>
@@ -61,9 +67,7 @@ const WaterRatioPanel = () => {
               onMouseLeave={handleMouseLeave}
             >
               {isTooltipVisible && (
-                <div className={styles.infoTooltip}>
-                  Динамічна інформація про прогрес
-                </div>
+                <div className={styles.infoTooltip}>{additionalData}</div>
               )}
             </div>
           </div>
@@ -76,7 +80,8 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 0 && progressPercentage < 50
                   ? styles.markerTextActive
                   : ""
-              }`}>
+              }`}
+            >
               0%
             </div>
           </div>
@@ -87,7 +92,8 @@ const WaterRatioPanel = () => {
                 progressPercentage >= 50 && progressPercentage < 100
                   ? styles.markerTextActive
                   : ""
-              }`}>
+              }`}
+            >
               50%
             </div>
           </div>
@@ -96,7 +102,8 @@ const WaterRatioPanel = () => {
             <div
               className={`${styles.markerText} ${
                 progressPercentage === 100 ? styles.markerTextActive : ""
-              }`}>
+              }`}
+            >
               100%
             </div>
           </div>
