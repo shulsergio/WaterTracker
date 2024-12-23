@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./WaterRatioPanel.module.css";
-import { selectDailyNorm, selectUser } from "../../redux/user/selectors";
+import { selectDailyNorm } from "../../redux/user/selectors";
 import { useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors";
 import { selectdayWater } from "../../redux/dayWaterList/selectors";
@@ -9,10 +9,9 @@ import Icon from "../Icon/Icon.jsx";
 import Button from "../button/Button.jsx";
 
 const WaterRatioPanel = () => {
-  console.log("------ WaterRatioPanel ------");
   const monthWater = useSelector(selectMonthWater);
   const dayWater = useSelector(selectdayWater);
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const handleMouseEnter = () => {
     setIsTooltipVisible(true);

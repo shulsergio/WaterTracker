@@ -9,7 +9,6 @@ import css from "./HomePage.module.css";
  * @return {*}
  */
 export default function HomePage() {
-  console.log("Rendered HomePage");
   return (
     <section className={css.section}>
       <div className={css.wrap}>

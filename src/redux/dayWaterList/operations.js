@@ -6,7 +6,6 @@ export const getDayWaterList = createAsyncThunk(
   "water/dayWaterList",
   async (date = new Date().toISOString().split("T")[0], thunkAPI) => {
     try {
-      console.log("-------- getDayWaterList -----");
       const response = await axios.get("/water/daily", {
         params: { date: date },
         headers: {
@@ -14,8 +13,6 @@ export const getDayWaterList = createAsyncThunk(
         },
       });
 
-      console.log("response in getDayWaterList", response);
-      console.log("response.data in getDayWaterList", response.data);
       return response.data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -55,7 +52,6 @@ export const updateWaterGlass = createAsyncThunk(
     }
     try {
       const response = await axios.patch(`/water/glass/${id}`, updatedGlass);
-      console.log("response in updateWaterGlass", response);
       return response.data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -78,7 +74,6 @@ export const deleteWaterGlass = createAsyncThunk(
     }
     try {
       const response = await axios.delete(`water/glass/${glassId}`);
-      console.log("response in deleteWaterGlass", response);
       return glassId;
     } catch (error) {
       if (error.response.status === 401) {
