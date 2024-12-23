@@ -37,9 +37,9 @@ const Header = () => {
       <span>
         <button className={css.themeToggle} onClick={toggleTheme}>
           {isDarkTheme ? (
-            <FaSun size={36} color="gold" />
+            <FaSun size={24} color="gold" />
           ) : (
-            <FaMoon size={36} color="silver" />
+            <FaMoon size={24} color="silver" />
           )}
         </button>
       </span>
