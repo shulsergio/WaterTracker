@@ -3,14 +3,14 @@ import styles from "./WaterRatioPanel.module.css";
 import { selectDailyNorm } from "../../redux/user/selectors";
 import { useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors";
-import { selectdayWater } from "../../redux/dayWaterList/selectors";
+import { selectDayWater } from "../../redux/dayWaterList/selectors";
 import AddWaterModal from "../AddWaterModal/AddWaterModal.jsx";
 import Icon from "../Icon/Icon.jsx";
 import Button from "../button/Button.jsx";
 
 const WaterRatioPanel = () => {
   const monthWater = useSelector(selectMonthWater);
-  const dayWater = useSelector(selectdayWater);
+  const dayWater = useSelector(selectDayWater);
   // const user = useSelector(selectUser);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const handleMouseEnter = () => {

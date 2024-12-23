@@ -4,7 +4,7 @@ import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import Icon from "../Icon/Icon";
 import css from "./TodayWaterItem.module.css";
 import { useState } from "react";
-import { selectdayWater } from "../../redux/dayWaterList/selectors";
+import { selectDayWater } from "../../redux/dayWaterList/selectors";
 import {
   deleteWaterGlass,
   getDayWaterList,
@@ -18,7 +18,7 @@ const TodayWaterItem = () => {
   const [editData, setEditData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
 
-  const water = useSelector(selectdayWater);
+  const water = useSelector(selectDayWater);
   const dispatch = useDispatch();
 
   const logsInfo = water.logs.map(({ date, _id, volume }) => {
@@ -49,7 +49,7 @@ const TodayWaterItem = () => {
         dispatch(getDayWaterList());
       })
       .catch((error) => {
-        toast.success("Error updating glass:");
+        toast.error(`Error updating glass: ${error}`);
       });
   };
 
@@ -90,15 +90,13 @@ const TodayWaterItem = () => {
               <button
                 onClick={() => handleEditClick(log)}
                 className={css.editIcon}
-                aria-label="Edit water norma"
-              >
+                aria-label="Edit water norma">
                 <Icon id="icon-edit" width={16} height={16} />
               </button>
               <button
                 onClick={() => handleDeleteClick(log.id)}
                 className={css.deleteIcon}
-                aria-label="Delete water norma"
-              >
+                aria-label="Delete water norma">
                 <Icon id="icon-delete" width={16} height={16} />
               </button>
             </div>

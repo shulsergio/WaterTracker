@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getDayWaterList } from "../../redux/dayWaterList/operations";
 import AddWaterModal from "../AddWaterModal/AddWaterModal";
-import { selectdayWater } from "../../redux/dayWaterList/selectors";
+import { selectDayWater } from "../../redux/dayWaterList/selectors";
 
 const TodayWaterGlassList = () => {
   const [addWater, setAddWater] = useState(false);
   const dispatch = useDispatch();
-  const water = useSelector(selectdayWater);
+  const water = useSelector(selectDayWater);
 
   const handleAddWater = () => {
     setAddWater(true);
