@@ -1,6 +1,5 @@
 .container {
   border-radius: 10px;
-  /* margin: 40px 20px; */
   padding: 24px 16px;
   width: 280px;
   height: 416px;
@@ -37,7 +36,6 @@
   height: 8px;
   border-radius: 50%;
   background-color: var(--primary-color-blue);
-  /* margin-right: 8px; */
   flex-shrink: 0;
 }
 

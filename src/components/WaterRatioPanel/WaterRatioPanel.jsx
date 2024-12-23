@@ -10,7 +10,6 @@ import Button from "../button/Button.jsx";
 
 const WaterRatioPanel = () => {
   console.log("------ WaterRatioPanel ------");
-  // const dispatch = useDispatch();
   const monthWater = useSelector(selectMonthWater);
   const dayWater = useSelector(selectdayWater);
   const user = useSelector(selectUser);
@@ -23,10 +22,7 @@ const WaterRatioPanel = () => {
     setIsTooltipVisible(false);
   };
 
-  console.log("user- ", user);
   const dailyGoal = useSelector(selectDailyNorm); // Загальна норма в мл
-  console.log("dailyGoal- ", dailyGoal);
-  console.log("dayWater.consumedPercentage- ", dayWater.consumedPercentage);
 
   const [progressPercentage, setProgressPercentage] = useState();
 
@@ -34,14 +30,8 @@ const WaterRatioPanel = () => {
     setProgressPercentage(dayWater.consumedPercentage * 100);
   }, [dayWater.consumedPercentage, monthWater, dayWater, dailyGoal]);
 
-  console.log("monthWater- ", monthWater);
-  console.log("dayWater- ", dayWater);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const progressPercentaged =
-  //   progressPercentage > 100 ? 100 : progressPercentage;
-  // console.log("progressPercentaged - ", progressPercentaged);
-  console.log("progressPercentage - ", progressPercentage);
-  // const progressPercentage = dayWater.consumedPercentage * 100;
+
   const sliderPosition = `calc(${
     progressPercentage > 100 ? 100 : progressPercentage
   }% - 8px)`;
@@ -124,11 +114,7 @@ const WaterRatioPanel = () => {
         <Icon id="icon-plus-circle" className={styles.plusCircle} /> Add Water
       </Button>
       {isModalOpen && (
-        <AddWaterModal
-          isEdit={false}
-          onClose={() => setIsModalOpen(false)}
-          // onSubmit={addWater}
-        />
+        <AddWaterModal isEdit={false} onClose={() => setIsModalOpen(false)} />
       )}
     </div>
   );

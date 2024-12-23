@@ -36,7 +36,6 @@ const TodayWaterItem = () => {
   }; // log - id,volume, date
 
   const handleDeleteClick = (id) => {
-    console.log("Selected ID for deletion:", id);
     setDeleteData(id);
     setIsDeleteOpen(true);
   };
@@ -55,7 +54,6 @@ const TodayWaterItem = () => {
   };
 
   const handleDelete = () => {
-    console.log("deleteData before dispatch:", deleteData);
     dispatch(deleteWaterGlass(deleteData))
       .unwrap()
       .then(() => {

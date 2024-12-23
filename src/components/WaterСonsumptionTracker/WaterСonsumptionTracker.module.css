@@ -21,7 +21,7 @@
   @media screen and (min-width: 1440px) {
     width: 439px;
     margin: 0;
-    /* margin-right: 81px; */
+
   }
 }
 
@@ -77,7 +77,6 @@
   }
 }
 .benefits__title {
-  /* font-weight: 500; */
   font-size: 18px;
   line-height: 1.11;
   margin-bottom: 12px;

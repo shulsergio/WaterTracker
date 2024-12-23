@@ -90,8 +90,6 @@ const SettingModal = ({ onClose }) => {
       repeatNewPassword,
     } = values;
 
-    const ii = newPassword && { outDatePassword, newPassword };
-    console.log("ZZZZZZZZ - ", ii);
     if (newPassword !== repeatNewPassword) {
       toast.error("Wrong repeat password");
       return;
@@ -115,7 +113,8 @@ const SettingModal = ({ onClose }) => {
       })
       .catch((error) => {
         console.error("Error updating profile:", error);
-        return;
+
+        return toast.error("Error updating profile");
       });
     setSubmitting(false);
   };
