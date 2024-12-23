@@ -1,70 +1,80 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Icon from "../Icon/Icon";
 import Modal from "../Modal/Modal";
 import Button from "../button/Button";
 import styles from "./AmountWaterModal.module.css";
 import toast from "react-hot-toast";
+import * as Yup from "yup";
 
-const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
-  const [amount, setAmount] = useState(data?.volume || 0);
-  const [time, setTime] = useState(data?.date || "");
-  const editAmount = amount;
+const AmountWaterModal = ({ onClose, data, onSave }) => {
+  const editAmount = data?.volume || 0;
+  const timeData = data?.date || "";
+
+  const [amount, setAmount] = useState(editAmount);
+  const [timeNow, setTimeNow] = useState(timeData);
+  const [error, setError] = useState("");
 
   const date = new Date();
-  const timeData = date.toISOString();
-  const [timeNow, setTimeNow] = useState(
-    date.toLocaleTimeString("default", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hourCycle: "h23",
-    })
-  );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
   const decrement = () =>
     setAmount((prevAmount) => Math.max(0, prevAmount - 50));
 
-  useEffect(() => {
-    if (data) {
-      setAmount(data.volume);
-      setTime(data.date);
-    }
-  }, [data]);
-
   const handleSave = () => {
+    const [hours, minutes] = timeNow.split(":").map(Number);
+    date.setHours(hours, minutes, 0, 0);
     const updatedGlass = {
       volume: amount,
-      date: new Date(timeData).toISOString(),
+      date: date.toISOString(),
     };
 
-    if (updatedGlass.volume > 0) {
-      onSave(updatedGlass);
+    if ((updatedGlass.volume > 0) & (amount <= 4000)) {
+      toast.success("Water data successfully changed");
+      onSave(updatedGlass); // Pass updated data back to parent
     } else {
-      toast.error("Should be at least 1 ml");
+      toast.error("Something went wrong");
+      return;
     }
   };
+
+  const schemaTime = Yup.string()
+    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, "Enter time in hh:mm format")
+    .required("This field is required");
 
   const handleChangeTime = (e) => {
     setTimeNow(e.target.value);
+
+    schemaTime
+      .validate(e.target.value)
+      .then(() => setError(""))
+      .catch((err) => setError(err.message));
   };
 
+  const schemaAmount = Yup.number()
+    .min(1, "The value must be greater than 0")
+    .max(4000, "the value must be less than 4000")
+    .required("This field is required");
+
   const handleChangeAmount = (e) => {
-    setAmount(e.target.value);
+    setAmount(Number(e.target.value));
+
+    schemaAmount
+      .validate(e.target.value)
+      .then(() => setError(""))
+      .catch((err) => setError(err.message));
   };
 
   return (
     <Modal
-      title={isEdit ? "Edit the entered amount of water" : "Add water"}
+      title={"Edit the entered amount of water"}
       classNameModal={styles.modal}
-      onClose={onClose}
-    >
-      {isEdit && (
-        <div className={styles.blockInfo}>
-          <Icon id="glass-water" width={36} height={36} />
-          <span className={styles.blockInfoAmount}>{editAmount} ml</span>
-          <span className={styles.blockInfoTime}>{time}</span>
-        </div>
-      )}
+      onClose={onClose}>
+      <div className={styles.blockInfo}>
+        <Icon id="glass-water" width={36} height={36} />
+        <span className={styles.blockInfoAmount}>{editAmount} ml</span>
+        <span className={styles.blockInfoTime}>{timeData}</span>
+      </div>
+
       <div>
         <h3 className={styles.subtitle}>Correct entered data:</h3>
         <h3 className={styles.amountOfWaterTitle}>Amount of water:</h3>
@@ -85,11 +95,11 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
         </label>
         <input
           id="weight"
-          type="text"
+          type="time"
           placeholder="Enter time"
+          className={styles.inputField}
           value={timeNow}
           onChange={handleChangeTime}
-          className={styles.inputField}
         />
       </div>
 
@@ -101,11 +111,14 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
           id="waterAmount"
           type="text"
           placeholder="Enter amount"
+          className={styles.inputField}
           value={amount}
           onChange={handleChangeAmount}
-          className={styles.inputField}
+          min="0"
+          max="4000"
         />
       </div>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div className={styles.footerModal}>
         <div className={styles.amount}>{amount} ml</div>
         <Button onClick={handleSave} className={styles.buttonModal}>
