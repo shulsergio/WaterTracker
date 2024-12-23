@@ -10,6 +10,10 @@
   display: flex;
   flex-direction: column;
 
+  @media screen and (min-width: 768px) {
+    width: fit-content;
+  }
+
   @media screen and (min-width: 1440px) {
     flex-direction: row;
     gap: 24px;
@@ -163,6 +167,18 @@
   object-fit: cover;
 }
 
+.emptyAvatar {
+  /* width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color-4);
+  border-radius: 50%; */
+  font-size: 40px;
+  color: var(--primary-color-white);
+}
+
 .actionsWrapper {
   display: flex;
   flex-direction: row;
@@ -209,21 +225,6 @@
   height: auto;
 }
 
-/* .removePhotoButton:hover {
-  background: #e04c4c;
-}
-.emptyAvatar {
-  font-size: 64px;
-  font-weight: bold;
-  color: #ffffff;
-} */
-
-/* @media screen and (min-width: 1440px) {
-  .form {
-    width: 384px;
-  }
-} */
-
 @media screen and (min-width: 1440px) {
   .nameEmailWrapper {
     display: flex;
@@ -251,15 +252,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-@media screen and (min-width: 768px) {
-  .passwordWrapper {
-    width: 100%;
-  }
-
-  .eyeButton {
-    right: 8px; /* Можливо, менший відступ для планшетів */
-  }
 }
 
 .eye {
