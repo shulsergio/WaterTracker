@@ -17,7 +17,11 @@ const UserLogo = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
-
+  
+  const cutText = (text, maxLength = 10) => {
+      return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+  };
+  
    const toggleModal = () => {
      setIsModalOpen((prev) => !prev);
    }; 
@@ -35,35 +39,35 @@ const UserLogo = () => {
     };
   }, [setIsModalOpen]);
 
-  const getAvatar = () => {
-    if (user.avatarUrl && user.avatarUrl !== "null") {
-      return (
-        <img
-          src={user.avatarUrl}
-          alt={user.name || "User"}
-          className={css.avatar}
-        />
-      );
-    }
+ const getAvatar = () => {
+   if (user.avatarUrl && user.avatarUrl !== "null") {
+     return (
+       <img
+         src={user.avatarUrl}
+         alt={cutText(user.name || "User")}
+         className={css.avatar}
+       />
+     );
+   }
 
-    if (user.name && user.name.length > 0) {
-      return (
-        <span className={css.emptyAvatar}>{user.name[0].toUpperCase()}</span>
-      );
-    }
+   if (user.name && user.name.length > 0) {
+     return (
+       <span className={css.emptyAvatar}>{user.name[0].toUpperCase()}</span>
+     );
+   }
 
-    if (user.email && user.email.length > 0) {
-      return (
-        <span className={css.emptyAvatar}>{user.email[0].toUpperCase()}</span>
-      );
-    }
-    return <span className={css.emptyAvatar}>?</span>;
-  };
+   if (user.email && user.email.length > 0) {
+     return (
+       <span className={css.emptyAvatar}>{user.email[0].toUpperCase()}</span>
+     );
+   }
+   return <span className={css.emptyAvatar}>?</span>;
+ };
   
   return (
     <div ref={modalRef} className={css.userLogoContainer}>
       <button onClick={toggleModal} className={css.userLogoBtn}>
-        <span className={css.userName}>{user.name || user.email}</span>
+        <span className={css.userName}>{cutText (user.name || user.email || "", 9)}</span>
         {getAvatar()}
         <Icon
           id="icon-down"
