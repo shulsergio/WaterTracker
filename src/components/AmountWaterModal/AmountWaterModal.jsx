@@ -36,9 +36,9 @@ const AmountWaterModal = ({ onClose, isEdit = true, data, onSave }) => {
       volume: amount,
       date: new Date(timeData).toISOString(),
     };
-    console.log("updated glass", updatedGlass);
+
     if (updatedGlass.volume > 0) {
-      onSave(updatedGlass); // Pass updated data back to parent
+      onSave(updatedGlass);
     } else {
       toast.error("Should be at least 1 ml");
     }

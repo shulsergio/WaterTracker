@@ -4,7 +4,6 @@ import MyDailyNormaModal from "../MyDailyNormaModal/MyDailyNormaModal.jsx";
 import Button from "../button/Button.jsx";
 import { selectUser } from "../../redux/user/selectors.js";
 import { useSelector } from "react-redux";
-import toast from "react-hot-toast";
 
 const DailyNorma = () => {
   const user = useSelector(selectUser);
@@ -21,9 +20,7 @@ const DailyNorma = () => {
     setIsModalOpen(true);
   };
 
-  const handleModalClose = (newNorm) => {
-    if (newNorm) setDailyNorm(newNorm);
-    toast.success("You daily norma changed");
+  const handleModalClose = () => {
     setIsModalOpen(false);
   };
 

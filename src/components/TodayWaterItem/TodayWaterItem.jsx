@@ -49,7 +49,7 @@ const TodayWaterItem = () => {
         dispatch(getDayWaterList());
       })
       .catch((error) => {
-        console.error("Error updating glass:", error);
+        toast.success("Error updating glass:");
       });
   };
 

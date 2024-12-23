@@ -16,8 +16,6 @@ import Icon from "../Icon/Icon.jsx";
 import toast from "react-hot-toast";
 
 const SettingModal = ({ onClose }) => {
-  console.log("------SettingModal ------");
-
   const XavatarUrl = useSelector(selectUser).avatarUrl;
   const Xemail = useSelector(selectUser).email;
   const Xgender = useSelector(selectUser).gender;
@@ -64,7 +62,6 @@ const SettingModal = ({ onClose }) => {
     newPassword: "",
     repeatNewPassword: "",
   };
-  console.log("Settings initialValues", initialValues);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -101,9 +98,7 @@ const SettingModal = ({ onClose }) => {
       ...(newPassword && { outDatePassword, newPassword }),
     };
 
-    const onSave = () => {
-      console.log("onSave"); //не знаю чи це потрібно =================================
-    };
+    const onSave = () => {};
 
     dispatch(updateUserProfile(dataToSend))
       .then(() => {
@@ -112,8 +107,6 @@ const SettingModal = ({ onClose }) => {
         return toast.success("Profile updated");
       })
       .catch((error) => {
-        console.error("Error updating profile:", error);
-
         return toast.error("Error updating profile");
       });
     setSubmitting(false);
@@ -146,9 +139,9 @@ const SettingModal = ({ onClose }) => {
       );
     }
 
-    if (name && name.length > 0) {
+    if (Xname && Xname.length > 0) {
       return (
-        <span className={styles.emptyAvatar}>{name[0].toUpperCase()}</span>
+        <span className={styles.emptyAvatar}>{Xname[0].toUpperCase()}</span>
       );
     }
 
