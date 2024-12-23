@@ -126,11 +126,6 @@ const SettingModal = ({ onClose }) => {
     setShowRepeatPassword((prev) => !prev);
   };
 
-  // const handleRemovePhoto = () => {
-  //   event.stopPropagation();
-  //   setPreview(null); // Скидаємо прев'ю зображення
-  // };
-
   const getAvatar = () => {
     if (preview) {
       return <img src={preview} alt="Avatar" className={styles.avatar} />;
@@ -260,40 +255,40 @@ const SettingModal = ({ onClose }) => {
                   <div className={styles.fieldGroupPas}>
                     <label
                       htmlFor="outDatePassword"
-                      className={styles.radioButtonWrapper}
+                      className={styles.fieldGroupPas}
                     >
                       Outdated password
+                      <div className={styles.passwordWrapper}>
+                        <Field
+                          id="outDatePassword"
+                          name="outDatePassword"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password"
+                          className={
+                            touched.outDatePassword && errors.outDatePassword
+                              ? `${styles.input} ${styles.inputError}`
+                              : styles.input
+                          }
+                        />
+                        <button
+                          type="button"
+                          onClick={togglePasswordVisibility}
+                          className={styles.eyeButton}
+                          aria-label="Toggle password visibility"
+                        >
+                          {showPassword ? (
+                            <BiShow className={styles.eye} />
+                          ) : (
+                            <BiHide className={styles.eye} />
+                          )}
+                        </button>
+                      </div>
                     </label>
-                    <div className={styles.passwordWrapper}>
-                      <Field
-                        id="outDatePassword"
-                        name="outDatePassword"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                        className={
-                          touched.outDatePassword && errors.outDatePassword
-                            ? `${styles.input} ${styles.inputError}`
-                            : styles.input
-                        }
-                      />
-                      <button
-                        type="button"
-                        onClick={togglePasswordVisibility}
-                        className={styles.eyeButton}
-                        aria-label="Toggle password visibility"
-                      >
-                        {showPassword ? (
-                          <BiShow className={styles.eye} />
-                        ) : (
-                          <BiHide className={styles.eye} />
-                        )}
-                      </button>
-                      <ErrorMessage
-                        name="outDatePassword"
-                        component="div"
-                        className={styles.errorMessage}
-                      />
-                    </div>
+                    <ErrorMessage
+                      name="outDatePassword"
+                      component="div"
+                      className={styles.errorMessage}
+                    />
                   </div>
 
                   <div className={styles.fieldGroupPas}>
