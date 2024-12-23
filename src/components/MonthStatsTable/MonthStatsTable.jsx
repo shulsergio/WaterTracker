@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectMonthWater } from "../../redux/monthWaterList/selectors.js";
 import { getMonthWaterList } from "../../redux/monthWaterList/operations.js";
 import { selectDailyNorm, selectUser } from "../../redux/user/selectors.js";
-import { selectdayWater } from "../../redux/dayWaterList/selectors.js";
+import { selectDayWater } from "../../redux/dayWaterList/selectors.js";
 
 const newDayString = (year, month, day) => {
   return new Date(year, month, day + 1).toISOString().split("T")[0];
@@ -40,7 +40,7 @@ const MonthStatsTable = () => {
   const monthWater = useSelector(selectMonthWater);
   const user = useSelector(selectUser);
   const dailyNorma = useSelector(selectDailyNorm);
-  const dayWater = useSelector(selectdayWater);
+  const dayWater = useSelector(selectDayWater);
 
   const [isDisabled, setIsDisabled] = useState(true);
 

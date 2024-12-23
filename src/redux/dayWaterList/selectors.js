@@ -1,1 +1,1 @@
-export const selectdayWater = (state) => state.dayWater.data;
+export const selectDayWater = (state) => state.dayWater.data;
