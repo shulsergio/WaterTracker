@@ -35,7 +35,7 @@ export const signUp = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       console.log("Return in signUP data-", data);
       console.log("Return in signUP data-", data.data.token);
@@ -47,7 +47,7 @@ export const signUp = createAsyncThunk(
       thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 //POST  user/login
@@ -60,7 +60,7 @@ export const logIn = createAsyncThunk(
       const { data } = await axios.post("auth/signin", credentials);
       console.log(
         "data.data.accessToken in auth!!!!Slice",
-        data.data.accessToken
+        data.data.accessToken,
       );
 
       setAuthHeader(data.data.accessToken);
@@ -75,7 +75,7 @@ export const logIn = createAsyncThunk(
       thunkAPI.dispatch(setIsLoading(false));
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 //POST users/logout
@@ -117,7 +117,7 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     console.log("thunkAPI: ", thunkAPI);
     const persistedToken = state.auth.token;
-
+    console.log("localStorage: ", localStorage);
     if (persistedToken === null) {
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue("Unable to fetch user");
@@ -151,5 +151,5 @@ export const refreshUser = createAsyncThunk(
       console.log("state", state);
       return state.auth.token !== null;
     },
-  }
+  },
 );
