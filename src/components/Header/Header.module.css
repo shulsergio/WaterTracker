@@ -28,9 +28,15 @@ header button {
 }
 
 @media screen and (min-width: 768px) {
+  .boxItem {
+    width: 92%;
+  }
 }
 
 @media screen and (min-width: 1440px) {
+  .boxItem {
+    width: 90%;
+  }
   .headerContainer {
     width: 100%;
   }
