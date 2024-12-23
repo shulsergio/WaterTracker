@@ -81,11 +81,21 @@ const SettingModal = ({ onClose }) => {
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    const { gender, name, email, outDatePassword, newPassword } = values;
+    const {
+      gender,
+      name,
+      email,
+      outDatePassword,
+      newPassword,
+      repeatNewPassword,
+    } = values;
 
     const ii = newPassword && { outDatePassword, newPassword };
     console.log("ZZZZZZZZ - ", ii);
-
+    if (newPassword !== repeatNewPassword) {
+      toast.error("Wrong repeat password");
+      return;
+    }
     const dataToSend = {
       gender,
       name,
