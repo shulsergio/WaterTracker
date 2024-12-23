@@ -9,12 +9,14 @@ import {
   getDayWaterList,
 } from "../../redux/dayWaterList/operations.js";
 import toast from "react-hot-toast";
+import * as Yup from "yup";
 
 const AddWaterModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const date = new Date();
 
   const [amount, setAmount] = useState(50);
+  const [error, setError] = useState("");
   const [time, setTime] = useState(
     date.toLocaleTimeString("default", {
       hour: "2-digit",
@@ -46,12 +48,31 @@ const AddWaterModal = ({ onClose }) => {
     }
   };
 
+  const schemaTime = Yup.string()
+    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, "Enter time in hh:mm format")
+    .required("This field is required");
+
   const handleChangeTime = (e) => {
     setTime(e.target.value);
+
+    schemaTime
+      .validate(e.target.value)
+      .then(() => setError(""))
+      .catch((err) => setError(err.message));
   };
+
+  const schemaAmount = Yup.number()
+    .min(1, "The value must be greater than 0")
+    .max(4000, "the value must be less than 4000")
+    .required("This field is required");
 
   const handleChangeAmount = (e) => {
     setAmount(Number(e.target.value));
+
+    schemaAmount
+      .validate(e.target.value)
+      .then(() => setError(""))
+      .catch((err) => setError(err.message));
   };
 
   return (
@@ -76,7 +97,7 @@ const AddWaterModal = ({ onClose }) => {
         </label>
         <input
           id="weight"
-          type="text"
+          type="time"
           placeholder="Enter time"
           className={styles.inputField}
           value={time}
@@ -99,6 +120,7 @@ const AddWaterModal = ({ onClose }) => {
           max="4000"
         />
       </div>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div className={styles.footerModal}>
         <div className={styles.amount}>{amount}ml</div>
         <Button onClick={handleClick} className={styles.buttonModal}>
