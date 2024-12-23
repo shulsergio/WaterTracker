@@ -14,13 +14,13 @@ const AddWaterModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const date = new Date();
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(50);
   const [time, setTime] = useState(
     date.toLocaleTimeString("default", {
       hour: "2-digit",
       minute: "2-digit",
       hourCycle: "h23",
-    })
+    }),
   );
 
   const increment = () => setAmount((prevAmount) => prevAmount + 50);
@@ -42,7 +42,7 @@ const AddWaterModal = ({ onClose }) => {
       dispatch(getDayWaterList());
       toast.success("Water data added");
     } else {
-      toast.error("Somethimg went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -51,7 +51,7 @@ const AddWaterModal = ({ onClose }) => {
   };
 
   const handleChangeAmount = (e) => {
-    setAmount(e.target.value);
+    setAmount(Number(e.target.value));
   };
 
   return (
@@ -95,6 +95,8 @@ const AddWaterModal = ({ onClose }) => {
           className={styles.inputField}
           value={amount}
           onChange={handleChangeAmount}
+          min="0"
+          max="4000"
         />
       </div>
       <div className={styles.footerModal}>
