@@ -32,7 +32,7 @@ const AddWaterModal = ({ onClose }) => {
   const handleClick = () => {
     const [hours, minutes] = time.split(":").map(Number);
     date.setHours(hours, minutes, 0, 0);
-    date.toISOString();
+
     const data = {
       volume: amount,
       date: date.toISOString(),
@@ -41,7 +41,7 @@ const AddWaterModal = ({ onClose }) => {
     if ((amount > 0) & (amount <= 4000)) {
       dispatch(addWaterGlass(data));
       dispatch(getDayWaterList());
-      toast.success("Water data added");
+      toast.success("Water data successfully added");
       onClose();
     } else {
       toast.error("Something went wrong");
