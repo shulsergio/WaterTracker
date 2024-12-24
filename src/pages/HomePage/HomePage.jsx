@@ -38,6 +38,8 @@ export default function HomePage() {
   // }, [DailyNorm, dispatch]);
   console.log("Rendered HomePage");
   return (
+        <div className={css.background}>
+    <div className={css.layer}>
     <section className={css.section}>
       <div className={css.wrap}>
         <div className={css.norma}>
@@ -51,6 +53,8 @@ export default function HomePage() {
       <div className={css.todayWaterGlassList}>
         <TodayWaterGlassList />
       </div>
-    </section>
+        </section>
+      </div>
+    </div>
   );
 }
