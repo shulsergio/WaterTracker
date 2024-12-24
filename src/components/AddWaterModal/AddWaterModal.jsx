@@ -39,10 +39,10 @@ const AddWaterModal = ({ onClose }) => {
     };
 
     if ((amount > 0) & (amount <= 4000)) {
+      onClose();
       dispatch(addWaterGlass(data));
       // dispatch(getDayWaterList(date.toISOString()));
       toast.success("Water data successfully added");
-      onClose();
     } else {
       toast.error("Something went wrong");
       return;

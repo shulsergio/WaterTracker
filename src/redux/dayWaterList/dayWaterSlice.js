@@ -40,7 +40,7 @@ const dayWaterSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.data.logs.findIndex(
-          (log) => log.id === action.payload
+          (log) => log._id === action.payload,
         );
         if (index !== -1) {
           state.data.logs[index] = action.payload;
@@ -51,7 +51,7 @@ const dayWaterSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.data.logs = state.data.logs.filter(
-          (log) => log.id !== action.payload
+          (log) => log.id !== action.payload,
         );
       })
 
@@ -66,24 +66,24 @@ const dayWaterSlice = createSlice({
           getDayWaterList.pending,
           addWaterGlass.pending,
           updateWaterGlass.pending,
-          deleteWaterGlass.pending
+          deleteWaterGlass.pending,
         ),
         (state) => {
           state.isLoading = true;
           state.error = null;
-        }
+        },
       )
 
       .addMatcher(
         isAnyOf(
           getDayWaterList.rejected,
           addWaterGlass.rejected,
-          updateWaterGlass.rejected
+          updateWaterGlass.rejected,
         ),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
-        }
+        },
       );
   },
 });
