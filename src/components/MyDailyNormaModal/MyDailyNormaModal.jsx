@@ -5,7 +5,7 @@ import RadioButton from "../radio-button/RadioButton";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateDailyNorm } from "../../redux/user/operations";
-import { getDayWaterList } from "../../redux/dayWaterList/operations.js";
+// import { getDayWaterList } from "../../redux/dayWaterList/operations.js";
 import toast from "react-hot-toast";
 
 const DAILY_NORMA = 15000;
@@ -30,7 +30,7 @@ const MyDailyNormaModal = ({ onClose }) => {
       return;
     } else {
       dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
-      dispatch(getDayWaterList());
+      // dispatch(getDayWaterList());
       toast.success("new daily norma added");
       onClose();
     }
@@ -40,8 +40,7 @@ const MyDailyNormaModal = ({ onClose }) => {
     <Modal
       title="My daily norma"
       classNameModal={styles.modal}
-      onClose={onClose}
-    >
+      onClose={onClose}>
       <ul className={styles.formulas}>
         <li className={styles.formulasItem}>
           <span>For girl:</span>
