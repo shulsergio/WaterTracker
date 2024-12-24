@@ -7,7 +7,7 @@ import { useState } from "react";
 import { selectDayWater } from "../../redux/dayWaterList/selectors";
 import {
   deleteWaterGlass,
-  getDayWaterList,
+  // getDayWaterList,
   updateWaterGlass,
 } from "../../redux/dayWaterList/operations";
 import toast from "react-hot-toast";
@@ -46,7 +46,7 @@ const TodayWaterItem = () => {
       .then(() => {
         toast.success("Glass is successfully updated");
         setIsEditOpen(false);
-        dispatch(getDayWaterList());
+        // dispatch(getDayWaterList());
       })
       .catch((error) => {
         toast.error(`Error updating glass: ${error}`);
@@ -59,7 +59,7 @@ const TodayWaterItem = () => {
       .then(() => {
         toast.success("Glass is deleted");
         setIsDeleteOpen(false);
-        dispatch(getDayWaterList());
+        // dispatch(getDayWaterList());
       })
       .catch(() => {
         toast.error("Something went wrong");

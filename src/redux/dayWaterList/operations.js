@@ -3,7 +3,7 @@ import axios from "axios";
 import { logOut } from "../auth/operations";
 
 export const getDayWaterList = createAsyncThunk(
-  "water/dayWaterList",
+  "dayWater/getDayWaterList",
   async (date = new Date().toISOString().split("T")[0], thunkAPI) => {
     try {
       const response = await axios.get("/water/daily", {
@@ -21,14 +21,15 @@ export const getDayWaterList = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const addWaterGlass = createAsyncThunk(
-  "water/addWaterGlass",
+  "dayWater/addWaterGlass",
   async (newGlass, thunkAPI) => {
     try {
       const response = await axios.post(`/water/glass`, newGlass);
+      thunkAPI.dispatch(getDayWaterList());
 
       return response.data.data;
     } catch (error) {
@@ -38,11 +39,11 @@ export const addWaterGlass = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const updateWaterGlass = createAsyncThunk(
-  "water/updateGlass",
+  "dayWater/updateWaterGlass",
   async ({ id, updatedGlass }, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
@@ -52,6 +53,7 @@ export const updateWaterGlass = createAsyncThunk(
     }
     try {
       const response = await axios.patch(`/water/glass/${id}`, updatedGlass);
+      thunkAPI.dispatch(getDayWaterList());
       return response.data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -60,11 +62,11 @@ export const updateWaterGlass = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 export const deleteWaterGlass = createAsyncThunk(
-  "water/deleteGlass",
+  "dayWater/deleteWaterGlass",
   async (glassId, thunkAPI) => {
     const state = thunkAPI.getState();
     const token = state.auth.token;
@@ -74,6 +76,7 @@ export const deleteWaterGlass = createAsyncThunk(
     }
     try {
       const response = await axios.delete(`water/glass/${glassId}`);
+      thunkAPI.dispatch(getDayWaterList());
       return glassId;
     } catch (error) {
       if (error.response.status === 401) {
@@ -82,5 +85,5 @@ export const deleteWaterGlass = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue("Error during delete operation:", error);
     }
-  }
+  },
 );

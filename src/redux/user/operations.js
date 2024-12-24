@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getDayWaterList } from "../dayWaterList/operations.js";
 
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
@@ -11,7 +12,7 @@ export const fetchUser = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const updateDailyNorm = createAsyncThunk(
@@ -19,12 +20,12 @@ export const updateDailyNorm = createAsyncThunk(
   async (dailyNorm, thunkAPI) => {
     try {
       const response = await axios.patch("/user/daily", dailyNorm);
-
+      thunkAPI.dispatch(getDayWaterList());
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const updateUserAvatar = createAsyncThunk(
@@ -44,7 +45,7 @@ export const updateUserAvatar = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const updateUserProfile = createAsyncThunk(
@@ -57,5 +58,5 @@ export const updateUserProfile = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );

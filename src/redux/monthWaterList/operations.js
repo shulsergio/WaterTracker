@@ -3,7 +3,7 @@ import axios from "axios";
 import { logOut } from "../auth/operations";
 
 export const getMonthWaterList = createAsyncThunk(
-  "water/monthWaterList",
+  "monthWater/getMonthWaterList",
   async (date = "2024-12-16T23:10", thunkAPI) => {
     try {
       const response = await axios.get(`/water/monthly`, {
@@ -21,5 +21,5 @@ export const getMonthWaterList = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );

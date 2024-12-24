@@ -54,6 +54,7 @@ const MonthStatsTable = () => {
 
   const [userMonth, setUserMonth] = useState(newPresentDay);
   const [numberMonth, setNumberMonth] = useState(month);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   let days = [];
 
@@ -72,8 +73,12 @@ const MonthStatsTable = () => {
   }, [numberMonth, year]);
 
   useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+      return;
+    }
     dispatch(getMonthWaterList(newDayString(year, numberMonth, 1)));
-  }, [dispatch, numberMonth, year, dailyNorma, dayWater]);
+  }, [dispatch, numberMonth, dailyNorma, dayWater, isFirstRender, year]);
 
   days = arrayOfDays(dayOfMonth, year, numberMonth, monthWater, user.dailyNorm);
 

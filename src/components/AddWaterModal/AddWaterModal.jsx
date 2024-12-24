@@ -6,7 +6,7 @@ import styles from "./AddWaterModal.module.css";
 import { useDispatch } from "react-redux";
 import {
   addWaterGlass,
-  getDayWaterList,
+  // getDayWaterList,
 } from "../../redux/dayWaterList/operations.js";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
@@ -40,7 +40,7 @@ const AddWaterModal = ({ onClose }) => {
 
     if ((amount > 0) & (amount <= 4000)) {
       dispatch(addWaterGlass(data));
-      dispatch(getDayWaterList());
+      // dispatch(getDayWaterList(date.toISOString()));
       toast.success("Water data successfully added");
       onClose();
     } else {
