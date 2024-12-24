@@ -22,17 +22,16 @@ const MyDailyNormaModal = ({ onClose }) => {
   const [customNorm, setCustomNorm] = useState("");
 
   const handleSave = () => {
-    const normToSave = customNorm
+    const normToSave = Number(customNorm)
       ? Number(customNorm) / 1000
       : amountWaterPerDay;
-    if (normToSave > DAILY_NORMA) {
-      toast.error("Water Max- 15L per day");
-      return;
-    } else {
+    if (normToSave > 0 && normToSave <= DAILY_NORMA) {
       dispatch(updateDailyNorm({ dailyNorm: normToSave * 1000 }));
-      // dispatch(getDayWaterList());
-      toast.success("new daily norma added");
+      toast.success("New daily norma added");
       onClose();
+    } else {
+      toast.error("wrong data");
+      return;
     }
   };
 
@@ -40,7 +39,8 @@ const MyDailyNormaModal = ({ onClose }) => {
     <Modal
       title="My daily norma"
       classNameModal={styles.modal}
-      onClose={onClose}>
+      onClose={onClose}
+    >
       <ul className={styles.formulas}>
         <li className={styles.formulasItem}>
           <span>For girl:</span>
