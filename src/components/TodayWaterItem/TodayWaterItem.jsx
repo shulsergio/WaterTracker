@@ -41,11 +41,12 @@ const TodayWaterItem = () => {
   };
 
   const handleSave = (updatedGlass) => {
+    setIsEditOpen(false);
     dispatch(updateWaterGlass({ id: editData.id, updatedGlass }))
       .unwrap()
       .then(() => {
         toast.success("Glass is successfully updated");
-        setIsEditOpen(false);
+
         // dispatch(getDayWaterList());
       })
       .catch((error) => {
@@ -54,11 +55,12 @@ const TodayWaterItem = () => {
   };
 
   const handleDelete = () => {
+    setIsDeleteOpen(false);
     dispatch(deleteWaterGlass(deleteData))
       .unwrap()
       .then(() => {
         toast.success("Glass is deleted");
-        setIsDeleteOpen(false);
+
         // dispatch(getDayWaterList());
       })
       .catch(() => {
