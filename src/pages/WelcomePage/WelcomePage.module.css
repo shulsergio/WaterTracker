@@ -1,9 +1,96 @@
+.background {
+  background-image: url("../../images/background/mobile/welcome-bckg-mob.svg");
+  background-color: coral;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100vh;
+  min-height: 952px;
+}
+
 .section {
-  /* background-image: url("../../images/background/mobile/Background-mobile-1x.webp"); */
-  /* padding: 34px 20px; */
+  padding: 8px 20px;
+  margin: 0 auto;
+  max-width: 320px;
+
   padding-top: 24px;
   flex-wrap: nowrap;
-  /* margin: -8px -20px -8px -20px; */
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media screen and (min-width: 320px) {
+  .background {
+    background-color: coral;
+    min-height: 800px;
+  }
+
+  .section {}
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    background-image: url("../../images/background/tablet/welcome-bckg-tab.svg");
+    background-position: bottom;
+    background-size: cover;
+  }
+
+  .section {
+    max-width: 768px;
+    padding: 16px 32px;
+
+    flex-direction: column;
+    gap: 60px;
+    padding-top: 40px;
+    height: 746px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .background {
+    background-image: url("../../images/background/desktop/welcome-bckg-dsk.svg");
+    background-position: bottom;
+    background-size: contain;
+  }
+
+  .section {
+    min-width: 1440px;
+    padding: 12px 112px;
+
+    gap: 81px;
+    padding-top: 80px;
+    padding-left: 104px;
+  }
+
+  .layer {
+    background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
+    background-position: center;
+    background-size: contain;
+    height: 100vh;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: flex-end;
+    width: 80px;
+    flex-direction: row;
+    gap: 81px;
+  }
+}
+
+
+
+
+
+
+/* .section {
+  padding-top: 24px;
+  flex-wrap: nowrap;
   align-items: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -26,9 +113,7 @@
     background-image: url("../../images/background/tablet/Background-tab-1x.webp");
     flex-direction: column;
     gap: 60px;
-    /* padding: 50px 32px; */
     padding-top: 40px;
-    /* margin: -16px -32px; */
     height: 746px;
   }
 
@@ -44,22 +129,11 @@
     background-image: url("../../images/background/desktop/Background-desktop-1x.webp");
     background-position: bottom;
     gap: 81px;
-    /* padding-left: 216px; */
-    /* margin: -12px 0 0 -112px; */
     background-size: auto;
-    /* width: 1440px; */
     height: 740px;
     padding-top: 80px;
     padding-left: 104px;
   }
-
-  /* .layer {
-    background-image: url("../../images/background/desktop/Desktop-layer-1x.webp");
-    flex-wrap: nowrap;
-    background-repeat: no-repeat;
-    background-size: auto;
-    width: 1216px;
-  } */
 
   .wrapper {
     display: flex;
@@ -75,3 +149,4 @@
     }
   }
 }
+ */
