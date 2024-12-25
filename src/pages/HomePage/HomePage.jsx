@@ -38,23 +38,21 @@ export default function HomePage() {
   // }, [DailyNorm, dispatch]);
   console.log("Rendered HomePage");
   return (
-        <div className={css.background}>
     <div className={css.layer}>
-    <section className={css.section}>
-      <div className={css.wrap}>
-        <div className={css.norma}>
-          <DailyNorma />
+      <section className={css.section}>
+        <div className={css.wrap}>
+          <div className={css.norma}>
+            <DailyNorma />
+          </div>
+          <div className={css.image} />
+          <div className={css.WaterRatioPanel}>
+            <WaterRatioPanel />
+          </div>
         </div>
-        <div className={css.image} />
-        <div className={css.WaterRatioPanel}>
-          <WaterRatioPanel />
+        <div className={css.todayWaterGlassList}>
+          <TodayWaterGlassList />
         </div>
-      </div>
-      <div className={css.todayWaterGlassList}>
-        <TodayWaterGlassList />
-      </div>
-        </section>
-      </div>
+      </section>
     </div>
   );
 }

@@ -1,28 +1,20 @@
-.background {
-/*   background-image: url("../../images/background/mobile/welcome-bckg-mob.svg");
-  background-color: coral;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: cover; */
-  height: 100vh;
-  min-height: 952px;
-}
-
 .layer {
-  background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
+  background-image: url("../../images/background/mobile/mainpage-bck-mob.svg");
   background-position: center;
-  background-size: contain;
-  height: 100vh;
+  background-size:contain;
+  background-repeat: no-repeat;
 }
 
 .section {
-  padding: 8px 20px;
   margin: 0 auto;
+  padding: 56px 20px 0 20px;
   max-width: 320px;
+
+  min-height: 100vh;
 }
 
 .wrap {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .norma {
@@ -58,12 +50,6 @@
 }
 
 @media screen and (min-width: 768px) {
-/* .background {
-  background-image: url("../../images/background/tablet/welcome-bckg-tab.svg");
-  background-position: bottom;
-  background-size: cover;
-} */
-
   .layer {
     background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
     background-position: center;
@@ -73,7 +59,7 @@
 
   .section {
     max-width: 768px;
-    padding: 16px 32px;
+    padding: 80px 32px 0 32px;
   }
 
   .norma {
@@ -91,23 +77,20 @@
     width: 518px;
     height: 386px;
   }
+
+  .WaterRatioPanel {
+  padding-bottom: 40px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-/*   .background {
-    background-image: url("../../images/background/desktop/welcome-bckg-dsk.svg");
-    background-position: bottom;
-    background-size: contain;
-  } */
-
 .section {
     min-width: 1440px;
-    padding: 16px 112px;
+    padding: 80px 112px;
   
     display: flex;
     flex-direction: row;
     gap: 32px;
-/*     margin-top: 4px; */
   }
 
 .layer {
@@ -145,108 +128,3 @@
     padding-bottom: 0;
   }
 }
-
-
-/* .wrap {
-  margin-bottom: 15px;
-}
-
-.norma {
-  padding-top: 24px;
-  padding-bottom: 8px;
-  width: 100%;
-  height: 100%;
-}
-
-.image {
-  background-image: var(--bottle-home-1x-mob);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 280px;
-  height: 208px;
-}
-
-.WaterRatioPanel {
-  width: 100%;
-  height: 100%;
-  padding-bottom: 80px;
-}
-
-.todayWaterGlassList {
-  padding-bottom: 48px;
-}
-
-@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
-  .image {
-    background-image: var(--bottle-home-2x-mob);
- }
-}
-
-@media screen and (min-width: 768px) {
-    .norma {
-    padding-top: 24px;
-    padding-bottom: 8px;
-    width: 100%;
-    height: 100%;
-  }
-
-  .image {
-    background-image: var(--bottle-home-2x-tab);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 auto;
-    width: 518px;
-    height: 386px;
-  }
-  
-  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .image {
-      background-image: var(--bottle-home-2x-tab);
-  }
-}
-}
-
-@media screen and (min-width: 1440px) {
-  .section {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
-    margin-top: 4px;
-  }
-
-  .wrap {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .norma {
-    width: 164px;
-    height: 76px;
-    padding: 0;
-  }
-
-  .image {
-    background-image: var(--bottle-home-2x-desktop);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 592px;
-    height: 548px;
-  }
-
-  .WaterRatioPanel {
-    width: 592px;
-    height: 90px;
-  }
-
-  .todayWaterGlassList {
-    padding-bottom: 0;
-  }
-
-  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .image {
-      background-image: var(--bottle-home-2x-desktop);
-    }
-  }
-}
- */
