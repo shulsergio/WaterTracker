@@ -9,12 +9,12 @@ const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    // <div className={css.headerContainer}>
+    <div className={css.headerContainer}>
     <header className={css.header}>
       <Logo />
-      {isLoggedIn ? <UserLogo /> : <UserAuth />}
+        {isLoggedIn ? <UserLogo /> : <UserAuth className={css.headerButton} />}
     </header>
-    // </div>
+    </div>
   );
 };
 export default Header;

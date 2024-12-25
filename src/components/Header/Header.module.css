@@ -1,56 +1,20 @@
-/* .headerContainer{
-height: 48px;
-/* margin-bottom: 24px; */
-/* padding: 16px 32px; */
-
-/* margin-left: 20px;
-margin-right: 20px; */
-/* } */
-
 .headerContainer {
-  height: 48px;
-
-  padding: 8px 20px;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  padding-top: 8px;  
 }
 
 .header {
-  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 320px;
+
   height: 48px;
-  /* width: 280px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
-header button {
-  background-color: var(--primary-color-white);
-}
-/*   font-weight: 400;
-  border-radius: unset;
-  border: none;
-  box-shadow: none;
-
-  width: 84px;
-  height: 28px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 0;
-
-  background-color: var(--primary-color-white);
-  color: var(--primary-color-blue);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  line-height: 1.25;
-  font-size: 16px;
-  font-weight: 400;
-} */
-
-/* header button:hover {
-  color: var(--secondary-color-5-orange);
-  box-shadow: none;
-} */
 
 .buttonSvg {
   margin-left: 8px;
@@ -60,29 +24,22 @@ header button {
 
 @media screen and (min-width: 768px) {
   .headerContainer {
-    /* width: 704px; */
-    /* margin-bottom: 40px; */
-    /* margin-top: 16px;
-        margin-left: 32px;
-        margin-right: 32px; */
-    /* padding: 16px 32px; */
+    padding-top: 16px;
   }
 
   .header {
-    /* width: 704px; */
+    max-width: 768px;
+    padding: 0 32px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .headerContainer {
-    width: 100%;
-    /* margin-bottom: 49px;
-        margin-top: 12px;
-        margin-left: 84px;
-        margin-right: 84px; */
-    /* padding: 12px 112px; */
+    padding-top: 12px;
   }
+
   .header {
-    /* width: 1216px; */
+    max-width: 1440px;
+    padding: 0 112px;
   }
 }
