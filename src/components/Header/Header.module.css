@@ -1,14 +1,18 @@
 .headerContainer {
-  height: 48px;
-
-  padding: 8px 20px;
+  position: absolute;
+  z-index: 1000; /// перевірити на модалках
+  width: 100%;
+  padding-top: 8px;  
 }
 
 .header {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 320px;
+  height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 .boxItem {
   width: 97%;
@@ -17,9 +21,9 @@
   justify-content: space-between;
 }
 
-header button {
+/* header button {
   background-color: var(--primary-color-white);
-}
+} */
 
 .buttonSvg {
   margin-left: 8px;
@@ -28,8 +32,18 @@ header button {
 }
 
 @media screen and (min-width: 768px) {
+
+  .headerContainer {
+    padding-top: 16px;
+  }
+
+  .header {
+    max-width: 768px;
+    padding: 0 32px;
+  }
   .boxItem {
     width: 92%;
+
   }
 }
 
@@ -38,6 +52,12 @@ header button {
     width: 90%;
   }
   .headerContainer {
-    width: 100%;
+    padding-top: 12px;
+  }
+
+  .header {
+    max-width: 1440px;
+    padding: 0 112px;
+
   }
 }

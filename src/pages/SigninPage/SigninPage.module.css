@@ -1,3 +1,79 @@
+.layer {
+  background-image: url("../../images/background/mobile/mainpage-bck-mob.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 80px 20px 0 20px;
+  max-width: 320px;
+
+  min-height: 100vh;
+  width: 320px;
+}
+
+.background {
+  height: 608px;
+  background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg");
+  background-size: 280px 210px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+@media screen and (min-width: 768px) {
+  .layer {
+    background-image: url("../../images/background/tablet/mainpage-bck-tab.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .container {
+    max-width: 768px;
+    padding: 104px 32px 0 32px;
+
+    width: 768px;
+  }
+  .background {
+    background-image: url("../../images/bottle/tablet/Bottle-SignUp-tablet.svg");
+    background-size: 706px 548px;
+    background-position: 90px center;
+  }
+  
+}
+@media screen and (min-width: 1440px) {
+  .layer {
+    background-image: url("../../images/background/desktop/mainpage-bck-dsk.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .container {
+    min-width: 1440px;
+    padding: 102px 116px 0 116px;
+
+    width: 1440px;
+    min-height: 800px;
+  }
+  .background {
+    padding-top: 20px;
+    height: 700px;
+    background-image: url("../../images/bottle/desktop/Bottle-SignUp-desktop.svg");
+    background-size: 916px 680px;
+    background-position: -51px center;
+  }
+  .box {
+    padding-top: 120px;
+    padding-left: 728px;
+  }
+  
+}
+
+
+/* 
 .container {
   min-height: 100vh;
   /* background-image: url("../../images/background/mobile/Background-mobile-3x.webp"); */
@@ -8,25 +84,34 @@
 
 .background {
   height: 608px;
-  background-image: var(--bottle-home-1x-mob);
+  background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg");
+
+/*   background-image: var(--bottle-home-1x-mob); */
+
   background-size: 280px 210px;
   background-repeat: no-repeat;
   background-position: bottom;
   padding-top: 24px;
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+/* @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
   .background {
     background-image: var(--bottle-home-2x-mob);
   }
 }
+@media screen and (min-width: 768px) {
+  .container { */
+
 
 @media screen and (min-width: 768px) {
   .container {
+    width: 768px;
+    background-image: url("../../images/background/tablet/Background-tab-signup.webp");
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
   }
+
   .background {
     background-image: var(--bottle-home-1x-tab);
     background-size: 706px 548px;
@@ -46,6 +131,7 @@
     background-repeat: no-repeat;
     background-position: top left;
   }
+
   .background {
     height: 680px;
     width: 916px;
@@ -54,13 +140,15 @@
     background-position: -51px center;
     padding-top: 20px;
   }
+
   .box {
     padding-top: 120px;
     padding-left: 728px;
   }
 }
+/* }
 @media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
   .image {
     background-image: var(--bottle-home-2x-desktop);
-  }
-}
+  } */
+

@@ -28,11 +28,12 @@ const Header = () => {
   };
 
   return (
+       <div className={css.headerContainer}>
     <header className={css.header}>
       <span className={css.boxItem}>
         <Logo />
 
-        {isLoggedIn ? <UserLogo /> : <UserAuth />}
+        {isLoggedIn ? <UserLogo /> : <UserAuth className={css.headerButton} />}
       </span>
       <span>
         <button className={css.themeToggle} onClick={toggleTheme}>
@@ -44,6 +45,7 @@ const Header = () => {
         </button>
       </span>
     </header>
+ </div>
   );
 };
 export default Header;

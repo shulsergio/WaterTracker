@@ -10,19 +10,21 @@ import css from "./HomePage.module.css";
  */
 export default function HomePage() {
   return (
-    <section className={css.section}>
-      <div className={css.wrap}>
-        <div className={css.norma}>
-          <DailyNorma />
+    <div className={css.layer}>
+      <section className={css.section}>
+        <div className={css.wrap}>
+          <div className={css.norma}>
+            <DailyNorma />
+          </div>
+          <div className={css.image} />
+          <div className={css.WaterRatioPanel}>
+            <WaterRatioPanel />
+          </div>
         </div>
-        <div className={css.image} />
-        <div className={css.WaterRatioPanel}>
-          <WaterRatioPanel />
+        <div className={css.todayWaterGlassList}>
+          <TodayWaterGlassList />
         </div>
-      </div>
-      <div className={css.todayWaterGlassList}>
-        <TodayWaterGlassList />
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
