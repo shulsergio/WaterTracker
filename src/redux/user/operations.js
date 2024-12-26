@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getDayWaterList } from "../dayWaterList/operations.js";
+import { logOut } from "../auth/operations.js";
 
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
@@ -12,7 +13,7 @@ export const fetchUser = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const updateDailyNorm = createAsyncThunk(
@@ -23,9 +24,13 @@ export const updateDailyNorm = createAsyncThunk(
       thunkAPI.dispatch(getDayWaterList());
       return response.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const updateUserAvatar = createAsyncThunk(
@@ -43,9 +48,13 @@ export const updateUserAvatar = createAsyncThunk(
 
       return data.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const updateUserProfile = createAsyncThunk(
@@ -56,7 +65,11 @@ export const updateUserProfile = createAsyncThunk(
 
       return data.data;
     } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logOut());
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );

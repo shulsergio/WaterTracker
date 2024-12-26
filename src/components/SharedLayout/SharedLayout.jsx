@@ -14,11 +14,11 @@ const SharedLayout = () => {
       <Header />
       {/*       <div > */}
       {/*         <BackgroundSVG /> */}
-      <div className={styles.container}>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </div>
+      {/* <div className={styles.container}> */}
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+      {/* </div> */}
       {/*       </div> */}
     </>
   );
