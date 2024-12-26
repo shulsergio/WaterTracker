@@ -21,14 +21,6 @@
   gap: 40px;
 }
 
-@media screen and (min-width: 320px) {
-  .background {
-  }
-
-  .section {
-  }
-}
-
 @media screen and (min-width: 768px) {
   .background {
     background-image: url("../../images/background/tablet/welcome-bckg-tab.svg");
@@ -63,7 +55,6 @@
     background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
     background-position: center;
     background-size: contain;
-    height: 100vh;
   }
 
   .wrapper {
