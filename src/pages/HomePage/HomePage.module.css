@@ -1,14 +1,21 @@
-.wrap {
-  margin-bottom: 15px;
+.layer {
+  /* background-image: url("../../images/background/mobile/mainpage-bck-mob.svg"); */
+  background-image: var(--mainpage-bck-mob);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .section {
   margin: 0 auto;
-  flex-wrap: nowrap;
-  align-items: center;
-  padding: 80px 20px 496px 20px;
+  padding: 56px 20px 0 20px;
   max-width: 320px;
-  min-height: 952px;
+
+  min-height: 100vh;
+}
+
+.wrap {
+  /* margin-bottom: 15px; */
 }
 
 .norma {
@@ -37,21 +44,26 @@
   padding-bottom: 48px;
 }
 
-@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
-  .image {
-    background-image: var(--bottle-home-2x-mob);
+@media screen and (min-width: 320px) {
+  .background {
+    min-height: 800px;
   }
 }
 
 @media screen and (min-width: 768px) {
+  .layer {
+    /* background-image: url("../../images/background/desktop/welcome-layer-dsk.svg"); */
+    background-image: var(--welcome-layer-dsk);
+    background-position: center;
+    background-size: contain;
+    height: 100vh;
+  }
+
   .section {
     max-width: 768px;
-    padding: 140px 32px 0 32px;
-
-    flex-direction: column;
-    gap: 60px;
-    min-height: 800px;
+    padding: 80px 32px 0 32px;
   }
+
   .norma {
     padding-top: 24px;
     padding-bottom: 8px;
@@ -67,21 +79,29 @@
     width: 518px;
     height: 386px;
   }
-}
-@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-  .image {
-    background-image: var(--bottle-home-2x-tab);
+
+  .WaterRatioPanel {
+    padding-bottom: 40px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .section {
+    min-width: 1440px;
+    padding: 80px 112px;
+
     display: flex;
     flex-direction: row;
     gap: 32px;
-    /* padding-top: 20px; */
-    min-width: 1440px;
-    padding: 68px 112px;
+  }
+
+  .layer {
+    /* background-image: url("../../images/background/desktop/welcome-layer-dsk.svg"); */
+    background-image: var(--welcome-layer-dsk);
+
+    background-position: center;
+    background-size: contain;
+    height: 100vh;
   }
 
   .wrap {
@@ -91,8 +111,8 @@
 
   .norma {
     width: 164px;
-    height: 79px;
-    padding-top: 13px;
+    height: 76px;
+    padding: 0;
   }
 
   .image {
@@ -110,10 +130,5 @@
 
   .todayWaterGlassList {
     padding-bottom: 0;
-  }
-}
-@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-  .image {
-    background-image: var(--bottle-home-2x-desktop);
   }
 }
