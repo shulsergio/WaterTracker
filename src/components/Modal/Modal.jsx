@@ -12,6 +12,14 @@ const Modal = ({
   actionBtns,
 }) => {
   useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Escape") {
         onClose();

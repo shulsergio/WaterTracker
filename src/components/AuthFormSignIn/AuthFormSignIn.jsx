@@ -15,20 +15,19 @@ const validationSchema = Yup.object({
     .required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
+    .max(64, "Password must be at maximum 64 characters")
     .required("Password is required"),
 });
 
 export default function AuthFormSignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   const handleSubmit = async (values, actions) => {
-    setIsLoading(true);
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
@@ -39,7 +38,6 @@ export default function AuthFormSignIn() {
         toast.error("Email or pass error!");
       })
       .finally(() => {
-        setIsLoading(false);
         actions.resetForm();
       });
   };
@@ -52,8 +50,7 @@ export default function AuthFormSignIn() {
           password: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
+        onSubmit={handleSubmit}>
         {({ errors, touched }) => (
           <Form className={css.form}>
             <p className={css.text}>Sign In</p>
@@ -92,8 +89,7 @@ export default function AuthFormSignIn() {
                   type="button"
                   onClick={togglePasswordVisibility}
                   className={css.eyeButton}
-                  aria-label="Toggle password visibility"
-                >
+                  aria-label="Toggle password visibility">
                   {showPassword ? (
                     <BiShow className={css.eye} />
                   ) : (

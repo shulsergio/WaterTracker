@@ -9,12 +9,13 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 133%;
-  color: #2f2f2f;
+  color: var(--primary-color-black);
   margin-top: 16px;
 }
 
 .input {
-  border: 1px solid #d7e3ff;
+  background-color: var(--primery-color-white);
+  border: 1px solid var(--secondary-color---5);
   border-radius: 6px;
   padding: 12px 10px;
   width: 280px;
@@ -23,24 +24,23 @@
   font-family: var(--font-family);
   font-size: 16px;
   line-height: 125%;
-  color: #407bff;
+  color: var(--primary-color-blue);
 }
 .input:active {
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--secondary-color---5);
 }
 .input:focus {
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--secondary-color---5);
 }
 
 .inputError {
-  border-color: #ef5050;
-  color: #ef5050;
+  border-color: var(--secondary-color-3);
+  color: var(--secondary-color-3);
 }
 
 ::placeholder {
   font-family: var(--font-family);
   font-size: 16px;
-  color: #9ebbff;
 }
 
 .text {
@@ -54,7 +54,7 @@
   margin-top: 16px;
 }
 .nav:hover {
-  color: #ff9d43;
+  color: var(--secondary-color-5);
 }
 
 .signinButton {
@@ -70,9 +70,9 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background-color: #407bff;
+  background-color: var(--primary-color-blue);
   font-family: var(--font-family);
-  color: white;
+  color: var(--primary-color-white);
 }
 .signinButton:hover {
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
@@ -86,7 +86,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 129%;
-  color: #ef5050;
+  color: var(--secondary-color-3);
 }
 .passwordWrapper {
   position: relative;
@@ -105,6 +105,7 @@
 .eye {
   width: 16px;
   height: 16px;
+  fill: var(--primary-color-black);
 }
 
 @media screen and (min-width: 320px) {

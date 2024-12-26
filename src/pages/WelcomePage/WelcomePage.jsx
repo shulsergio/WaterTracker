@@ -27,7 +27,6 @@ export default function WelcomePage() {
 import WaterСonsumptionTracker from "../../components/WaterСonsumptionTracker/WaterСonsumptionTracker";
 import css from "./WelcomePage.module.css";
 export default function WelcomePage() {
-  console.log("Rendered WelcomePage");
   return (
     // <div className={css.layer}>
     <section className={css.section}>

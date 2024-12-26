@@ -1,6 +1,5 @@
-import css from './NotFoundPage.module.css';
-import Icon from '../../components/Icon/Icon';
-
+import css from "./NotFoundPage.module.css";
+import Icon from "../../components/Icon/Icon";
 
 const NotFoundPage = () => {
   return (

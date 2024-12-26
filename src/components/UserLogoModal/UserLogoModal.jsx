@@ -3,7 +3,6 @@ import css from "./UserLogoModal.module.css";
 import UserLogoutModal from "../UserLogoutModal/UserLogoutModal";
 import Icon from "../Icon/Icon";
 import SettingModal from "../SettingModal/SettingModal";
-// import SettingModal from '../SettingModal/SettingModal';
 
 const UserLogoModal = ({ toggleModal }) => {
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);

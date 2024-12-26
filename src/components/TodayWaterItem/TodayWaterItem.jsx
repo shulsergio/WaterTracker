@@ -4,10 +4,10 @@ import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import Icon from "../Icon/Icon";
 import css from "./TodayWaterItem.module.css";
 import { useState } from "react";
-import { selectdayWater } from "../../redux/dayWaterList/selectors";
+import { selectDayWater } from "../../redux/dayWaterList/selectors";
 import {
   deleteWaterGlass,
-  getDayWaterList,
+  // getDayWaterList,
   updateWaterGlass,
 } from "../../redux/dayWaterList/operations";
 import toast from "react-hot-toast";
@@ -18,14 +18,17 @@ const TodayWaterItem = () => {
   const [editData, setEditData] = useState(null);
   const [deleteData, setDeleteData] = useState(null);
 
-  const water = useSelector(selectdayWater);
+  const water = useSelector(selectDayWater);
   const dispatch = useDispatch();
 
-  const logsInfo = water.logs.map(({ date, _id, volume }) => ({
-    id: _id,
-    date: date.slice(11, 16),
-    volume,
-  }));
+  const logsInfo = water.logs.map(({ date, _id, volume }) => {
+    const localTime = new Date(date).toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    return { id: _id, date: localTime, volume };
+  });
 
   const handleEditClick = (log) => {
     setEditData(log);
@@ -33,31 +36,32 @@ const TodayWaterItem = () => {
   }; // log - id,volume, date
 
   const handleDeleteClick = (id) => {
-    console.log("Selected ID for deletion:", id);
     setDeleteData(id);
     setIsDeleteOpen(true);
   };
 
   const handleSave = (updatedGlass) => {
+    setIsEditOpen(false);
     dispatch(updateWaterGlass({ id: editData.id, updatedGlass }))
       .unwrap()
       .then(() => {
-        console.log("Updated successfuly");
-        setIsEditOpen(false);
+        toast.success("Glass is successfully updated");
+
+        // dispatch(getDayWaterList());
       })
       .catch((error) => {
-        console.error("Error updating glass:", error);
+        toast.error(`Error updating glass: ${error}`);
       });
   };
 
   const handleDelete = () => {
-    console.log("deleteData before dispatch:", deleteData);
+    setIsDeleteOpen(false);
     dispatch(deleteWaterGlass(deleteData))
       .unwrap()
       .then(() => {
         toast.success("Glass is deleted");
-        setIsDeleteOpen(false);
-        dispatch(getDayWaterList());
+
+        // dispatch(getDayWaterList());
       })
       .catch(() => {
         toast.error("Something went wrong");

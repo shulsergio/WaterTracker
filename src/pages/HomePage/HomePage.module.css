@@ -43,13 +43,20 @@
   padding-bottom: 48px;
 }
 
+
 @media screen and (min-width: 320px) {
   .background {
     min-height: 800px;
   }
 }
+/* @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .image {
+    background-image: var(--bottle-home-2x-mob); */
+
+
 
 @media screen and (min-width: 768px) {
+
   .layer {
     background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
     background-position: center;
@@ -80,8 +87,14 @@
 
   .WaterRatioPanel {
   padding-bottom: 40px;
-  }
+     
 }
+
+/*   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+    .image {
+      background-image: var(--bottle-home-2x-tab);
+    } */
+
 
 @media screen and (min-width: 1440px) {
 .section {
@@ -91,6 +104,8 @@
     display: flex;
     flex-direction: row;
     gap: 32px;
+/*     padding-top: 20px; */
+
   }
 
 .layer {
@@ -107,8 +122,8 @@
 
   .norma {
     width: 164px;
-    height: 76px;
-    padding: 0;
+    height: 79px;
+    padding-top: 13px;
   }
 
   .image {

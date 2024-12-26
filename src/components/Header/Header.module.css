@@ -1,6 +1,6 @@
 .headerContainer {
   position: absolute;
-  z-index: 1000;
+  z-index: 1000; /// перевірити на модалках
   width: 100%;
   padding-top: 8px;  
 }
@@ -9,12 +9,21 @@
   padding: 0 20px;
   margin: 0 auto;
   max-width: 320px;
-
   height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.boxItem {
+  width: 97%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+/* header button {
+  background-color: var(--primary-color-white);
+} */
 
 .buttonSvg {
   margin-left: 8px;
@@ -23,6 +32,7 @@
 }
 
 @media screen and (min-width: 768px) {
+
   .headerContainer {
     padding-top: 16px;
   }
@@ -31,9 +41,16 @@
     max-width: 768px;
     padding: 0 32px;
   }
+  .boxItem {
+    width: 92%;
+
+  }
 }
 
 @media screen and (min-width: 1440px) {
+  .boxItem {
+    width: 90%;
+  }
   .headerContainer {
     padding-top: 12px;
   }
@@ -41,5 +58,6 @@
   .header {
     max-width: 1440px;
     padding: 0 112px;
+
   }
 }

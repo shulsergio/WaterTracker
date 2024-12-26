@@ -4,13 +4,12 @@
   display: flex;
   height: 90px;
   gap: 23px;
-  @media screen and (min-width: 320px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
     align-items: center;
+    gap: 32px;
   }
   @media screen and (min-width: 1440px) {
     width: 592px;
@@ -21,13 +20,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 10px;
   @media screen and (min-width: 320px) {
     width: 280px;
-    padding: 0 10px;
   }
 
   @media screen and (min-width: 768px) {
     width: 356px;
+    padding: 0;
   }
 
   @media screen and (min-width: 1440px) {
@@ -59,7 +59,7 @@
   height: 8px;
   background: var(--secondary-color---5);
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-bottom: 7px;
 }
 
@@ -80,7 +80,26 @@
   border: 1px solid var(--primary-color-blue);
   border-radius: 100%;
   transition: left 0.3s ease-in-out;
-  pointer-events: none;
+  cursor: pointer;
+}
+
+.infoTooltip {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color-white);
+  border: 1px solid var(--secondary-color-2);
+  box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
+  color: var(--primary-color-black);
+  border-radius: 10px;
+  z-index: 999;
+  padding: 5px 10px;
+  white-space: nowrap;
+  font-family: var(--font-roboto);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33333;
 }
 
 .markersContainer {
@@ -104,6 +123,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform: translateX(5px);
 }
 
 .markerEnd {
@@ -139,34 +159,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   gap: 10px;
-  border-radius: 10px;
-  padding: 10px 30px;
-  /* width: 178px; */
-  /* height: 44px; */
-  /* margin-top: 20px; */
-  background-color: var(--primary-color-blue);
-  box-shadow: var(--button-shadow);
-  color: var(--primary-color-white);
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.33333;
-  text-align: center;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  height: 36px;
+  padding: 8px;
+
   @media screen and (min-width: 320px) {
-    width: 280px;
-    height: 36px;
+    /* width: 280px; */
   }
   @media screen and (min-width: 768px) {
     width: 336px;
     height: 44px;
+    font-size: 18px;
+    line-height: 1.33;
+    gap: 12px;
   }
   @media screen and (min-width: 1440px) {
-    width: 178px;
+    width: 180px;
   }
 }
 
@@ -175,11 +186,12 @@
   color: var(--secondary-color-5);
 }
 
-@media screen and (min-width: 320px) {
+.plusCircle {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
 }
 
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 1440px) {
+.plusCircle:hover {
+  color: var(--secondary-color-5);
 }

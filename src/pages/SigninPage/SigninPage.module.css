@@ -76,8 +76,7 @@
 /* 
 .container {
   min-height: 100vh;
-  width: 320px;
-  background-image: url("../../images/background/mobile/Background-mobile-3x.webp");
+  /* background-image: url("../../images/background/mobile/Background-mobile-3x.webp"); */
   background-position: center 52px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -86,11 +85,23 @@
 .background {
   height: 608px;
   background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg");
+
+/*   background-image: var(--bottle-home-1x-mob); */
+
   background-size: 280px 210px;
   background-repeat: no-repeat;
   background-position: bottom;
-  padding-top: 66px;
+  padding-top: 24px;
 }
+
+/* @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .background {
+    background-image: var(--bottle-home-2x-mob);
+  }
+}
+@media screen and (min-width: 768px) {
+  .container { */
+
 
 @media screen and (min-width: 768px) {
   .container {
@@ -102,35 +113,42 @@
   }
 
   .background {
-    background-image: url("../../images/bottle/tablet/Bottle-SignUp-tablet.svg");
+    background-image: var(--bottle-home-1x-tab);
     background-size: 706px 548px;
     background-position: 90px center;
+    padding-top: 52px;
   }
-
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .background {
+    background-image: var(--bottle-home-2x-tab);
+  }
 }
 
 @media screen and (min-width: 1440px) {
-
   .container {
-    width: 1440px;
     height: 800px;
-    background-image: url("../../images//background/desktop/Desktop-layer-1x.webp");
     background-repeat: no-repeat;
     background-position: top left;
   }
 
   .background {
-    padding-top: 20px;
-    height: 700px;
-    background-image: url("../../images/bottle/desktop/Bottle-SignUp-desktop.svg");
+    height: 680px;
+    width: 916px;
+    background-image: var(--bottle-home-1x-desktop);
     background-size: 916px 680px;
     background-position: -51px center;
+    padding-top: 20px;
   }
 
   .box {
     padding-top: 120px;
     padding-left: 728px;
   }
-
 }
-*/
+/* }
+@media screen and (min-resolution: 192dpi) and (min-width: 1440px) {
+  .image {
+    background-image: var(--bottle-home-2x-desktop);
+  } */
+

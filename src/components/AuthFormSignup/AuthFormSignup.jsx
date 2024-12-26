@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { signUp } from "../../redux/auth/operations";
 import * as Yup from "yup";
 import { BiHide, BiShow } from "react-icons/bi";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -36,11 +37,10 @@ export default function AuthFormSignup() {
     const result = await dispatch(signUp(credentials));
 
     if (signUp.fulfilled.match(result)) {
-      console.log("SignUpPage: Successfully registered user");
       actions.resetForm();
       navigate("/signin");
     } else {
-      console.error("SignUpPage: Registration failed", result.payload);
+      toast.error("SignUpPage: Registration failed");
     }
   };
 

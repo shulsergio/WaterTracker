@@ -3,35 +3,35 @@
 }
 
 .userLogoBtn {
- width: auto;
+  width: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   background-color: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-  gap: 8px;
+  gap: 2px;
   outline: none;
 }
 
 .userName {
- font-size: 16px;
+  font-size: 16px;
   line-height: 1.25;
   color: var(--primary-color-black);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: left; 
+  text-align: left;
 }
 .avatar {
   width: 28px;
   height: 28px;
-  border-radius: 50%; 
-  object-fit: cover; 
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.emptyAvatar{
+.emptyAvatar {
   width: 40px;
   height: 40px;
   display: flex;
