@@ -4,7 +4,7 @@
   width: 280px;
   height: 416px;
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
-  background: var(--primary-color-white);
+  background: var(--secondary-color-2);
 }
 
 .title {
