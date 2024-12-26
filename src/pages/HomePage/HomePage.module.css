@@ -1,20 +1,5 @@
-.layer {
-  background-image: url("../../images/background/mobile/mainpage-bck-mob.svg");
-  background-position: center;
-  background-size:contain;
-  background-repeat: no-repeat;
-}
-
-.section {
-  margin: 0 auto;
-  padding: 56px 20px 0 20px;
-  max-width: 320px;
-
-  min-height: 100vh;
-}
-
 .wrap {
-  /* margin-bottom: 15px; */
+  margin-bottom: 15px;
 }
 
 .norma {
@@ -34,6 +19,7 @@
 }
 
 .WaterRatioPanel {
+  /* padding-top: 16px; */
   width: 100%;
   height: 100%;
   padding-bottom: 80px;
@@ -43,32 +29,13 @@
   padding-bottom: 48px;
 }
 
-
-@media screen and (min-width: 320px) {
-  .background {
-    min-height: 800px;
+@media screen and (min-resolution: 192dpi) and (min-width: 320px) {
+  .image {
+    background-image: var(--bottle-home-2x-mob);
   }
 }
-/* @media screen and (min-resolution: 192dpi) and (min-width: 320px) {
-  .image {
-    background-image: var(--bottle-home-2x-mob); */
-
-
 
 @media screen and (min-width: 768px) {
-
-  .layer {
-    background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
-    background-position: center;
-    background-size: contain;
-    height: 100vh;
-  }
-
-  .section {
-    max-width: 768px;
-    padding: 80px 32px 0 32px;
-  }
-
   .norma {
     padding-top: 24px;
     padding-bottom: 8px;
@@ -84,36 +51,21 @@
     width: 518px;
     height: 386px;
   }
-
-  .WaterRatioPanel {
-  padding-bottom: 40px;
-     
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .image {
+    background-image: var(--bottle-home-2x-tab);
+  }
 }
 
-/*   @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .image {
-      background-image: var(--bottle-home-2x-tab);
-    } */
-
-
 @media screen and (min-width: 1440px) {
-.section {
-    min-width: 1440px;
-    padding: 80px 112px;
-  
+  .section {
+    /* background-image: url("../../images/homePage/Background-Home-screen-1x-desktop.webp"); */
     display: flex;
     flex-direction: row;
     gap: 32px;
-/*     padding-top: 20px; */
-
+    padding-top: 20px;
   }
-
-.layer {
-    background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
-    background-position: center;
-    background-size: contain;
-    height: 100vh;
-}  
 
   .wrap {
     display: flex;
@@ -141,5 +93,10 @@
 
   .todayWaterGlassList {
     padding-bottom: 0;
+  }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .image {
+    background-image: var(--bottle-home-2x-desktop);
   }
 }
