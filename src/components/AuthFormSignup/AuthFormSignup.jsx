@@ -39,6 +39,9 @@ export default function AuthFormSignup() {
     if (signUp.fulfilled.match(result)) {
       actions.resetForm();
       navigate("/signin");
+      toast.success(
+        "Hello! You have successfully registered with Water Tracker!",
+      );
     } else {
       toast.error("SignUpPage: Registration failed");
     }
@@ -49,8 +52,7 @@ export default function AuthFormSignup() {
       <Formik
         initialValues={{ email: "", password: "", repeatPassword: "" }}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
+        onSubmit={handleSubmit}>
         {({ errors, touched }) => (
           <Form className={css.form}>
             <p className={css.text}>Sign Up</p>
@@ -87,8 +89,7 @@ export default function AuthFormSignup() {
                   type="button"
                   onClick={togglePasswordVisibility}
                   className={css.eyeButton}
-                  aria-label="Toggle password visibility"
-                >
+                  aria-label="Toggle password visibility">
                   {showPassword ? (
                     <BiShow className={css.eye} />
                   ) : (
@@ -119,8 +120,7 @@ export default function AuthFormSignup() {
                   type="button"
                   onClick={toggleRepeatPasswordVisibility}
                   className={css.eyeButton}
-                  aria-label="Toggle repeat password visibility"
-                >
+                  aria-label="Toggle repeat password visibility">
                   {showRepeatPassword ? (
                     <BiShow className={css.eye} />
                   ) : (
