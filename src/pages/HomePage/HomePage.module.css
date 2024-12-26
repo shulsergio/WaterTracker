@@ -51,11 +51,10 @@
     width: 518px;
     height: 386px;
   }
-
-  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .image {
-      background-image: var(--bottle-home-2x-tab);
-    }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .image {
+    background-image: var(--bottle-home-2x-tab);
   }
 }
 
@@ -95,10 +94,9 @@
   .todayWaterGlassList {
     padding-bottom: 0;
   }
-
-  @media screen and (min-resolution: 192dpi) and (min-width: 768px) {
-    .image {
-      background-image: var(--bottle-home-2x-desktop);
-    }
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 768px) {
+  .image {
+    background-image: var(--bottle-home-2x-desktop);
   }
 }
