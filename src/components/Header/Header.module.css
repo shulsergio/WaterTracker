@@ -1,8 +1,8 @@
 .headerContainer {
   position: absolute;
-  z-index: 1000; /// перевірити на модалках
+  z-index: 1;
   width: 100%;
-  padding-top: 8px;  
+  padding-top: 8px;
 }
 
 .header {
@@ -21,10 +21,6 @@
   justify-content: space-between;
 }
 
-/* header button {
-  background-color: var(--primary-color-white);
-} */
-
 .buttonSvg {
   margin-left: 8px;
   width: 24px;
@@ -32,7 +28,6 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .headerContainer {
     padding-top: 16px;
   }
@@ -43,7 +38,6 @@
   }
   .boxItem {
     width: 92%;
-
   }
 }
 
@@ -58,6 +52,8 @@
   .header {
     max-width: 1440px;
     padding: 0 112px;
-
   }
+}
+.themeToggle {
+  background-color: inherit;
 }

@@ -7,9 +7,13 @@
   background-repeat: no-repeat;
 }
 .container {
-  padding: 8px 20px;
+  padding: 48px 20px;
+  height: 100%;
   margin: 0 auto;
   max-width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -25,7 +29,7 @@
 
   .container {
     max-width: 768px;
-    padding: 16px 32px;
+    padding: 68px 32px;
   }
 }
 
@@ -40,6 +44,6 @@
 
   .container {
     min-width: 1440px;
-    padding: 12px 112px;
+    padding: 68px 112px;
   }
 }

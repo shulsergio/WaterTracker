@@ -5,23 +5,21 @@ import styles from "./SharedLayout.module.css";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
 import BackgroundSVG from "../../components/BackgroundSVG/backgroundSVG.jsx";
-      
 
 const SharedLayout = () => {
   const isLoading = useSelector((state) => state.auth.isLoading);
   return (
     <>
       {isLoading && <Loader />}
-{/*       <div > */}
-{/*         <BackgroundSVG /> */}
-{/*         <div className={styles.container}> */}
-          <Header />
-          <Suspense fallback={null}>
-            <Outlet />
-          </Suspense>
-{/*         </div> */}
-{/*       </div> */}
-      
+      <Header />
+      {/*       <div > */}
+      {/*         <BackgroundSVG /> */}
+      <div className={styles.container}>
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+      </div>
+      {/*       </div> */}
     </>
   );
 };
