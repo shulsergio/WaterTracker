@@ -38,6 +38,12 @@
 
   --bottle-home-1x-desktop: url(../images/homePage/light/Bottle-home-screen-1x-light-desktop.webp);
   --bottle-home-2x-desktop: url(../images/homePage/light/Bottle-home-screen-2x-light-desktop.webp);
+
+  --welcome-bckg-mob: url(../images/background/mobile/welcome-bckg-mob.svg);
+  --welcome-bckg-tab: url(../images/background/tablet/welcome-bckg-tab.svg);
+  --welcome-bckg-dsk: url(../images/background/desktop/welcome-bckg-dsk.svg);
+
+  --welcome-layer-dsk: url(../images/background/desktop/welcome-layer-dsk.svg);
 }
 
 [data-theme="dark"] {
@@ -61,7 +67,7 @@
   --background-mob-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-mob.webp);
   --background-tab-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-tab.webp);
   --background-desktop-welcomepage-2x: url(../images/homePage/dark/Background-welcome-2x-dark-desktop.webp);
-  
+
   --background-mob-signin: url(../images/homePage/dark/Background-element-SignIn-dark-mob1x.webp);
   --background-mob-home-screen: url(../images/homePage/dark/Background-element-Home-screen-dark-mob1x.webp);
   --background-tab-home-screen: url(../images/homePage/dark/Background-element-Home-Screen-dark-tab1x.webp);
@@ -75,4 +81,10 @@
 
   --bottle-home-1x-desktop: url(../images/homePage/dark/Bottle-home-screen-1x-dark-desktop.webp);
   --bottle-home-2x-desktop: url(../images/homePage/dark/Bottle-home-screen-2x-dark-desktop.webp);
+
+  --welcome-bckg-mob: url(../images/background/mobile/welcome-bckg-mob-drk.svg);
+  --welcome-bckg-tab: url(../images/background/tablet/welcome-bckg-tab-drk.svg);
+  --welcome-bckg-dsk: url(../images/background/desktop/welcome-bckd-dsk-drk.svg);
+
+  --welcome-layer-dsk: url(../images/background/desktop/welcome-layer-dsk-drk.svg);
 }

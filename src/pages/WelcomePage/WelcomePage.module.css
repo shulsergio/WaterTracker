@@ -1,5 +1,8 @@
 .background {
-  background-image: url("../../images/background/mobile/welcome-bckg-mob.svg");
+  /* background-image: url("../../images/background/mobile/welcome-bckg-mob.svg"); */
+  background-image: var(--welcome-bckg-mob);
+
+  /* --welcome-bckg-dsk */
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -23,7 +26,8 @@
 
 @media screen and (min-width: 768px) {
   .background {
-    background-image: url("../../images/background/tablet/welcome-bckg-tab.svg");
+    /* background-image: url("../../images/background/tablet/welcome-bckg-tab.svg"); */
+    background-image: var(--welcome-bckg-tab);
     background-position: bottom;
     background-size: cover;
   }
@@ -31,7 +35,7 @@
   .section {
     max-width: 768px;
     padding: 140px 32px 0 32px;
-    
+
     flex-direction: column;
     gap: 60px;
     min-height: 800px;
@@ -40,7 +44,8 @@
 
 @media screen and (min-width: 1440px) {
   .background {
-    background-image: url("../../images/background/desktop/welcome-bckg-dsk.svg");
+    /* background-image: url("../../images/background/desktop/welcome-bckg-dsk.svg"); */
+    background-image: var(--welcome-bckg-dsk);
     background-position: bottom;
     background-size: contain;
   }
@@ -52,7 +57,9 @@
   }
 
   .layer {
-    background-image: url("../../images/background/desktop/welcome-layer-dsk.svg");
+    /* background-image: url("../../images/background/desktop/welcome-layer-dsk.svg"); */
+
+    background-image: var(--welcome-layer-dsk);
     background-position: center;
     background-size: contain;
   }
