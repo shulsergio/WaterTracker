@@ -44,6 +44,7 @@
   --welcome-bckg-dsk: url(../images/background/desktop/welcome-bckg-dsk.svg);
 
   --welcome-layer-dsk: url(../images/background/desktop/welcome-layer-dsk.svg);
+  --mainpage-bck-mob: url(../images/background/mobile/welcome-bckg-mob.svg);
 }
 
 [data-theme="dark"] {
@@ -87,4 +88,5 @@
   --welcome-bckg-dsk: url(../images/background/desktop/welcome-bckd-dsk-drk.svg);
 
   --welcome-layer-dsk: url(../images/background/desktop/welcome-layer-dsk-drk.svg);
+  --mainpage-bck-mob: url(../images/background/mobile/welcome-bckg-mob-drk.svg);
 }
