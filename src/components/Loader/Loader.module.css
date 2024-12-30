@@ -6,7 +6,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  align-items: center;
   padding-top: 100px;
   background-color: rgba(225, 252, 255, 0.5);
   z-index: 1000;
