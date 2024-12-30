@@ -1,8 +1,14 @@
 .modal {
-  width: 100%;
+  padding: 24px 12px;
+  max-width: 100%;
 
   @media screen and (min-width: 768px) {
-    max-width: 860px;
+    padding: 32px 24px;
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1008px;
   }
 }
 
@@ -126,6 +132,7 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
+  line-height: 1.11;
 }
 
 .labelYourPhoto {
@@ -193,7 +200,7 @@
   margin: 0;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.28571;
+  line-height: 1.29;
   color: var(--primary-color-blue);
 }
 

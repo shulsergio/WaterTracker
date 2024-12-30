@@ -41,13 +41,12 @@ const Modal = ({
   return (
     <div onClick={handleBackDropClick} className={css.backdrop}>
       <div className={clsx(css.modal, classNameModal)}>
-        <div className={css.modalHeder}>
+        <div className={css.modalHeader}>
           <h3 className={css.title}>{title}</h3>
           <button
             aria-label="Close modal button"
             className={css.closeModalBtn}
-            onClick={onClose}
-          >
+            onClick={onClose}>
             <Icon id="icon-close" width={14} height={14} />
           </button>
         </div>
