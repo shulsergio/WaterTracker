@@ -11,6 +11,7 @@
   --secondary-color-4: #9ebbff;
   --secondary-color-5: #ff9d43;
   --secondary-color---5: #d7e3ff;
+  --secondary-color-6: #407bff;
 
   --button-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   --button-shadow-hover: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
@@ -44,7 +45,10 @@
   --welcome-bckg-dsk: url(../images/background/desktop/welcome-bckg-dsk.svg);
 
   --welcome-layer-dsk: url(../images/background/desktop/welcome-layer-dsk.svg);
-  --mainpage-bck-mob: url(../images/background/mobile/mainpage-bck-mob.svg);
+
+  --mainPage-bck-mob: url(../images/background/mobile/mainpage-bck-mob.svg);
+  --mainPage-bck-tab: url(../images//background/tablet/mainpage-bck-tab.svg);
+  --mainPage-bck-dsk: url(../images/background/desktop/mainpage-bck-dsk.svg);
 }
 
 [data-theme="dark"] {
@@ -56,6 +60,7 @@
   --secondary-color-4: #2f3875;
   --secondary-color-5: #ffa756;
   --secondary-color---5: #2a3052;
+  --secondary-color-6: #2f3875;
 
   --background-mob-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-mob.webp);
   --background-tab-homescreen: url(../images/homePage/dark/Background-home-screen-1x-dark-tab.webp);
@@ -88,5 +93,8 @@
   --welcome-bckg-dsk: url(../images/background/desktop/welcome-bckd-dsk-drk.svg);
 
   --welcome-layer-dsk: url(../images/background/desktop/welcome-layer-dsk-drk.svg);
-  --mainpage-bck-mob: url(../images/background/mobile/mainpage-bck-mob-drk.svg);
+
+  --mainPage-bck-mob: url(../images/background/mobile/mainpage-bck-mob-drk.svg);
+  --mainPage-bck-tab: url(../images//background/tablet/mainpage-bck-tab-drk.svg);
+  --mainPage-bck-dsk: url(../images/background/desktop/mainpage-bck-dsk-drk.svg);
 }

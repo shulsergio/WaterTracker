@@ -1,5 +1,6 @@
 .layer {
-  background-image: url("../../images/background/mobile/mainpage-bck-mob.svg");
+  /* background-image: url("../../images/background/mobile/mainpage-bck-mob.svg"); */
+  background-image: var(--mainPage-bck-mob);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -16,15 +17,18 @@
 
 .background {
   height: 608px;
-  background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg");
+  /* background-image: url("../../images/bottle/mobile/Bottle-SignUp-mob.svg"); */
+  background-image: var(--bottle-home-1x-mob);
   background-size: 280px 210px;
   background-repeat: no-repeat;
   background-position: bottom;
+  /* background-position: center bottom 30px; */
 }
 
 @media screen and (min-width: 768px) {
   .layer {
-    background-image: url("../../images/background/tablet/mainpage-bck-tab.svg");
+    /* background-image: url("../../images/background/tablet/mainpage-bck-tab.svg"); */
+    background-image: var(--mainPage-bck-tab);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -37,14 +41,17 @@
     width: 768px;
   }
   .background {
-    background-image: url("../../images/bottle/tablet/Bottle-SignUp-tablet.svg");
-    background-size: 706px 548px;
-    background-position: 90px center;
+    /* padding-top: 40px; */
+    /* background-image: url("../../images/bottle/tablet/Bottle-SignUp-tablet.svg"); */
+    background-image: var(--bottle-home-1x-tab);
+    background-size: 738px 548px;
+    background-position: 112px 0px;
   }
 }
 @media screen and (min-width: 1440px) {
   .layer {
-    background-image: url("../../images/background/desktop/mainpage-bck-dsk.svg");
+    /* background-image: url("../../images/background/desktop/mainpage-bck-dsk.svg"); */
+    background-image: var(--mainPage-bck-dsk);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -58,11 +65,12 @@
     min-height: 800px;
   }
   .background {
-    padding-top: 20px;
+    /* padding-top: 20px; */
     height: 700px;
-    background-image: url("../../images/bottle/desktop/Bottle-SignUp-desktop.svg");
+    /* background-image: url("../../images/bottle/desktop/Bottle-SignUp-desktop.svg"); */
+    background-image: var(--bottle-home-2x-desktop);
     background-size: 916px 680px;
-    background-position: -51px center;
+    background-position: -163px 20px;
   }
   .box {
     padding-top: 120px;
