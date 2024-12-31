@@ -1,3 +1,16 @@
+.modal {
+  padding: 24px 12px;
+  max-width: 100%;
+
+  @media screen and (min-width: 768px) {
+    padding: 32px 24px;
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 592px;
+  }
+}
 
 .blockInfo {
   background: var(--secondary-color-2);
@@ -23,25 +36,19 @@
   margin-left: 16px;
 }
 
+.subtitle {
+  font-weight: 500;
+  color: var(--primary-color-black);
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
 .amountOfWaterTitle {
   font-size: 16px;
   line-height: 1.25;
   color: var(--primary-color-black);
   font-weight: 400;
   margin-bottom: 12px;
-}
-
-.valueWaterMl {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.33;
-  text-align: center;
-  color: var(--primary-color-blue);
-  background: var(--secondary-color---5);
-  border-radius: 40px;
-  padding: 6px 10px;
-  max-width: 92px;
-  width: 100%;
 }
 
 .calcBlock {
@@ -68,11 +75,17 @@
   fill: var(--primary-color-blue);
 }
 
-.subtitle {
-  font-weight: 500;
-  color: var(--primary-color-black);
-  margin-bottom: 16px;
+.valueWaterMl {
+  font-weight: 700;
   font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  color: var(--primary-color-blue);
+  background: var(--secondary-color---5);
+  border-radius: 40px;
+  padding: 6px 10px;
+  max-width: 92px;
+  width: 100%;
 }
 
 .inputWithLabel {
@@ -83,7 +96,7 @@
 
 .inputLabel {
   color: var(--primary-color-black);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .inputField {
@@ -92,9 +105,12 @@
   border-radius: 6px;
   font-size: 16px;
   color: var(--primary-color-blue);
+  line-height: 1.25;
+  height: 44px;
 
   @media screen and (min-width: 768px) {
     width: 100%;
+    width: 544px;
   }
 }
 
@@ -121,6 +137,7 @@
   line-height: 1.33;
   text-align: center;
   margin-bottom: 16px;
+  font-size: 18px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;

@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
-import styles from "./SharedLayout.module.css";
+// import styles from "./SharedLayout.module.css";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
-import BackgroundSVG from "../../components/BackgroundSVG/backgroundSVG.jsx";
+// import BackgroundSVG from "../../components/BackgroundSVG/backgroundSVG.jsx";
 
 const SharedLayout = () => {
   const isLoading = useSelector((state) => state.auth.isLoading);
